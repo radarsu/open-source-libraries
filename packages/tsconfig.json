@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "declaration": true,
+        "downlevelIteration": true,
+        "module": "esnext",
+        "resolveJsonModule": false,
+        "skipLibCheck": true
+    },
+    "exclude": ["*/dist", "*/examples", "*/scripts.ts", "*/scripts", "*/src/assets", "*/__tests__", "*/__tests-utils__"]
+}

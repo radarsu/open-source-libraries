@@ -1,0 +1,31 @@
+{
+    "name": "radarsu-monorepo",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "prepare": "husky install .config/husky"
+    },
+    "devDependencies": {
+        "@radrat-config/eslint": "^2",
+        "@radrat-node/husky": "^2",
+        "@radrat-scripts/git": "^2",
+        "@radrat-scripts/workspace": "^2",
+        "@radrat-types/config": "^2",
+        "@radrat/cli": "^2",
+        "@types/node": "^14",
+        "@typescript-eslint/eslint-plugin": "^4",
+        "@typescript-eslint/parser": "^4",
+        "eslint": "^7",
+        "eslint-config-prettier": "^8",
+        "eslint-plugin-import": "^2",
+        "eslint-plugin-jest": "^24",
+        "eslint-plugin-max-params-no-constructor": "^0",
+        "eslint-plugin-prettier": "^3",
+        "husky": "^6",
+        "lerna": "^4",
+        "prettier": "^2",
+        "ts-node": "^9",
+        "tslib": "^2",
+        "typescript": "^4"
+    }
+}

@@ -1,0 +1,3 @@
+-   **0 dependencies**
+-   **Simple** - just 40 lines of clean TypeScript code
+-   **Strongly typed** - returns TimeoutPromise object which remains strongly typed

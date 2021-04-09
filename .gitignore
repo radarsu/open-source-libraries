@@ -1,0 +1,6 @@
+# Dependencies.
+/node_modules
+/npm-debug.log
+
+# Environmental.
+/.config/*/local.config.ts

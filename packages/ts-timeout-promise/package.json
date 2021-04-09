@@ -1,0 +1,32 @@
+{
+    "name": "ts-timeout-promise",
+    "version": "2.0.39",
+    "description": "Awaitable timeout promise wrapper.",
+    "license": "MIT",
+    "keywords": [
+        "await",
+        "timeout",
+        "promise",
+        "async"
+    ],
+    "files": [
+        "dist"
+    ],
+    "author": "Artur Kurowski <radarsu@gmail.com>",
+    "homepage": "https://github.com/radarsu/ts-timeout-promise#readme",
+    "main": "dist/index.js",
+    "module": "dist/index.module.js",
+    "browser": {
+        "./dist/index.js": "./dist/index.browser.js",
+        "./dist/index.module.js": "./dist/index.module.js"
+    },
+    "types": "dist/index.d.ts",
+    "devDependencies": {
+        "@rollup/plugin-typescript": "^8.2.0",
+        "@types/node": "^14.14.37",
+        "rollup": "^2.42.2",
+        "rollup-plugin-terser": "^7.0.2",
+        "typescript": "^4.2.4"
+    },
+    "gitHead": "5f409f3708573a20e3ce2e5088531dcd8951df7b"
+}
