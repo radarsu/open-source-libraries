@@ -29,6 +29,7 @@ export class WordVariationsDictionary {
         });
     }
 
+    // eslint-disable-next-line complexity
     getWord(wordKey: string, count = 1, polishCase: keyof WordDefinition = `nominative`) {
         // Handle negative numbers.
         count = Math.abs(count);
@@ -43,9 +44,22 @@ export class WordVariationsDictionary {
             throw new Error(`Case ${polishCase} is not defined for word ${wordKey}.`);
         }
 
-        // Handle one and floats.
-        if (count === 1 || count % 1 !== 0) {
+        // Handle one.
+        if (count === 1) {
             return wordDefinition.singular;
+        }
+
+        // Handle floats.
+        if (count % 1 !== 0) {
+            if (!word.genitive) {
+                throw new Error(`Genitive form of word "${wordDefinition.singular}" is required to support floats.`);
+            }
+
+            if (count < 2) {
+                return word.genitive.singular;
+            }
+
+            return (wordDefinition as SimpleWordDefinition).plural;
         }
 
         // Vocative has always the same plural form as nominative: http://free.of.pl/g/grzegorj/gram/pl/gram04.html
