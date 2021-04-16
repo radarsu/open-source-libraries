@@ -33,15 +33,15 @@ export default [{
     ],
     output: [
         {
-            file: `dist/clothing/index.js`,
+            file: `dist/word-definitions/clothing/index.js`,
             format: `cjs`,
         },
         {
-            file: `dist/clothing/index.module.js`,
+            file: `dist/word-definitions/clothing/index.module.js`,
             format: `es`,
         },
         {
-            file: `dist/clothing/index.browser.js`,
+            file: `dist/word-definitions/clothing/index.browser.js`,
             format: `iife`,
             name: `wordVariationsClothing`,
         },
@@ -57,15 +57,15 @@ export default [{
     ],
     output: [
         {
-            file: `dist/time-measures/index.js`,
+            file: `dist/word-definitions/time-measures/index.js`,
             format: `cjs`,
         },
         {
-            file: `dist/time-measures/index.module.js`,
+            file: `dist/word-definitions/time-measures/index.module.js`,
             format: `es`,
         },
         {
-            file: `dist/time-measures/index.browser.js`,
+            file: `dist/word-definitions/time-measures/index.browser.js`,
             format: `iife`,
             name: `wordVariationsTimeMeasures`,
         },
@@ -81,15 +81,15 @@ export default [{
     ],
     output: [
         {
-            file: `dist/medicine/index.js`,
+            file: `dist/word-definitions/medicine/index.js`,
             format: `cjs`,
         },
         {
-            file: `dist/medicine/index.module.js`,
+            file: `dist/word-definitions/medicine/index.module.js`,
             format: `es`,
         },
         {
-            file: `dist/medicine/index.browser.js`,
+            file: `dist/word-definitions/medicine/index.browser.js`,
             format: `iife`,
             name: `wordVariationsMedicine`,
         },
