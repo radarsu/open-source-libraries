@@ -1,6 +1,6 @@
 {
     "name": "polish-word-variations",
-    "version": "2.0.39",
+    "version": "2.0.40",
     "description": "Utility library to define and obtain word variations for polish words - singular and plural forms (dependant on count) for various polish cases.",
     "license": "MIT",
     "keywords": [

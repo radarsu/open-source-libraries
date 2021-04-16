@@ -1,24 +1,35 @@
 import { belt } from '../src/word-definitions/clothing';
 import { wordVariations } from '../src';
 
-test(`second`, async () => {
+test(`belt`, async () => {
     const { singular, dual, plural } = belt.nominative;
 
-    wordVariations.addWord(singular, belt);
+    wordVariations.addWords({ [singular]: belt });
 
-    const wordZero = await wordVariations.getWord(singular, 0);
+    const wordZero = wordVariations.getWord(singular, 0);
     expect(wordZero).toBe(plural);
 
-    const wordSingular = await wordVariations.getWord(singular);
+    const wordSingular = wordVariations.getWord(singular);
     expect(wordSingular).toBe(singular);
 
-    const promises = [...Array(3).keys()].map(async (value, i) => {
-        const wordDual = await wordVariations.getWord(singular, i + 2);
+    for (let i = 2; i <= 4; ++i) {
+        const wordDual = wordVariations.getWord(singular, i);
         expect(wordDual).toBe(dual);
-    });
+    }
 
-    await Promise.all(promises);
+    for (let i = 5; i <= 11; ++i) {
+        const wordPlural = wordVariations.getWord(singular, i);
+        expect(wordPlural).toBe(plural);
+    }
 
-    const wordPlural = await wordVariations.getWord(singular, 5);
-    expect(wordPlural).toBe(plural);
+    for (let i = 12; i <= 21; ++i) {
+        const twelveToFourteen = wordVariations.getWord(singular, i);
+        expect(twelveToFourteen).toBe(plural);
+    }
+
+
+    for (let i = 22; i <= 24; ++i) {
+        const wordDual = wordVariations.getWord(singular, i);
+        expect(wordDual).toBe(dual);
+    }
 });

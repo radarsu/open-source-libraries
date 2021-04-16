@@ -1,10 +1,10 @@
-import { second } from '../src/word-definitions/time-measures';
+import { measurement } from '../src/word-definitions/medicine';
 import { wordVariations } from '../src';
 
-test(`second`, async () => {
-    const { singular, dual, plural } = second.nominative;
+test(`measurement`, async () => {
+    const { singular, dual, plural } = measurement.nominative;
 
-    wordVariations.addWords({ [singular]: second });
+    wordVariations.addWords({ [singular]: measurement });
 
     const wordZero = wordVariations.getWord(singular, 0);
     expect(wordZero).toBe(plural);

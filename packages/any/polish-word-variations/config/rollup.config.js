@@ -75,4 +75,28 @@ export default [{
         typescript(),
         terser(),
     ],
+}, {
+    input: [
+        `./src/word-definitions/medicine/index.ts`,
+    ],
+    output: [
+        {
+            file: `dist/medicine/index.js`,
+            format: `cjs`,
+        },
+        {
+            file: `dist/medicine/index.module.js`,
+            format: `es`,
+        },
+        {
+            file: `dist/medicine/index.browser.js`,
+            format: `iife`,
+            name: `wordVariationsMedicine`,
+        },
+    ],
+    external: [...Object.keys(pkg.dependencies || {})],
+    plugins: [
+        typescript(),
+        terser(),
+    ],
 }];

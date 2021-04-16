@@ -55,7 +55,7 @@ export class WordVariationsDictionary {
 
         if (`dual` in wordDefinition) {
             const lastDigit = count % 10;
-            if (lastDigit >= 2 && lastDigit <= 4) {
+            if (lastDigit >= 2 && lastDigit <= 4 && (count < 12 || count > 14)) {
                 return wordDefinition.dual;
             }
         }
