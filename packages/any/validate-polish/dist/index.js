@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var r={checksum:function(r,t){for(var e=r.length-1,n=0,u=0;u<e;++u){n+=parseInt(r[u],10)*t[u]}var i=n%11;return(10===i?0:i)===parseInt(r.slice(-1),10)},pesel:function(r){var t=Number(r.substring(2,4));if(!t||t<1||t>12)return!1;var e=Number(r.substring(4,6));if(!e||e<1||e>31)return!1;if(!/^[0-9]{11}$/u.test(r))return!1;var n=[1,3,7,9],u=(""+r).split("").map((function(r){return parseInt(r,10)})),i=
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var r={checksum:function(r,t){for(var e=r.length-1,n=0,u=0;u<e;++u){n+=parseInt(r.charAt(u),10)*t[u]}var i=n%11;return(10===i?0:i)===parseInt(r.slice(-1),10)},pesel:function(r){var t=Number(r.substring(2,4));if(!t||t%20>12)return!1;var e=Number(r.substring(4,6));if(!e||e<1||e>31)return!1;if(!/^[0-9]{11}$/u.test(r))return!1;var n=[1,3,7,9],u=(""+r).split("").map((function(r){return parseInt(r,10)})),i=
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
 

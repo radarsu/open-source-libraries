@@ -3,5 +3,5 @@
 -   **Fast, lightweight, 0 dependencies** - no dependencies ensure there are no security breaches from other packages
 -   **Maintained** - if you need additional functionality feel free to create PR or an Issue
 -   **Strongly typed** - library written fully in TypeScript
--   **Supports PESEL, REGON (9 and 14), NIP, IDENTITY CARD**
+-   **Supports PESEL, REGON (9 and 14), NIP, IDENTITY CARD** - also validates day and month correctness including century encoded in month.
 -   **Tested** - has tests on dozens of valid and invalid chunks of data to make sure validations are performed flawlessly

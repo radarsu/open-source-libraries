@@ -4,8 +4,8 @@ export const validatePolish = {
         let sum = 0;
 
         for (let i = 0; i < max; ++i) {
-            const n = parseInt(number[i], 10);
-            sum += n * weights[i];
+            const n = parseInt(number.charAt(i), 10);
+            sum += n * (weights[i] as number);
         }
 
         const control = sum % 11;
@@ -19,10 +19,10 @@ export const validatePolish = {
      * Validation of PESEL.
      */
     pesel(pesel: string): boolean {
-        const month = Number(pesel.substring(2, 4));
+        const monthWithCentury = Number(pesel.substring(2, 4));
 
-        // Validate month and day.
-        if (!month || month < 1 || month > 12) {
+        // Century is encoded in month: https://en.wikipedia.org/wiki/PESEL.
+        if (!monthWithCentury || monthWithCentury % 20 > 12) {
             return false;
         }
 
@@ -39,10 +39,12 @@ export const validatePolish = {
         const digits = `${pesel}`.split(``).map((digit) => {
             return parseInt(digit, 10);
         });
+
         const [dig11] = digits.splice(-1);
+
         const control =
             digits.reduce((previousValue, currentValue, index) => {
-                return previousValue + currentValue * times[index % 4];
+                return previousValue + currentValue * (times[index % 4] as number);
             }) % 10;
 
         return 10 - (control === 0 ? 10 : control) === dig11;
@@ -65,7 +67,7 @@ export const validatePolish = {
         const dig = String(nipWithoutDashes).split(``);
         const controlValues = [6, 5, 7, 2, 3, 4, 5, 6, 7];
         const partialSums = controlValues.map((controlValue, index) => {
-            return controlValue * parseInt(dig[index], 10);
+            return controlValue * parseInt((dig[index] as string), 10);
         });
 
         let sum = 0;
@@ -75,7 +77,7 @@ export const validatePolish = {
 
         const control = sum % 11;
 
-        if (parseInt(dig[9], 10) === control) {
+        if (parseInt((dig[9] as string), 10) === control) {
             return true;
         }
 
@@ -161,32 +163,32 @@ export const validatePolish = {
 
         // Check series.
         for (let i = 0; i < 3; ++i) {
-            if (getLetterValue(upperNum[i]) < 10) {
+            if (getLetterValue((upperNum[i] as string)) < 10) {
                 return false;
             }
         }
 
         // Check number.
         for (let i = 3; i < 9; ++i) {
-            if (getLetterValue(upperNum[i]) < 0 || getLetterValue(upperNum[i]) > 9) {
+            if (getLetterValue((upperNum[i] as string)) < 0 || getLetterValue((upperNum[i] as string)) > 9) {
                 return false;
             }
         }
 
         // Calculate checksum.
         let sum =
-            7 * getLetterValue(upperNum[0]) +
-            3 * getLetterValue(upperNum[1]) +
-            Number(getLetterValue(upperNum[2])) +
-            7 * getLetterValue(upperNum[4]) +
-            3 * getLetterValue(upperNum[5]) +
-            Number(getLetterValue(upperNum[6])) +
-            7 * getLetterValue(upperNum[7]) +
-            3 * getLetterValue(upperNum[8]);
+            7 * getLetterValue((upperNum[0] as string)) +
+            3 * getLetterValue((upperNum[1] as string)) +
+            Number(getLetterValue((upperNum[2] as string))) +
+            7 * getLetterValue((upperNum[4] as string)) +
+            3 * getLetterValue((upperNum[5] as string)) +
+            Number(getLetterValue((upperNum[6] as string))) +
+            7 * getLetterValue((upperNum[7] as string)) +
+            3 * getLetterValue((upperNum[8] as string));
 
         sum %= 10;
 
-        if (sum !== getLetterValue(upperNum[3])) {
+        if (sum !== getLetterValue((upperNum[3] as string))) {
             return false;
         }
 
