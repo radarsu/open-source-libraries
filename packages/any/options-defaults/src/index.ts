@@ -14,7 +14,7 @@ export const merge = (object: any, ...sources: any[]) => {
 
             // Handle simple types (null, string, number, boolean) and members of classes different than Object.
             const isObject = typeof value === `object`;
-            const isInstanceOfClass = isObject && value?.constructor.name !== `Object`;
+            const isInstanceOfClass = isObject && (value as any)?.constructor.name !== `Object`;
 
             if (value === null || !isObject || Array.isArray(value) || isInstanceOfClass) {
                 object[key] = value;
