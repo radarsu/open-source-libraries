@@ -2,20 +2,14 @@ import * as fastGlob from 'fast-glob';
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { Template } from '../interfaces/template.interface';
+import { MainContext } from '../interfaces/main-context';
 
-interface CopyFilesOptions {
-    selectedTemplate: Template;
-    responses: any;
-}
-
-export const copyFiles = async (options: CopyFilesOptions) => {
-    const { selectedTemplate, responses } = options;
+export const copyFiles = async (options: MainContext) => {
+    const { selectedTemplate, targetDirectoryPath } = options;
 
     const copyPaths = path.resolve(selectedTemplate.path, `./**/*`);
     const decreePath = path.resolve(selectedTemplate.path, `_decree.ts`);
     const renderPaths = path.resolve(selectedTemplate.path, `./**/*.ejs`);
-    const targetDirectoryPath = path.resolve(selectedTemplate.path, `..`, responses.directoryName);
 
     const sourcePaths = await fastGlob([copyPaths], {
         markDirectories: true,
@@ -26,6 +20,13 @@ export const copyFiles = async (options: CopyFilesOptions) => {
     const promises = sourcePaths.map(async (sourcePath) => {
         const pathRelativeToTemplate = path.relative(selectedTemplate.path, sourcePath);
         const targetPath = `${targetDirectoryPath}/${pathRelativeToTemplate}`;
+
+        // Handle "copying" directories.
+        if (sourcePath.endsWith(`/`)) {
+            await fs.promises.mkdir(targetPath);
+            return;
+        }
+
         await fs.promises.copyFile(sourcePath, targetPath);
     });
 

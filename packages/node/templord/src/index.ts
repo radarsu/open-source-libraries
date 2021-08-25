@@ -1,4 +1,7 @@
 import * as modules from './modules';
+import * as path from 'path';
+
+import { MainContext } from './interfaces/main-context';
 
 const main = async () => {
     // Find templates.
@@ -15,14 +18,22 @@ const main = async () => {
     // Ask questions.
     const responses = await modules.askQuestions(selectedTemplate);
 
-    // Render ejs templates.
-    await modules.renderEjsTemplates({
+    const targetDirectoryPath = path.resolve(selectedTemplate.path, `..`, responses.directoryName);
+
+    const context: MainContext = {
         responses,
         selectedTemplate,
-    });
+        targetDirectoryPath,
+    };
 
-    // Copy other files.
-    await modules.copyFiles(selectedTemplate);
+    // Render ejs templates.
+    await modules.renderEjsTemplates(context);
+
+    // Copy directories.
+    await modules.copyDirectories(context);
+
+    // Copy files.
+    await modules.copyFiles(context);
 };
 
 main().catch((err) => {

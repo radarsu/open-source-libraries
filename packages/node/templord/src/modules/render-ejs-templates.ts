@@ -2,44 +2,43 @@ import * as ejs from 'ejs';
 import * as fastGlob from 'fast-glob';
 import * as fs from 'fs';
 import * as path from 'path';
+import { MainContext } from '../interfaces/main-context';
 
-import { Template } from '../interfaces/template.interface';
+import { removeExtensionFromPath } from '../utils/remove-extension-from-path';
 
-interface RenderEjsTemplatesOptions {
-    selectedTemplate: Template;
-    responses: any;
-}
-
-const renderEjsTemplates = async (options: RenderEjsTemplatesOptions) => {
-    const { selectedTemplate, responses } = options;
+const renderEjsTemplates = async (options: MainContext) => {
+    const { selectedTemplate, responses, targetDirectoryPath } = options;
 
     const renderPaths = path.resolve(selectedTemplate.path, `./**/*.ejs`);
-    const targetDirectoryPath = path.resolve(selectedTemplate.path, `..`, responses.directoryName);
 
-    const pathsToRender = await fastGlob([renderPaths], {
-        markDirectories: true,
-        onlyFiles: false,
-    });
+    const [sourcePaths] = await Promise.all([
+        fastGlob([renderPaths], {
+            markDirectories: true,
+            onlyFiles: false,
+        }),
+        fs.promises.mkdir(targetDirectoryPath),
+    ]);
 
-    await fs.promises.mkdir(targetDirectoryPath);
+    const promises = sourcePaths.map(async (sourcePath) => {
+        const renderedName = ejs.render(path.basename(sourcePath), responses);
+        const relativePathWithExtension = path.relative(selectedTemplate.path, sourcePath);
+        const relativePath = removeExtensionFromPath(relativePathWithExtension);
 
-    const promises = pathsToRender.map(async (pathToRenderSource) => {
-        const pathRelativeToTemplate = path.relative(selectedTemplate.path, pathToRenderSource);
-        let targetPath = `${targetDirectoryPath}/${pathRelativeToTemplate}`;
+        const renderedRelativePath = path.resolve(targetDirectoryPath, relativePath, `../${renderedName}`);
+
+        const targetPath = path.resolve(targetDirectoryPath, renderedRelativePath);
+
+        console.log({ renderedName, relativePathWithExtension, relativePath, renderedRelativePath, targetPath });
 
         // Handle rendering directory names.
-        if (pathToRenderSource.endsWith(`/`)) {
-            const renderedDirectoryName = ejs.render(path.basename(pathToRenderSource), responses);
-            const renderedDirectoryNameWithoutExtension = path.parse(renderedDirectoryName).name;
-            targetPath = path.resolve(targetPath, `../${renderedDirectoryNameWithoutExtension}`);
-
+        if (sourcePath.endsWith(`/`)) {
             await fs.promises.mkdir(targetPath, {
                 recursive: true,
             });
             return;
         }
 
-        const rendered: string = await ejs.renderFile(pathToRenderSource, responses);
+        const rendered: string = await ejs.renderFile(sourcePath, responses);
         await fs.promises.writeFile(targetPath, rendered);
     });
 
