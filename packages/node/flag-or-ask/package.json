@@ -5,7 +5,7 @@
     "files": [
         "dist"
     ],
-    "author": "Radioactive Rat Sp. z o.o.",
+    "author": "Artur Kurowski <radarsu@gmail.com>",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "dependencies": {
