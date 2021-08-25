@@ -38,5 +38,10 @@
     "typescript.tsdk": "node_modules/typescript/lib",
     "[typescript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+
+    // DotEnv.
+    "[dotenv]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
     }
 }

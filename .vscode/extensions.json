@@ -9,10 +9,12 @@
         // Formatters and linters.
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
+        "foxundermoon.shell-format",
 
         // Quality of Life.
         "amatiasq.sort-imports",
         "britesnow.vscode-toggle-quotes",
+        "digitalbrainstem.javascript-ejs-support",
         "henriiik.vscode-sort",
         "przemo1115.index-generator",
         "stackbreak.comment-divider",
