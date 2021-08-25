@@ -1,0 +1,9 @@
+# Dependencies.
+/node_modules
+/npm-debug.log
+
+# Distributables.
+/dist
+
+# MacOS.
+.DS_Store
