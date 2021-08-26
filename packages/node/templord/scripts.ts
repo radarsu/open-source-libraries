@@ -5,6 +5,9 @@ const scripts: Scripts = async (cli) => {
         {
             name: `@radrat-scripts/package`,
         },
+        {
+            name: `@radrat-scripts/readme`,
+        },
     ]);
 };
 

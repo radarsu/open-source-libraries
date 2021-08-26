@@ -9,6 +9,8 @@
         "@radrat-config/eslint": "^2",
         "@radrat-node/husky": "^2",
         "@radrat-scripts/git": "^2",
+        "@radrat-scripts/package": "^2",
+        "@radrat-scripts/readme": "^2",
         "@radrat-scripts/workspace": "^2",
         "@radrat-types/config": "^2",
         "@radrat/cli": "^2",
