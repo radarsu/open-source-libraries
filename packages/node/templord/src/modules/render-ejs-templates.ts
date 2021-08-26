@@ -2,8 +2,8 @@ import * as ejs from 'ejs';
 import * as fastGlob from 'fast-glob';
 import * as fs from 'fs';
 import * as path from 'path';
-import { MainContext } from '../interfaces/main-context';
 
+import { MainContext } from '../interfaces/main-context';
 import { removeExtensionFromPath } from '../utils/remove-extension-from-path';
 
 const renderEjsTemplates = async (options: MainContext) => {
@@ -28,8 +28,6 @@ const renderEjsTemplates = async (options: MainContext) => {
 
         const targetPath = path.resolve(targetDirectoryPath, renderedRelativePath);
 
-        console.log({ renderedName, relativePathWithExtension, relativePath, renderedRelativePath, targetPath });
-
         // Handle rendering directory names.
         if (sourcePath.endsWith(`/`)) {
             await fs.promises.mkdir(targetPath, {
@@ -45,4 +43,4 @@ const renderEjsTemplates = async (options: MainContext) => {
     await Promise.all(promises);
 };
 
-export { RenderEjsTemplatesOptions, renderEjsTemplates };
+export { renderEjsTemplates };

@@ -8,6 +8,7 @@
         "@radrat-scripts/package": "^2",
         "@radrat/cli": "^2",
         "@types/ejs": "^3.1.0",
+        "@types/fs-extra": "^9.0.12",
         "@types/node": "^14",
         "typescript": "^4"
     },
@@ -19,6 +20,7 @@
         "ejs": "^3.1.6",
         "enquirer": "^2.3.6",
         "fast-glob": "^3.2.7",
+        "fs-extra": "^10.0.0",
         "ts-import": "^2.0.39"
     }
 }

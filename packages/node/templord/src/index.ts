@@ -1,3 +1,5 @@
+import * as fs from 'fs';
+import * as fsExtra from 'fs-extra';
 import * as modules from './modules';
 import * as path from 'path';
 
@@ -15,7 +17,7 @@ const main = async () => {
     // Select template.
     const selectedTemplate = await modules.selectTemplate(templates);
 
-    // Ask questions.
+    // Ask additional questions.
     const responses = await modules.askQuestions(selectedTemplate);
 
     const targetDirectoryPath = path.resolve(selectedTemplate.path, `..`, responses.directoryName);
@@ -26,14 +28,18 @@ const main = async () => {
         targetDirectoryPath,
     };
 
-    // Render ejs templates.
-    await modules.renderEjsTemplates(context);
+    // Copy template directory and remove decree.
+    await fsExtra.copy(selectedTemplate.path, targetDirectoryPath);
+    await fs.promises.unlink(`${targetDirectoryPath}/_decree.ts`);
 
-    // Copy directories.
-    await modules.copyDirectories(context);
+    // // Render ejs templates.
+    // await modules.renderEjsTemplates(context);
 
-    // Copy files.
-    await modules.copyFiles(context);
+    // // Copy directories.
+    // await modules.copyDirectories(context);
+
+    // // Copy files.
+    // await modules.copyFiles(context);
 };
 
 main().catch((err) => {
