@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import * as modules from './modules';
 import * as path from 'path';
 
