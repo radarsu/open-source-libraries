@@ -1,6 +1,6 @@
 <p align="center">
     <h1>templord</h1>
-    <div>Tool to generate code from ejs templates from a convention-based structure. Create _template directory with files with `.ejs` extension and run `npx templord`.</div>
+    <div>Tool to generate code from ejs templates from a convention-based structure.</div>
 </p>
 
 ## Table of contents

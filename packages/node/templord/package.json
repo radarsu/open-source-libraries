@@ -6,7 +6,7 @@
     "bin": {
         "templord": "dist/index.js"
     },
-    "description": "Tool to generate code from ejs templates from a convention-based structure. Create _template directory with files with `.ejs` extension and run `npx templord`.",
+    "description": "Tool to generate code from ejs templates from a convention-based structure.",
     "devDependencies": {
         "@radrat-scripts/package": "^2",
         "@radrat/cli": "^2",
