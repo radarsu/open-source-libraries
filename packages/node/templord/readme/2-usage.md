@@ -4,6 +4,7 @@
 2. Create `_decree.ts` file inside that directory.
 3. Drop any files you want into directory prefixed with `_template`. Suffix them with `.ejs` if you wish to use data returned by getDecree method.
 4. By default templord will always ask you for directoryName to generate from template which can be used in ejs templates via `<%- directoryName %>`.
+5. Run `npx templord`.
 
 ### Example \_decree.ts
 
