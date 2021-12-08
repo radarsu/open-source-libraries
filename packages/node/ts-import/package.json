@@ -1,6 +1,6 @@
 {
     "name": "ts-import",
-    "version": "2.0.39",
+    "version": "2.0.40",
     "description": "Import (compile and cache on the fly) TypeScript files dynamically with ease.",
     "license": "MIT",
     "keywords": [

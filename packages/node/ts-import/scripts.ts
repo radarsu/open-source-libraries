@@ -14,6 +14,21 @@ const scripts: Scripts = async (cli) => {
         hiddenFromHelp: true,
     });
 
+    await cli.run({
+        name: `publish`,
+        command: [
+            `npx rr build`,
+            `npm publish --access=public`,
+            `git init`,
+            `git remote add origin https://github.com/radarsu/ts-import`,
+            `git add .`,
+            `git commit -m 'feat: ${cli.context.packageJson.version}'`,
+            `git push origin master --force`,
+            `rm -rf ./.git`,
+        ].join(` && `),
+        hiddenFromHelp: true,
+    });
+
     await cli.loadPlugins([
         {
             name: `@radrat-scripts/package`,
