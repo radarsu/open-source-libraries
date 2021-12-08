@@ -48,9 +48,9 @@ var Compiler = /** @class */ (function () {
         if (process.platform === "win32") {
             var driveLetter = process.cwd().charAt(0);
             Compiler.defaults.compilerOptions.outDir = path.resolve(Compiler.defaults.compilerOptions.outDir, driveLetter);
-            Compiler.defaults.compilerOptions.rootDir = driveLetter + ":/";
+            Compiler.defaults.compilerOptions.rootDir = "".concat(driveLetter, ":/");
         }
-        this.options = options_defaults_1.defaults(Compiler.defaults, options);
+        this.options = (0, options_defaults_1.defaults)(Compiler.defaults, options);
     }
     /**
      * Compile scripts.ts to scripts.js, check cache.
@@ -63,7 +63,7 @@ var Compiler = /** @class */ (function () {
             return __generator(this, function (_a) {
                 tsPath = path.resolve(cwd, relativeTsPath);
                 if (!fs.existsSync(tsPath)) {
-                    throw new Error("File " + tsPath + " not found to compile.");
+                    throw new Error("File ".concat(tsPath, " not found to compile."));
                 }
                 tsDir = path.dirname(tsPath);
                 ctx = {
@@ -87,22 +87,22 @@ var Compiler = /** @class */ (function () {
                         tsFileName = path.basename(tsPath);
                         jsFileName = tsFileName.replace(/\.[^/.]+$/u, ".js");
                         tsDirWithoutDriveLetter = tsDir.replace(/^(?<driveLetter>[a-zA-Z]):/u, "");
-                        cacheDir = path.resolve(this.options.compilerOptions.outDir, "." + tsDirWithoutDriveLetter);
+                        cacheDir = path.resolve(this.options.compilerOptions.outDir, ".".concat(tsDirWithoutDriveLetter));
                         jsPath = path.resolve(cacheDir, jsFileName);
-                        (_a = logger === null || logger === void 0 ? void 0 : logger.verbose) === null || _a === void 0 ? void 0 : _a.call(logger, "Looking for cached file at " + jsPath);
+                        (_a = logger === null || logger === void 0 ? void 0 : logger.verbose) === null || _a === void 0 ? void 0 : _a.call(logger, "Looking for cached file at ".concat(jsPath));
                         if (!fs.existsSync(jsPath)) return [3 /*break*/, 3];
-                        return [4 /*yield*/, utils_1.wasFileModified(tsPath, jsPath)];
+                        return [4 /*yield*/, (0, utils_1.wasFileModified)(tsPath, jsPath)];
                     case 1:
                         tsWasModified = _h.sent();
                         if (!tsWasModified) {
-                            (_b = logger === null || logger === void 0 ? void 0 : logger.verbose) === null || _b === void 0 ? void 0 : _b.call(logger, "File " + tsPath + " was not modified, importing.");
-                            return [2 /*return*/, utils_1.importJsInDirectory(cwd, jsPath, tsDir)];
+                            (_b = logger === null || logger === void 0 ? void 0 : logger.verbose) === null || _b === void 0 ? void 0 : _b.call(logger, "File ".concat(tsPath, " was not modified, importing."));
+                            return [2 /*return*/, (0, utils_1.importJsInDirectory)(cwd, jsPath, tsDir)];
                         }
                         // Cache is incorrect, rebuild.
                         (_c = logger === null || logger === void 0 ? void 0 : logger.verbose) === null || _c === void 0 ? void 0 : _c.call(logger, "File was modified, building and importing.");
                         return [4 /*yield*/, this.buildCache(tsPath)["catch"](function (err) {
                                 var _a, _b;
-                                (_a = logger === null || logger === void 0 ? void 0 : logger.warn) === null || _a === void 0 ? void 0 : _a.call(logger, "Building " + tsPath + " failed.");
+                                (_a = logger === null || logger === void 0 ? void 0 : logger.warn) === null || _a === void 0 ? void 0 : _a.call(logger, "Building ".concat(tsPath, " failed."));
                                 (_b = logger === null || logger === void 0 ? void 0 : logger.debug) === null || _b === void 0 ? void 0 : _b.call(logger, err);
                                 return err;
                             })];
@@ -113,7 +113,7 @@ var Compiler = /** @class */ (function () {
                             throw buildError;
                         }
                         (_d = logger === null || logger === void 0 ? void 0 : logger.verbose) === null || _d === void 0 ? void 0 : _d.call(logger, "Caching successfull.");
-                        return [2 /*return*/, utils_1.importJsInDirectory(cwd, jsPath, tsDir)];
+                        return [2 /*return*/, (0, utils_1.importJsInDirectory)(cwd, jsPath, tsDir)];
                     case 3:
                         // Create cache directory if it does not exist.
                         if (!fs.existsSync(cacheDir)) {
@@ -128,7 +128,7 @@ var Compiler = /** @class */ (function () {
                     case 4:
                         _h.sent();
                         (_g = logger === null || logger === void 0 ? void 0 : logger.verbose) === null || _g === void 0 ? void 0 : _g.call(logger, "Caching successfull.");
-                        return [2 /*return*/, utils_1.importJsInDirectory(cwd, jsPath, tsDir)];
+                        return [2 /*return*/, (0, utils_1.importJsInDirectory)(cwd, jsPath, tsDir)];
                 }
             });
         });
@@ -141,7 +141,7 @@ var Compiler = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         logger = this.options.logger;
-                        tmpTsConfigPath = path.join(this.options.compilerOptions.outDir, path.dirname(absoluteTsPath).replace(/^(?<driveLetter>[a-zA-Z]):/u, ""), "tsconfig-" + path.basename(absoluteTsPath) + ".tmp.json");
+                        tmpTsConfigPath = path.join(this.options.compilerOptions.outDir, path.dirname(absoluteTsPath).replace(/^(?<driveLetter>[a-zA-Z]):/u, ""), "tsconfig-".concat(path.basename(absoluteTsPath), ".tmp.json"));
                         return [4 /*yield*/, fs.promises.writeFile(tmpTsConfigPath, JSON.stringify({
                                 compilerOptions: this.options.compilerOptions,
                                 include: [absoluteTsPath]
@@ -151,9 +151,9 @@ var Compiler = /** @class */ (function () {
                         // Compile new scripts.ts to .js.
                         return [2 /*return*/, new Promise(function (resolve, reject) {
                                 var _a, _b;
-                                var compileCommand = "npx -p typescript tsc --project \"" + tmpTsConfigPath + "\"";
-                                (_a = logger === null || logger === void 0 ? void 0 : logger.info) === null || _a === void 0 ? void 0 : _a.call(logger, "Compiling " + absoluteTsPath);
-                                (_b = logger === null || logger === void 0 ? void 0 : logger.debug) === null || _b === void 0 ? void 0 : _b.call(logger, "Command: " + compileCommand);
+                                var compileCommand = "npx -p typescript tsc --project \"".concat(tmpTsConfigPath, "\"");
+                                (_a = logger === null || logger === void 0 ? void 0 : logger.info) === null || _a === void 0 ? void 0 : _a.call(logger, "Compiling ".concat(absoluteTsPath));
+                                (_b = logger === null || logger === void 0 ? void 0 : logger.debug) === null || _b === void 0 ? void 0 : _b.call(logger, "Command: ".concat(compileCommand));
                                 childProcess.exec(compileCommand, function (err, stdout, stderr) { return __awaiter(_this, void 0, void 0, function () {
                                     var _a, _b, _c;
                                     return __generator(this, function (_d) {

@@ -1,4 +1,12 @@
-import type { Logger } from '@radrat-node/logger';
+export interface Logger {
+    verbose: (message?: any, ...optionalParams: any[]) => void;
+    debug: (message?: any, ...optionalParams: any[]) => void;
+    info: (message?: any, ...optionalParams: any[]) => void;
+    warn: (message?: any, ...optionalParams: any[]) => void;
+    error: (message?: any, ...optionalParams: any[]) => void;
+    time: (label?: string) => void;
+    timeEnd: (label?: string) => void;
+}
 export interface CompilerOptions {
     /**
      * If TypeScript compilation fails but there is cached file, should it be loaded? Default: false

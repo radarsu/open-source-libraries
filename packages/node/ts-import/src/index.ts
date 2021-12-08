@@ -4,8 +4,17 @@ import * as path from 'path';
 
 import { importJsInDirectory, wasFileModified } from './utils';
 
-import type { Logger } from '@radrat-node/logger';
 import { defaults } from 'options-defaults';
+
+export interface Logger {
+    verbose: (message?: any, ...optionalParams: any[]) => void;
+    debug: (message?: any, ...optionalParams: any[]) => void;
+    info: (message?: any, ...optionalParams: any[]) => void;
+    warn: (message?: any, ...optionalParams: any[]) => void;
+    error: (message?: any, ...optionalParams: any[]) => void;
+    time: (label?: string) => void;
+    timeEnd: (label?: string) => void;
+}
 
 export interface CompilerOptions {
     /**
