@@ -1,21 +1,27 @@
 {
     "compilerOptions": {
-        "baseUrl": ".",
+        "allowSyntheticDefaultImports": true,
         "declaration": true,
-        "downlevelIteration": true,
         "emitDecoratorMetadata": true,
+        "exactOptionalPropertyTypes": true,
         "experimentalDecorators": true,
         "importHelpers": true,
-        "lib": ["es2018", "dom"],
+        "incremental": true,
         "module": "commonjs",
-        "noEmit": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitOverride": true,
+        "noImplicitReturns": true,
         "noUncheckedIndexedAccess": true,
-        "resolveJsonModule": true,
-        "rootDir": ".",
-        "skipLibCheck": true,
+        "outDir": "./dist",
+        "removeComments": true,
         "sourceMap": true,
         "strict": true,
-        "target": "es2017"
+        "target": "es2017",
+
+        // Root specific.
+        "noEmit": true,
+        "resolveJsonModule": true,
+        "skipLibCheck": true
     },
     // Include and exclude files for eslint to pick them.
     "include": [".*.js", "*.js", "*.ts", "**/*.ts", "**/*.js"],

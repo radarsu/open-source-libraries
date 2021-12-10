@@ -36,12 +36,27 @@
     "typescript.preferences.importModuleSpecifier": "relative",
     "typescript.preferences.quoteStyle": "single",
     "typescript.tsdk": "node_modules/typescript/lib",
+
+    // Type-specific.
+    "[dockercompose]": {
+        "editor.tabSize": 4
+    },
+    "[dockerfile]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
+    "[dotenv]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
+    "[ignore]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
+    "[shellscript]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
     "[typescript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-
-    // DotEnv.
-    "[dotenv]": {
-        "editor.defaultFormatter": "foxundermoon.shell-format"
+    "[yaml]": {
+        "editor.tabSize": 4
     }
 }
