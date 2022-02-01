@@ -1,5 +1,6 @@
 {
     // Editor and explorer.
+    "editor.bracketPairColorization.enabled": true,
     "editor.codeActionsOnSave": {
         "source.fixAll": true
     },
@@ -7,6 +8,7 @@
     "editor.detectIndentation": false,
     "editor.fontLigatures": true,
     "editor.formatOnSave": true,
+    "editor.guides.bracketPairs": "active",
     "editor.insertSpaces": true,
     "editor.rulers": [150],
     "editor.wordWrap": "bounded",
