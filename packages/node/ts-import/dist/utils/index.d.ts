@@ -1,2 +1,2 @@
-export * from './import-js-in-directory';
-export * from './was-file-modified';
+export * from './check-if-file-exists';
+export * from './is-file-newer';
