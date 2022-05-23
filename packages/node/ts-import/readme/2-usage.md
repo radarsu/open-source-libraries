@@ -1,10 +1,11 @@
 ```ts
-import { tsImport } from 'ts-import';
+import * as tsImport from 'ts-import';
 
-const bootstrap = async () => {
+const main = async () => {
     const filePath = `/home/user/file.ts`;
-    const compiled = await tsImport.compile(filePath);
+    const asyncResult = await tsImport.load(filePath);
+    const syncResult = tsImport.loadSync(filePath);
 };
 
-bootstrap();
+void main();
 ```

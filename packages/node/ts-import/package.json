@@ -1,6 +1,6 @@
 {
     "name": "ts-import",
-    "version": "3.0.0",
+    "version": "3.0.0-beta.0",
     "description": "Import (compile and cache on the fly) TypeScript files dynamically with ease.",
     "license": "MIT",
     "keywords": [
@@ -18,7 +18,6 @@
     "main": "dist/main.js",
     "types": "dist/main.d.ts",
     "dependencies": {
-        "child-process-extra": "~0.0.0",
         "options-defaults": "~2.0.39"
     },
     "devDependencies": {
