@@ -5,11 +5,12 @@ import * as tsc from 'typescript';
 export interface CompileOptions {
     tsPath: string;
     jsPath: string;
+    transpileOptions: tsc.TranspileOptions;
 }
 
 export const compile = async (options: CompileOptions) => {
     const ts = await fs.promises.readFile(options.tsPath);
-    const tsTranspiled = tsc.transpileModule(ts.toString(), {});
+    const tsTranspiled = tsc.transpileModule(ts.toString(), options.transpileOptions);
 
     await fs.promises.mkdir(path.dirname(options.jsPath), {
         recursive: true,
