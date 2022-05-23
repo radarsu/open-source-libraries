@@ -21,7 +21,7 @@ export const compile = async (options: CompileOptions) => {
 
 export const compileSync = (options: CompileOptions) => {
     const ts = fs.readFileSync(options.tsPath);
-    const tsTranspiled = tsc.transpileModule(ts.toString(), {});
+    const tsTranspiled = tsc.transpileModule(ts.toString(), options.transpileOptions);
 
     fs.mkdirSync(path.dirname(options.jsPath), {
         recursive: true,

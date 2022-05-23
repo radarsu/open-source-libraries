@@ -32,9 +32,7 @@ export const load = async (tsRelativePath: string, options?: Partial<LoadOptions
 
     // Load from cache.
     if (jsFileExists && !utils.isFileNewer(tsFileExists, jsFileExists)) {
-        // process.chdir(path.dirname(tsPath));
         const loaded = await import(jsPath);
-        // process.chdir(cwd);
         return loaded;
     }
 
@@ -44,9 +42,7 @@ export const load = async (tsRelativePath: string, options?: Partial<LoadOptions
         transpileOptions: config.transpileOptions,
     });
 
-    // process.chdir(path.dirname(tsPath));
     const loaded = await import(jsPath);
-    // process.chdir(cwd);
     return loaded;
 };
 
@@ -68,9 +64,7 @@ export const loadSync = (tsRelativePath: string, options?: Partial<LoadOptions>)
 
     // Load from cache.
     if (jsFileExists && !utils.isFileNewer(tsFileExists, jsFileExists)) {
-        // process.chdir(path.dirname(tsPath));
         const loaded = require(jsPath);
-        // process.chdir(cwd);
         return loaded;
     }
 
@@ -80,8 +74,6 @@ export const loadSync = (tsRelativePath: string, options?: Partial<LoadOptions>)
         transpileOptions: config.transpileOptions,
     });
 
-    // process.chdir(path.dirname(tsPath));
     const loaded = require(jsPath);
-    // process.chdir(cwd);
     return loaded;
 };
