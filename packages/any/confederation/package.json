@@ -1,0 +1,21 @@
+{
+    "name": "confederation",
+    "version": "0.0.0",
+    "main": "dist/main.js",
+    "types": "dist/main.d.ts",
+    "dependencies": {
+        "options-defaults": "~2.0.39",
+        "tslib": "~2"
+    },
+    "devDependencies": {
+        "@radrat-scripts/package": "~2",
+        "@radrat/cli": "~2",
+        "@types/node": "~16",
+        "dotenv": "~16.0.1",
+        "minimist": "~1.2.6",
+        "typescript": "~4"
+    },
+    "files": [
+        "dist"
+    ]
+}
