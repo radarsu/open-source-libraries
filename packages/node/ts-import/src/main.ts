@@ -1,4 +1,5 @@
 import * as compiler from './modules/compiler';
+import * as crossPlatform from './modules/cross-platform';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as tsc from 'typescript';
@@ -11,8 +12,7 @@ export interface LoadOptions {
     transpileOptions: tsc.TranspileOptions;
 }
 
-export let defaultLoadOptions: LoadOptions = {
-    cacheDir: path.resolve(__dirname, `../cache`),
+export let defaultLoadOptions = {
     transpileOptions: {},
 };
 
@@ -20,8 +20,12 @@ export const load = async (tsRelativePath: string, options?: Partial<LoadOptions
     const config = defaults(defaultLoadOptions, options);
 
     const cwd = process.cwd();
+    const cacheDir = path.resolve(__dirname, `..`, `cache`);
+
     const tsPath = path.resolve(cwd, tsRelativePath);
-    const jsPath = path.join(config.cacheDir, tsPath).replace(/\.[^/.]+$/u, `.js`);
+
+    let jsAfterCachePath = crossPlatform.getJsAfterCachePath(tsPath);
+    const jsPath = path.join(cacheDir, jsAfterCachePath).replace(/\.[^/.]+$/u, `.js`);
 
     const [tsFileExists, jsFileExists] = await Promise.all([
         utils.checkIfFileExists(tsPath),
@@ -50,8 +54,12 @@ export const loadSync = (tsRelativePath: string, options?: Partial<LoadOptions>)
     const config = defaults(defaultLoadOptions, options);
 
     const cwd = process.cwd();
+    const cacheDir = path.resolve(__dirname, `..`, `cache`);
+
     const tsPath = path.resolve(cwd, tsRelativePath);
-    const jsPath = path.join(config.cacheDir, tsPath).replace(/\.[^/.]+$/u, `.js`);
+
+    let jsAfterCachePath = crossPlatform.getJsAfterCachePath(tsPath);
+    const jsPath = path.join(cacheDir, jsAfterCachePath).replace(/\.[^/.]+$/u, `.js`);
 
     const tsFileExists = utils.checkIfFileExistsSync(tsPath);
     let jsFileExists: fs.Stats | undefined;

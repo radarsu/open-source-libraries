@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-tslib_1.__exportStar(require("./check-if-file-exists"), exports);
-tslib_1.__exportStar(require("./is-file-newer"), exports);
+tslib_1.__exportStar(require("./get-js-after-cache-path"), exports);
 //# sourceMappingURL=index.js.map
