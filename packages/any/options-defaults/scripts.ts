@@ -3,7 +3,7 @@ import type { Scripts } from '@radrat/cli';
 const scripts: Scripts = async (cli) => {
     await cli.run({
         name: `build`,
-        command: `npx rollup -c ./config/rollup.config.js`,
+        command: `rm -rf dist && npx rollup -c ./config/rollup.config.js`,
     });
 
     await cli.loadPlugins([

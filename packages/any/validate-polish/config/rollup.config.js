@@ -1,28 +1,31 @@
-/* eslint-disable */
-import pkg from '../package.json';
+import * as packageJson from '../package.json';
+import * as typescript from '@rollup/plugin-typescript';
+
 import { terser } from 'rollup-plugin-terser';
-import typescript from '@rollup/plugin-typescript';
 
 export default {
     input: `./src/index.ts`,
     output: [
         {
-            file: pkg.main,
+            file: packageJson.main,
             format: `cjs`,
         },
         {
-            file: pkg.module,
+            file: packageJson.module,
             format: `es`,
         },
         {
-            file: pkg.browser['./dist/index.js'],
+            file: packageJson.browser['./dist/index.js'],
             format: `iife`,
             name: `validatePolish`,
         },
     ],
-    external: [...Object.keys(pkg.dependencies || {})],
+    external: [...Object.keys(packageJson.dependencies || {})],
     plugins: [
-        typescript(),
+        typescript.default({
+            tsconfig: `${__dirname}/../tsconfig.json`,
+            declarationDir: ``,
+        }),
         terser(),
     ],
 };
