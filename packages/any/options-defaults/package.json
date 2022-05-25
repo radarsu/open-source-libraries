@@ -26,7 +26,7 @@
         "@types/node": "16.11.7",
         "rollup": "2.74.1",
         "rollup-plugin-terser": "7.0.2",
-        "typescript": "~4.7.2"
+        "typescript": "4.7.2"
     },
     "gitHead": "5f409f3708573a20e3ce2e5088531dcd8951df7b"
 }

@@ -7,23 +7,23 @@
         "templord": "dist/index.js"
     },
     "description": "Tool to generate code from ejs templates from a convention-based structure.",
+    "dependencies": {
+        "ejs": "3.1.8",
+        "enquirer": "2.3.6",
+        "fast-glob": "3.2.11",
+        "fs-extra": "10.1.0",
+        "ts-import": "2.0.40"
+    },
     "devDependencies": {
-        "@radrat-scripts/package": "~2",
-        "@radrat/cli": "~2",
-        "@types/ejs": "~3.1.1",
-        "@types/fs-extra": "~9.0.13",
-        "@types/node": "~16",
-        "typescript": "~4"
+        "@radrat-scripts/package": "2.0.46",
+        "@radrat/cli": "2.0.46",
+        "@types/ejs": "3.1.1",
+        "@types/fs-extra": "9.0.13",
+        "@types/node": "16.11.7",
+        "typescript": "4.7.2"
     },
     "license": "MIT",
     "files": [
         "dist"
-    ],
-    "dependencies": {
-        "ejs": "~3.1.8",
-        "enquirer": "~2.3.6",
-        "fast-glob": "~3.2.11",
-        "fs-extra": "~10.1.0",
-        "ts-import": "~2.0.40"
-    }
+    ]
 }
