@@ -5,10 +5,10 @@
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "devDependencies": {
-        "@radrat-scripts/package": "^2",
-        "@radrat/cli": "^2",
-        "@types/node": "^16",
-        "typescript": "^4"
+        "@radrat-scripts/package": "2",
+        "@radrat/cli": "2",
+        "@types/node": "16",
+        "typescript": "4"
     },
     "files": [
         "dist"

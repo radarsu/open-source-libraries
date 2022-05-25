@@ -19,8 +19,8 @@
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "devDependencies": {
-        "@types/node": "^14.14.37",
-        "typescript": "^4.2.4"
+        "@types/node": "14.14.37",
+        "typescript": "4.2.4"
     },
     "gitHead": "5f409f3708573a20e3ce2e5088531dcd8951df7b"
 }

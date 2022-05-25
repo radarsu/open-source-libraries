@@ -4,7 +4,7 @@
     "main": "dist/main.js",
     "types": "dist/main.d.ts",
     "dependencies": {
-        "options-defaults": "^2.0.39",
+        "options-defaults": "2.0.39",
         "tslib": "~2"
     },
     "devDependencies": {
