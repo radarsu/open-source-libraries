@@ -1,31 +1,32 @@
-export var measurement = {
+export const measurement = {
     nominative: {
-        singular: "pomiar",
-        dual: "pomiary",
-        plural: "pomiar\u00F3w"
+        singular: `pomiar`,
+        dual: `pomiary`,
+        plural: `pomiarów`,
     },
     genitive: {
-        singular: "pomiaru",
-        plural: "pomiar\u00F3w"
+        singular: `pomiaru`,
+        plural: `pomiarów`,
     },
     dative: {
-        singular: "pomiarowi",
-        plural: "pomiarom"
+        singular: `pomiarowi`,
+        plural: `pomiarom`,
     },
     accusative: {
-        singular: "pomiar",
-        dual: "pomiary",
-        plural: "pomiar\u00F3w"
+        singular: `pomiar`,
+        dual: `pomiary`,
+        plural: `pomiarów`,
     },
     instrumental: {
-        singular: "pomiarem",
-        plural: "pomiarami"
+        singular: `pomiarem`,
+        plural: `pomiarami`,
     },
     locative: {
-        singular: "pomiarze",
-        plural: "pomiarach"
+        singular: `pomiarze`,
+        plural: `pomiarach`,
     },
     vocative: {
-        singular: "pomiarze"
-    }
+        singular: `pomiarze`,
+    },
 };
+//# sourceMappingURL=measurement.js.map

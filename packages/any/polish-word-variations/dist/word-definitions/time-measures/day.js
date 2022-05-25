@@ -1,31 +1,32 @@
-export var day = {
+export const day = {
     nominative: {
-        singular: "dzie\u0144",
-        dual: "dni",
-        plural: "dni"
+        singular: `dzień`,
+        dual: `dni`,
+        plural: `dni`,
     },
     genitive: {
-        singular: "dnia",
-        plural: "dni"
+        singular: `dnia`,
+        plural: `dni`,
     },
     dative: {
-        singular: "dniowi",
-        plural: "dniom"
+        singular: `dniowi`,
+        plural: `dniom`,
     },
     accusative: {
-        singular: "dzie\u0144",
-        dual: "dni",
-        plural: "dni"
+        singular: `dzień`,
+        dual: `dni`,
+        plural: `dni`,
     },
     instrumental: {
-        singular: "dniem",
-        plural: "dniami"
+        singular: `dniem`,
+        plural: `dniami`,
     },
     locative: {
-        singular: "dniu",
-        plural: "dniach"
+        singular: `dniu`,
+        plural: `dniach`,
     },
     vocative: {
-        singular: "dniu"
-    }
+        singular: `dniu`,
+    },
 };
+//# sourceMappingURL=day.js.map

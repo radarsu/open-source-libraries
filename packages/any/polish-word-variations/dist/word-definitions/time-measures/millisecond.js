@@ -1,31 +1,32 @@
-export var millisecond = {
+export const millisecond = {
     nominative: {
-        singular: "milisekunda",
-        dual: "milisekundy",
-        plural: "milisekund"
+        singular: `milisekunda`,
+        dual: `milisekundy`,
+        plural: `milisekund`,
     },
     genitive: {
-        singular: "milisekundy",
-        plural: "milisekund"
+        singular: `milisekundy`,
+        plural: `milisekund`,
     },
     dative: {
-        singular: "milisekundzie",
-        plural: "milisekundom"
+        singular: `milisekundzie`,
+        plural: `milisekundom`,
     },
     accusative: {
-        singular: "milisekund\u0119",
-        dual: "milisekundy",
-        plural: "milisekund"
+        singular: `milisekundę`,
+        dual: `milisekundy`,
+        plural: `milisekund`,
     },
     instrumental: {
-        singular: "milisekund\u0105",
-        plural: "milisekundami"
+        singular: `milisekundą`,
+        plural: `milisekundami`,
     },
     locative: {
-        singular: "milisekundzie",
-        plural: "milisekundach"
+        singular: `milisekundzie`,
+        plural: `milisekundach`,
     },
     vocative: {
-        singular: "milisekundo"
-    }
+        singular: `milisekundo`,
+    },
 };
+//# sourceMappingURL=millisecond.js.map

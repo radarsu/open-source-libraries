@@ -1,31 +1,32 @@
-export var belt = {
+export const belt = {
     nominative: {
-        singular: "pasek",
-        dual: "paski",
-        plural: "pask\u00F3w"
+        singular: `pasek`,
+        dual: `paski`,
+        plural: `pasków`,
     },
     genitive: {
-        singular: "paska",
-        plural: "pask\u00F3w"
+        singular: `paska`,
+        plural: `pasków`,
     },
     dative: {
-        singular: "paskowi",
-        plural: "paskom"
+        singular: `paskowi`,
+        plural: `paskom`,
     },
     accusative: {
-        singular: "pasek",
-        dual: "paski",
-        plural: "pask\u00F3w"
+        singular: `pasek`,
+        dual: `paski`,
+        plural: `pasków`,
     },
     instrumental: {
-        singular: "paskiem",
-        plural: "paskami"
+        singular: `paskiem`,
+        plural: `paskami`,
     },
     locative: {
-        singular: "pasku",
-        plural: "paskach"
+        singular: `pasku`,
+        plural: `paskach`,
     },
     vocative: {
-        singular: "pasku"
-    }
+        singular: `pasku`,
+    },
 };
+//# sourceMappingURL=belt.js.map

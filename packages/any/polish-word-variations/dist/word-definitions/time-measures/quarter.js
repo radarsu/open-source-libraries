@@ -1,31 +1,32 @@
-export var quarter = {
+export const quarter = {
     nominative: {
-        singular: "kwarta\u0142",
-        dual: "kwarta\u0142y",
-        plural: "kwarta\u0142\u00F3w"
+        singular: `kwartał`,
+        dual: `kwartały`,
+        plural: `kwartałów`,
     },
     genitive: {
-        singular: "kwarta\u0142u",
-        plural: "kwarta\u0142\u00F3w"
+        singular: `kwartału`,
+        plural: `kwartałów`,
     },
     dative: {
-        singular: "kwarta\u0142owi",
-        plural: "kwarta\u0142om"
+        singular: `kwartałowi`,
+        plural: `kwartałom`,
     },
     accusative: {
-        singular: "kwarta\u0142",
-        dual: "kwarta\u0142y",
-        plural: "kwarta\u0142\u00F3w"
+        singular: `kwartał`,
+        dual: `kwartały`,
+        plural: `kwartałów`,
     },
     instrumental: {
-        singular: "kwarta\u0142em",
-        plural: "kwarta\u0142ami"
+        singular: `kwartałem`,
+        plural: `kwartałami`,
     },
     locative: {
-        singular: "kwartale",
-        plural: "kwarta\u0142ach"
+        singular: `kwartale`,
+        plural: `kwartałach`,
     },
     vocative: {
-        singular: "kwartale"
-    }
+        singular: `kwartale`,
+    },
 };
+//# sourceMappingURL=quarter.js.map

@@ -1,31 +1,32 @@
-export var second = {
+export const second = {
     nominative: {
-        singular: "sekunda",
-        dual: "sekundy",
-        plural: "sekund"
+        singular: `sekunda`,
+        dual: `sekundy`,
+        plural: `sekund`,
     },
     genitive: {
-        singular: "sekundy",
-        plural: "sekund"
+        singular: `sekundy`,
+        plural: `sekund`,
     },
     dative: {
-        singular: "sekundzie",
-        plural: "sekundom"
+        singular: `sekundzie`,
+        plural: `sekundom`,
     },
     accusative: {
-        singular: "sekund\u0119",
-        dual: "sekundy",
-        plural: "sekund"
+        singular: `sekundę`,
+        dual: `sekundy`,
+        plural: `sekund`,
     },
     instrumental: {
-        singular: "sekund\u0105",
-        plural: "sekundami"
+        singular: `sekundą`,
+        plural: `sekundami`,
     },
     locative: {
-        singular: "sekundzie",
-        plural: "sekundach"
+        singular: `sekundzie`,
+        plural: `sekundach`,
     },
     vocative: {
-        singular: "sekundo"
-    }
+        singular: `sekundo`,
+    },
 };
+//# sourceMappingURL=second.js.map

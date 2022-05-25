@@ -1,31 +1,32 @@
-export var week = {
+export const week = {
     nominative: {
-        singular: "tydzie\u0144",
-        dual: "tygodnie",
-        plural: "tygodni"
+        singular: `tydzień`,
+        dual: `tygodnie`,
+        plural: `tygodni`,
     },
     genitive: {
-        singular: "tygodnia",
-        plural: "tygodni"
+        singular: `tygodnia`,
+        plural: `tygodni`,
     },
     dative: {
-        singular: "tygodniowi",
-        plural: "tygodniom"
+        singular: `tygodniowi`,
+        plural: `tygodniom`,
     },
     accusative: {
-        singular: "tydzie\u0144",
-        dual: "tygodnie",
-        plural: "tygodni"
+        singular: `tydzień`,
+        dual: `tygodnie`,
+        plural: `tygodni`,
     },
     instrumental: {
-        singular: "tygodniem",
-        plural: "tygodniami"
+        singular: `tygodniem`,
+        plural: `tygodniami`,
     },
     locative: {
-        singular: "tygodniu",
-        plural: "tygodniach"
+        singular: `tygodniu`,
+        plural: `tygodniach`,
     },
     vocative: {
-        singular: "tygodniu"
-    }
+        singular: `tygodniu`,
+    },
 };
+//# sourceMappingURL=week.js.map

@@ -30,9 +30,6 @@
 
     // JavaScript.
     "javascript.suggestionActions.enabled": false,
-    "[javascript]": {
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-    },
 
     // TypeScript.
     "typescript.preferences.importModuleSpecifier": "relative",
@@ -43,20 +40,17 @@
     "[dockercompose]": {
         "editor.tabSize": 4
     },
-    "[dockerfile]": {
-        "editor.defaultFormatter": "foxundermoon.shell-format"
-    },
     "[dotenv]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
     },
     "[ignore]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
     },
-    "[shellscript]": {
+    "[properties]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
     },
-    "[typescript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "[shellscript]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
     },
     "[yaml]": {
         "editor.tabSize": 4

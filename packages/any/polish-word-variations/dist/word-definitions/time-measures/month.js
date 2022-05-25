@@ -1,31 +1,32 @@
-export var month = {
+export const month = {
     nominative: {
-        singular: "miesi\u0105c",
-        dual: "miesi\u0105ce",
-        plural: "miesi\u0119cy"
+        singular: `miesiąc`,
+        dual: `miesiące`,
+        plural: `miesięcy`,
     },
     genitive: {
-        singular: "miesi\u0105ca",
-        plural: "miesi\u0119cy"
+        singular: `miesiąca`,
+        plural: `miesięcy`,
     },
     dative: {
-        singular: "miesi\u0105cowi",
-        plural: "miesi\u0105com"
+        singular: `miesiącowi`,
+        plural: `miesiącom`,
     },
     accusative: {
-        singular: "miesi\u0105c",
-        dual: "miesi\u0105ce",
-        plural: "miesi\u0119cy"
+        singular: `miesiąc`,
+        dual: `miesiące`,
+        plural: `miesięcy`,
     },
     instrumental: {
-        singular: "miesi\u0105cem",
-        plural: "miesi\u0105cami"
+        singular: `miesiącem`,
+        plural: `miesiącami`,
     },
     locative: {
-        singular: "miesi\u0105cu",
-        plural: "miesi\u0105cach"
+        singular: `miesiącu`,
+        plural: `miesiącach`,
     },
     vocative: {
-        singular: "miesi\u0105cu"
-    }
+        singular: `miesiącu`,
+    },
 };
+//# sourceMappingURL=month.js.map

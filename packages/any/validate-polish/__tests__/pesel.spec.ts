@@ -1,3 +1,4 @@
+import { expect, test } from '@jest/globals';
 import { invalidPesels, pesels } from '../__tests-utils__';
 
 import { validatePolish } from '../src';

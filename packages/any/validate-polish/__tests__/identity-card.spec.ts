@@ -1,3 +1,4 @@
+import { expect, test } from '@jest/globals';
 import { identityCards, invalidIdentityCards } from '../__tests-utils__';
 
 import { validatePolish } from '../src';
