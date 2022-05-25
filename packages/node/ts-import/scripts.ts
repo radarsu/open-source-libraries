@@ -23,7 +23,7 @@ const scripts: Scripts = async (cli) => {
             `git remote add origin https://github.com/radarsu/ts-import`,
             `git add .`,
             `git commit -m 'feat: ${cli.context.packageJson.version}'`,
-            `git push origin master --force`,
+            `git push origin main --force`,
             `rm -rf ./.git`,
         ].join(` && `),
         hiddenFromHelp: true,
