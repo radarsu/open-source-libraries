@@ -21,4 +21,4 @@ jobs:
               with:
                   node-version: ${{ matrix.node-version }}
             - run: npm ci
-            - run: npx all run -c=build
+            - run: npx rr all.run -c=build
