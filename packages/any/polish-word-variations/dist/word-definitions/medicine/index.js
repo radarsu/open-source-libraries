@@ -1,2 +1,1 @@
-export * from './measurement';
-//# sourceMappingURL=index.js.map
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const a={nominative:{singular:"pomiar",dual:"pomiary",plural:"pomiarów"},genitive:{singular:"pomiaru",plural:"pomiarów"},dative:{singular:"pomiarowi",plural:"pomiarom"},accusative:{singular:"pomiar",dual:"pomiary",plural:"pomiarów"},instrumental:{singular:"pomiarem",plural:"pomiarami"},locative:{singular:"pomiarze",plural:"pomiarach"},vocative:{singular:"pomiarze"}};exports.measurement=a;

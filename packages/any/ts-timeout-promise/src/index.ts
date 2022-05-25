@@ -1,9 +1,9 @@
 export class TimeoutPromise<T> extends Promise<T> {
-    clear: () => void;
+    clear!: () => void;
 
-    reject: () => void;
+    reject!: () => void;
 
-    resolve: () => void;
+    resolve!: () => void;
 }
 
 export interface TimeoutPromiseScope {
@@ -33,12 +33,12 @@ export const timeout = async (milliseconds = 0): TimeoutPromise<void> => {
 
     promise.reject = () => {
         clearTimeout(scope.timeout);
-        scope.reject();
+        (scope as any).reject();
     };
 
     promise.resolve = () => {
         clearTimeout(scope.timeout);
-        scope.resolve();
+        (scope as any).resolve();
     };
 
     return promise;
