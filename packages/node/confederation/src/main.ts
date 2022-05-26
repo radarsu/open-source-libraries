@@ -21,23 +21,3 @@ const unifyConfigurations = <T>(configurations: UnifyConfiguration[]) => {
 
 export type { UnifyConfiguration, NestKeyValuesOptions };
 export { defaults, unifyConfigurations, utils, parsers };
-
-// TODO: move to tests
-// const configurationSources = [
-//     {
-//         value: require(`dotenv`).config().parsed,
-//     },
-//     {
-//         value: utils.pick(process.env, [`MODULE__VARIABLE2`, `MODULE__VARIABLE3`]),
-//     },
-//     {
-//         value: require(`minimist`)(process.argv.slice(2)),
-//         parser: parsers.dashParser,
-//     },
-// ];
-
-// console.log(`configurationSources`, configurationSources);
-
-// const unifiedConfig = unifyConfigurations(configurationSources);
-
-// console.log(`unifiedConfig`, unifiedConfig);
