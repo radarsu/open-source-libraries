@@ -4,22 +4,25 @@ import * as utils from './utils';
 import { NestKeyValuesOptions } from './utils';
 import { defaults } from 'options-defaults';
 
-interface Configuration {
+interface UnifyConfiguration {
     value: any;
     parser?: NestKeyValuesOptions;
 }
 
-const unifyConfigurations = (configurations: Configuration[]) => {
+const unifyConfigurations = <T>(configurations: UnifyConfiguration[]) => {
     const unifiedConfigs = configurations.map((configuration) => {
         return utils.nestKeyValues(configuration.value, configuration.parser ?? parsers.underscoreParser);
     }) as [any, ...any];
 
-    return defaults({}, ...unifiedConfigs);
+    const config: T = defaults({}, ...unifiedConfigs);
+
+    return config;
 };
 
-export type { Configuration, NestKeyValuesOptions };
+export type { UnifyConfiguration, NestKeyValuesOptions };
 export { defaults, unifyConfigurations, utils, parsers };
 
+// TODO: move to tests
 // const configurationSources = [
 //     {
 //         value: require(`dotenv`).config().parsed,
