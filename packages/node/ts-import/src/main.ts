@@ -8,7 +8,10 @@ import * as utils from './utils';
 import { defaults } from 'options-defaults';
 
 export interface LoadOptions {
-    cacheDir: string;
+    cache: {
+        dir: string;
+        // invalidateOnTranspileOptionChanges: boolean;
+    };
     transpileOptions: tsc.TranspileOptions;
 }
 
@@ -20,7 +23,7 @@ export const load = async (tsRelativePath: string, options?: Partial<LoadOptions
     const config = defaults(defaultLoadOptions, options);
 
     const cwd = process.cwd();
-    const cacheDir = path.resolve(__dirname, `..`, `cache`);
+    const cacheDir = config.cache?.dir ?? path.resolve(__dirname, `..`, `cache`);
 
     const tsPath = path.resolve(cwd, tsRelativePath);
 
@@ -54,7 +57,7 @@ export const loadSync = (tsRelativePath: string, options?: Partial<LoadOptions>)
     const config = defaults(defaultLoadOptions, options);
 
     const cwd = process.cwd();
-    const cacheDir = path.resolve(__dirname, `..`, `cache`);
+    const cacheDir = config.cache?.dir ?? path.resolve(__dirname, `..`, `cache`);
 
     const tsPath = path.resolve(cwd, tsRelativePath);
 

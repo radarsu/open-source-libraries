@@ -1,6 +1,6 @@
 {
     "name": "ts-import",
-    "version": "3.0.0-beta.1",
+    "version": "3.0.0-beta.2",
     "description": "Import (compile and cache on the fly) TypeScript files dynamically with ease.",
     "license": "MIT",
     "keywords": [
@@ -18,15 +18,15 @@
     "main": "dist/main.js",
     "types": "dist/main.d.ts",
     "dependencies": {
-        "options-defaults": "2.0.39"
+        "options-defaults": "2.0.39",
+        "typescript": "4.7.3"
     },
     "devDependencies": {
-        "@types/jest": "27.5.1",
+        "@types/jest": "28.1.1",
         "@types/node": "16.11.7",
-        "jest": "28.1.0",
-        "jest-cli": "28.1.0",
-        "ts-jest": "28.0.3",
-        "typescript": "4.7.2"
+        "jest": "28.1.1",
+        "jest-cli": "28.1.1",
+        "ts-jest": "28.0.4"
     },
     "engines": {
         "node": ">=14.14.0"

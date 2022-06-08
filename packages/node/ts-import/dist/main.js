@@ -10,9 +10,10 @@ exports.defaultLoadOptions = {
     transpileOptions: {},
 };
 const load = async (tsRelativePath, options) => {
+    var _a, _b;
     const config = (0, options_defaults_1.defaults)(exports.defaultLoadOptions, options);
     const cwd = process.cwd();
-    const cacheDir = path.resolve(__dirname, `..`, `cache`);
+    const cacheDir = (_b = (_a = config.cache) === null || _a === void 0 ? void 0 : _a.dir) !== null && _b !== void 0 ? _b : path.resolve(__dirname, `..`, `cache`);
     const tsPath = path.resolve(cwd, tsRelativePath);
     let jsAfterCachePath = crossPlatform.getJsAfterCachePath(tsPath);
     const jsPath = path.join(cacheDir, jsAfterCachePath).replace(/\.[^/.]+$/u, `.js`);
@@ -35,9 +36,10 @@ const load = async (tsRelativePath, options) => {
 };
 exports.load = load;
 const loadSync = (tsRelativePath, options) => {
+    var _a, _b;
     const config = (0, options_defaults_1.defaults)(exports.defaultLoadOptions, options);
     const cwd = process.cwd();
-    const cacheDir = path.resolve(__dirname, `..`, `cache`);
+    const cacheDir = (_b = (_a = config.cache) === null || _a === void 0 ? void 0 : _a.dir) !== null && _b !== void 0 ? _b : path.resolve(__dirname, `..`, `cache`);
     const tsPath = path.resolve(cwd, tsRelativePath);
     let jsAfterCachePath = crossPlatform.getJsAfterCachePath(tsPath);
     const jsPath = path.join(cacheDir, jsAfterCachePath).replace(/\.[^/.]+$/u, `.js`);
