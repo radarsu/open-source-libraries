@@ -1,31 +1,15 @@
-import * as fs from 'fs';
-import * as path from 'path';
 import * as tsc from 'typescript';
 
 export interface CompileOptions {
     tsPath: string;
-    jsPath: string;
-    transpileOptions: tsc.TranspileOptions;
+    compilerOptions: tsc.CompilerOptions;
 }
 
-export const compile = async (options: CompileOptions) => {
-    const ts = await fs.promises.readFile(options.tsPath);
-    const tsTranspiled = tsc.transpileModule(ts.toString(), options.transpileOptions);
-
-    await fs.promises.mkdir(path.dirname(options.jsPath), {
-        recursive: true,
+export const compile = (options: CompileOptions) => {
+    const program = tsc.createProgram({
+        rootNames: [options.tsPath],
+        options: options.compilerOptions,
     });
 
-    await fs.promises.writeFile(options.jsPath, tsTranspiled.outputText);
-};
-
-export const compileSync = (options: CompileOptions) => {
-    const ts = fs.readFileSync(options.tsPath);
-    const tsTranspiled = tsc.transpileModule(ts.toString(), options.transpileOptions);
-
-    fs.mkdirSync(path.dirname(options.jsPath), {
-        recursive: true,
-    });
-
-    fs.writeFileSync(options.jsPath, tsTranspiled.outputText);
+    program.emit();
 };

@@ -1,8 +1,6 @@
 import * as tsc from 'typescript';
 export interface CompileOptions {
     tsPath: string;
-    jsPath: string;
-    transpileOptions: tsc.TranspileOptions;
+    compilerOptions: tsc.CompilerOptions;
 }
-export declare const compile: (options: CompileOptions) => Promise<void>;
-export declare const compileSync: (options: CompileOptions) => void;
+export declare const compile: (options: CompileOptions) => void;
