@@ -1,29 +1,22 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.loadSync = exports.load = exports.defaultLoadOptions = void 0;
-const compiler = require("./modules/compiler");
+const tslib_1 = require("tslib");
 const crossPlatform = require("./modules/cross-platform");
 const path = require("path");
-const tsc = require("typescript");
 const utils = require("./utils");
+const load_interfaces_1 = require("./load.interfaces");
 const options_defaults_1 = require("options-defaults");
+const providers_1 = require("./providers/providers");
 exports.defaultLoadOptions = {
-    compilerOptions: {
-        outDir: path.resolve(__dirname, `..`, `cache`),
-        downlevelIteration: true,
-        emitDecoratorMetadata: true,
-        experimentalDecorators: true,
-        module: tsc.ModuleKind.CommonJS,
-        resolveJsonModule: true,
-        rootDir: `/`,
-        skipLibCheck: true,
-        target: tsc.ScriptTarget.ES2015,
-    },
+    mode: load_interfaces_1.LoadMode.Transpile,
 };
 const load = async (tsRelativePath, options) => {
-    const config = (0, options_defaults_1.defaults)(exports.defaultLoadOptions, options);
+    const loadConfig = (0, options_defaults_1.defaults)(exports.defaultLoadOptions, options);
+    const providers = providers_1.providersMap[loadConfig.mode];
+    const config = providers.getConfig(loadConfig);
     const cwd = process.cwd();
-    const cacheDir = config.compilerOptions.outDir;
+    const cacheDir = providers.getCacheDir(config);
     const tsPath = path.resolve(cwd, tsRelativePath);
     let jsAfterCachePath = crossPlatform.getJsAfterCachePath(tsPath);
     const jsPath = path.join(cacheDir, jsAfterCachePath).replace(/\.[^/.]+$/u, `.js`);
@@ -36,18 +29,18 @@ const load = async (tsRelativePath, options) => {
         const loaded = await Promise.resolve().then(() => require(jsPath));
         return loaded;
     }
-    compiler.compile({
-        tsPath,
-        compilerOptions: config.compilerOptions,
-    });
+    await providers.load(Object.assign({ tsPath,
+        jsPath }, config));
     const loaded = await Promise.resolve().then(() => require(jsPath));
     return loaded;
 };
 exports.load = load;
 const loadSync = (tsRelativePath, options) => {
-    const config = (0, options_defaults_1.defaults)(exports.defaultLoadOptions, options);
+    const loadConfig = (0, options_defaults_1.defaults)(exports.defaultLoadOptions, options);
+    const providers = providers_1.providersMap[loadConfig.mode];
+    const config = providers.getConfig(loadConfig);
     const cwd = process.cwd();
-    const cacheDir = config.compilerOptions.outDir;
+    const cacheDir = providers.getCacheDir(config);
     const tsPath = path.resolve(cwd, tsRelativePath);
     let jsAfterCachePath = crossPlatform.getJsAfterCachePath(tsPath);
     const jsPath = path.join(cacheDir, jsAfterCachePath).replace(/\.[^/.]+$/u, `.js`);
@@ -62,12 +55,11 @@ const loadSync = (tsRelativePath, options) => {
         const loaded = require(jsPath);
         return loaded;
     }
-    compiler.compile({
-        tsPath,
-        compilerOptions: config.compilerOptions,
-    });
+    providers.loadSync(Object.assign({ tsPath,
+        jsPath }, config));
     const loaded = require(jsPath);
     return loaded;
 };
 exports.loadSync = loadSync;
+tslib_1.__exportStar(require("./load.interfaces"), exports);
 //# sourceMappingURL=main.js.map

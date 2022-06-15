@@ -1,19 +1,7 @@
-import * as tsc from 'typescript';
-export interface LoadOptions {
-    compilerOptions: tsc.CompilerOptions;
-}
-export declare let defaultLoadOptions: {
-    compilerOptions: {
-        outDir: string;
-        downlevelIteration: boolean;
-        emitDecoratorMetadata: boolean;
-        experimentalDecorators: boolean;
-        module: tsc.ModuleKind;
-        resolveJsonModule: boolean;
-        rootDir: string;
-        skipLibCheck: boolean;
-        target: tsc.ScriptTarget;
-    };
+import { LoadMode, LoadOptions } from './load.interfaces';
+export declare const defaultLoadOptions: {
+    mode: LoadMode;
 };
-export declare const load: (tsRelativePath: string, options?: Partial<LoadOptions>) => Promise<any>;
-export declare const loadSync: (tsRelativePath: string, options?: Partial<LoadOptions>) => any;
+export declare const load: (tsRelativePath: string, options?: LoadOptions) => Promise<any>;
+export declare const loadSync: (tsRelativePath: string, options?: LoadOptions) => any;
+export * from './load.interfaces';

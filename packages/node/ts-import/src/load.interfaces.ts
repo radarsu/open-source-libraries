@@ -1,5 +1,13 @@
 import * as tsc from 'typescript';
 
+type RecursivePartial<T> = {
+    [P in keyof T]?: T[P] extends (infer U)[]
+        ? RecursivePartial<U>[]
+        : T[P] extends object
+        ? RecursivePartial<T[P]>
+        : T[P];
+};
+
 export enum LoadMode {
     Transpile = `transpile`,
     Compile = `compile`,
@@ -26,4 +34,4 @@ export interface LoadCompileOptions {
     };
 }
 
-export type LoadOptions = LoadTranspileOptions | LoadCompileOptions;
+export type LoadOptions = RecursivePartial<LoadTranspileOptions | LoadCompileOptions>;
