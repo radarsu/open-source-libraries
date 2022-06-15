@@ -1,48 +1,52 @@
 import * as _ from 'lodash';
+import * as commentParser from 'comment-parser';
+import * as fastGlob from 'fast-glob';
 import * as fs from 'fs';
 import * as path from 'path';
+import * as tsImport from 'ts-import';
 
-import { TSDocConfiguration, TSDocParser } from '@microsoft/tsdoc';
-
-import { TSDocConfigFile } from '@microsoft/tsdoc-config';
 import { concatArrays } from './utils/concat-arrays';
 
-const main = async () => {
-    const comment = await fs.promises.readFile(`./__tests-utils__/test-file.ts`, `utf-8`);
+export interface CollectronicConfig {
+    filePatterns: string[];
+}
 
-    const tsdocConfigFile = TSDocConfigFile.loadForFolder(path.dirname(`./__tests-utils__/test-file.ts`));
+const collect = async () => {
+    const configPath = path.join(process.cwd(), `.config/collectronic.ts`);
+    const config: CollectronicConfig = (await tsImport.load(configPath)).default;
 
-    const tsdocConfiguration = new TSDocConfiguration();
-    tsdocConfigFile.configureParser(tsdocConfiguration);
+    const filePaths = await fastGlob(config.filePatterns);
 
-    const tsdocParser = new TSDocParser(tsdocConfiguration);
+    const findingComments = filePaths.map(async (filePath) => {
+        const fileContent = await fs.promises.readFile(filePath, `utf-8`);
 
-    // Analyze the input doc comment
-    const parserContext = tsdocParser.parseString(comment);
-    const allComments = parserContext.commentRange.buffer.toString();
+        const comments = commentParser.parse(fileContent);
 
-    const comments = allComments.split(`@metadata`);
-    comments.shift();
+        const jsons = comments.map((comment) => {
+            const metadataTags = comment.tags.filter((tag) => {
+                return tag.tag === `metadata`;
+            });
 
-    if (comments.length === 0) {
-        console.log(`No @metadata comments found in file.`);
-        return;
-    }
+            const metadataJsons = metadataTags.map((metadataTag) => {
+                return JSON.parse(metadataTag.description);
+            });
 
-    const jsObjectRegex = /(?<json>\{(.*)\})/u;
+            return metadataJsons;
+        }).flat();
 
-    const jsons = comments.map((comment) => {
-        const metadataCommentJsons = comment.match(jsObjectRegex);
-        return JSON.parse(metadataCommentJsons?.groups?.json as string);
+        return jsons;
     });
 
-    const merged = _.mergeWith({}, ...jsons, concatArrays);
+    const foundJsonsInComments = await Promise.all(findingComments);
+    const foundJsons = foundJsonsInComments.flat();
 
-    console.log(`merged`, merged);
+    const output = _.mergeWith({}, ...foundJsons, concatArrays);
+    const jsonOutput = JSON.stringify(output, undefined, 4);
+    console.log(jsonOutput);
 };
 
-void main().catch((err) => {
+void collect().catch((err) => {
     console.error(`An error occurred`, err);
 });
 
-export { main };
+export { collect };

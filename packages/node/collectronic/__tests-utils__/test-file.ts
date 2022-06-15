@@ -1,11 +1,6 @@
 /**
  * @metadata
- * { "guiPermissions": ["REC_VIEW1"], "apiPermissions": ["4_4E2E"] }
- */
-const test = `works`;
-
-/**
- * @metadata { "guiPermissions": ["REC_VIEW2"] }
+ * { "guiPermissions": ["REC_VIEW1"], "apiPermissions": ["1_4E2E"] }
  */
 const x = `works`;
 
