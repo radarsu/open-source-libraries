@@ -12,6 +12,7 @@ const getDefaultCompilerOptions = () => {
 
     if (process.platform === `win32`) {
         const driveLetter = process.cwd().charAt(0);
+        defaultsForPlatform.outDir = path.join(defaultsForPlatform.outDir, driveLetter);
         defaultsForPlatform.rootDir = `${driveLetter}:/`;
     } else {
         defaultsForPlatform.rootDir = `/`;
@@ -30,7 +31,6 @@ export const getConfig = (options: Partial<LoadOptions>) => {
             experimentalDecorators: true,
             module: tsc.ModuleKind.CommonJS,
             resolveJsonModule: true,
-            rootDir: `/`,
             skipLibCheck: true,
             target: tsc.ScriptTarget.ES2015,
         },
