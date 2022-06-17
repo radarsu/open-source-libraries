@@ -12,10 +12,6 @@ export const defaultLoadOptions = {
     mode: LoadMode.Transpile,
 };
 
-export interface CommonContext {
-    cwd: string;
-}
-
 export const load = async (tsRelativePath: string, options?: LoadOptions) => {
     const loadConfig = defaults(defaultLoadOptions, options);
     const providers = providersMap[loadConfig.mode];
