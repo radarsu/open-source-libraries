@@ -62,7 +62,6 @@ export const loadSync = (tsRelativePath: string, options?: LoadOptions) => {
 
     let jsAfterCachePath = crossPlatform.getJsAfterCachePath(tsPath);
     const jsPath = path.join(cacheDir, jsAfterCachePath).replace(/\.[^/.]+$/u, `.js`);
-    console.log(`jsPath`, jsPath);
 
     const tsFileExists = utils.checkIfFileExistsSync(tsPath);
     let jsFileExists: fs.Stats | undefined;
