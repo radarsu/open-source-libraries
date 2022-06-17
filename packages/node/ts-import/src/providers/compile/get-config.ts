@@ -5,11 +5,22 @@ import { LoadCompileOptions, LoadOptions } from '../../load.interfaces';
 
 import { defaults } from 'options-defaults';
 
+const getDefaultOutDir = () => {
+    const defaultOutDir = path.resolve(__dirname, `..`, `..`, `..`, `cache`);
+
+    if (process.platform === `win32`) {
+        const driveLetter = process.cwd().charAt(0);
+        return path.join(defaultOutDir, driveLetter);
+    }
+
+    return defaultOutDir;
+};
+
 export const getConfig = (options: Partial<LoadOptions>) => {
     const defaultCompileOptions: LoadCompileOptions['compileOptions'] & { compilerOptions: { outDir: string } } = {
         // invalidateOnChanges: boolean;
         compilerOptions: {
-            outDir: path.resolve(__dirname, `..`, `..`, `..`, `cache`),
+            outDir: getDefaultOutDir(),
             downlevelIteration: true,
             emitDecoratorMetadata: true,
             experimentalDecorators: true,

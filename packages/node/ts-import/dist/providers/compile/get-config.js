@@ -4,10 +4,18 @@ exports.getConfig = void 0;
 const path = require("path");
 const tsc = require("typescript");
 const options_defaults_1 = require("options-defaults");
+const getDefaultOutDir = () => {
+    const defaultOutDir = path.resolve(__dirname, `..`, `..`, `..`, `cache`);
+    if (process.platform === `win32`) {
+        const driveLetter = process.cwd().charAt(0);
+        return path.join(defaultOutDir, driveLetter);
+    }
+    return defaultOutDir;
+};
 const getConfig = (options) => {
     const defaultCompileOptions = {
         compilerOptions: {
-            outDir: path.resolve(__dirname, `..`, `..`, `..`, `cache`),
+            outDir: getDefaultOutDir(),
             downlevelIteration: true,
             emitDecoratorMetadata: true,
             experimentalDecorators: true,
