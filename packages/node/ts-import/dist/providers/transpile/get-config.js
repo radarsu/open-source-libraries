@@ -10,6 +10,10 @@ const getConfig = (options) => {
         },
         transpileOptions: {},
     };
+    if (process.platform === `win32`) {
+        const driveLetter = process.cwd().charAt(0);
+        defaultTranspileOptions.cache.dir = path.join(defaultTranspileOptions.cache.dir, driveLetter);
+    }
     const transpileOptions = (0, options_defaults_1.defaults)(defaultTranspileOptions, options);
     return transpileOptions;
 };

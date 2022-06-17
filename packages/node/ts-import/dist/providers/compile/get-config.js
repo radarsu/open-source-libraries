@@ -4,27 +4,23 @@ exports.getConfig = void 0;
 const path = require("path");
 const tsc = require("typescript");
 const options_defaults_1 = require("options-defaults");
-const getDefaultOutDir = () => {
-    const defaultOutDir = path.resolve(__dirname, `..`, `..`, `..`, `cache`);
+const getDefaultCompilerOptions = () => {
+    const defaultsForPlatform = {
+        outDir: path.resolve(__dirname, `..`, `..`, `..`, `cache`),
+    };
     if (process.platform === `win32`) {
         const driveLetter = process.cwd().charAt(0);
-        return path.join(defaultOutDir, driveLetter);
+        defaultsForPlatform.outDir = path.join(defaultsForPlatform.outDir, driveLetter);
+        defaultsForPlatform.rootDir = `${driveLetter}:/`;
     }
-    return defaultOutDir;
+    else {
+        defaultsForPlatform.rootDir = `/`;
+    }
+    return defaultsForPlatform;
 };
 const getConfig = (options) => {
     const defaultCompileOptions = {
-        compilerOptions: {
-            outDir: getDefaultOutDir(),
-            downlevelIteration: true,
-            emitDecoratorMetadata: true,
-            experimentalDecorators: true,
-            module: tsc.ModuleKind.CommonJS,
-            resolveJsonModule: true,
-            rootDir: `/`,
-            skipLibCheck: true,
-            target: tsc.ScriptTarget.ES2015,
-        },
+        compilerOptions: Object.assign(Object.assign({}, getDefaultCompilerOptions()), { downlevelIteration: true, emitDecoratorMetadata: true, experimentalDecorators: true, module: tsc.ModuleKind.CommonJS, resolveJsonModule: true, skipLibCheck: true, target: tsc.ScriptTarget.ES2015 }),
     };
     const compileOptions = (0, options_defaults_1.defaults)(defaultCompileOptions, options);
     return compileOptions;

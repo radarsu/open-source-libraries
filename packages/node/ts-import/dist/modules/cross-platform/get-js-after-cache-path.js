@@ -4,7 +4,7 @@ exports.getJsAfterCachePath = void 0;
 const getJsAfterCachePath = (tsPath) => {
     let jsAfterCachePath = tsPath;
     if (process.platform === `win32`) {
-        jsAfterCachePath = tsPath.substring(0, 1) + tsPath.substring(2, tsPath.length);
+        jsAfterCachePath = tsPath.split(`:`)[1];
     }
     return jsAfterCachePath;
 };
