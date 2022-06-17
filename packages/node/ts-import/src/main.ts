@@ -12,6 +12,10 @@ export const defaultLoadOptions = {
     mode: LoadMode.Transpile,
 };
 
+export interface CommonContext {
+    cwd: string;
+}
+
 export const load = async (tsRelativePath: string, options?: LoadOptions) => {
     const loadConfig = defaults(defaultLoadOptions, options);
     const providers = providersMap[loadConfig.mode];
@@ -23,6 +27,7 @@ export const load = async (tsRelativePath: string, options?: LoadOptions) => {
 
     let jsAfterCachePath = crossPlatform.getJsAfterCachePath(tsPath);
     const jsPath = path.join(cacheDir, jsAfterCachePath).replace(/\.[^/.]+$/u, `.js`);
+    console.log(`jsPath`, jsPath);
 
     const [tsFileExists, jsFileExists] = await Promise.all([
         utils.checkIfFileExists(tsPath),
@@ -58,6 +63,7 @@ export const loadSync = (tsRelativePath: string, options?: LoadOptions) => {
 
     let jsAfterCachePath = crossPlatform.getJsAfterCachePath(tsPath);
     const jsPath = path.join(cacheDir, jsAfterCachePath).replace(/\.[^/.]+$/u, `.js`);
+    console.log(`jsPath`, jsPath);
 
     const tsFileExists = utils.checkIfFileExistsSync(tsPath);
     let jsFileExists: fs.Stats | undefined;
