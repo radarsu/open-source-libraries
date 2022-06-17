@@ -1,9 +1,9 @@
-### Design pattern
+### Design pattern - OOP way
 
 ```ts
 import { defaults } from 'options-defaults';
 
-export interface ISomeOptions {
+export interface SomeOptions {
     logger?: Partial<Console>;
 }
 
@@ -12,11 +12,29 @@ export class Something {
         logger: console,
     };
 
-    options: ISomeOptions & typeof Something.defaults;
-    constructor(options?: ISomeOptions) {
-        this.options = defaults(Rat.defaults, options);
+    options: SomeOptions & typeof Something.defaults;
+    constructor(options?: SomeOptions) {
+        this.options = defaults(Something.defaults, options);
     }
 }
+```
+
+### Design pattern - Functional way
+
+```ts
+import { defaults } from 'options-defaults';
+
+export interface SomeOptions {
+    logger?: Partial<Console>;
+}
+
+const somethingDefaults = {
+    logger: console,
+};
+
+export const doSomething = (options: SomeOptions) => {
+    const config = defaults(somethingDefaults, options);
+};
 ```
 
 ### Behavior

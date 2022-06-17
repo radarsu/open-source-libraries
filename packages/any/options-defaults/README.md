@@ -1,5 +1,5 @@
 <p align="center">
-    <h1>ts-options-defaults</h1>
+    <h1>options-defaults</h1>
     <div>Options-defaults design pattern implementation for reliable configuration. It merges objects deeply, overrides arrays and classes (different than Object) and the result remains strongly typed.</div>
 </p>
 
@@ -11,18 +11,19 @@
 
 3. [Features](#features)
 
-## Getting Started
 
-`npm i ts-options-defaults`
+
+## Getting Started
+`npm i options-defaults`
+
 
 ## Usage
-
-### Design pattern
+### Design pattern - OOP way
 
 ```ts
-import { defaults } from 'ts-options-defaults';
+import { defaults } from 'options-defaults';
 
-export interface ISomeOptions {
+export interface SomeOptions {
     logger?: Partial<Console>;
 }
 
@@ -31,17 +32,35 @@ export class Something {
         logger: console,
     };
 
-    options: ISomeOptions & typeof Something.defaults;
-    constructor(options?: ISomeOptions) {
-        this.options = defaults(Rat.defaults, options);
+    options: SomeOptions & typeof Something.defaults;
+    constructor(options?: SomeOptions) {
+        this.options = defaults(Something.defaults, options);
     }
 }
+```
+
+### Design pattern - Functional way
+
+```ts
+import { defaults } from 'options-defaults';
+
+export interface SomeOptions {
+    logger?: Partial<Console>;
+}
+
+const somethingDefaults = {
+    logger: console,
+};
+
+export const doSomething = (options: SomeOptions) => {
+    const config = defaults(somethingDefaults, options);
+};
 ```
 
 ### Behavior
 
 ```ts
-import { defaults } from 'ts-options-defaults';
+import { defaults } from 'options-defaults';
 
 class TestLogger {
     constructor(public name = `TestLogger`) {}
@@ -103,9 +122,10 @@ options.console.debug(`debug`); // "debug"
 // someDefaults will not be mutated!
 ```
 
-## Features
 
-**Beats alternatives** - better alternative to `{...defaults, ...options}` destructing and lodash `_.defaults` or `_.merge`
-**Secure** - immune to prototype pollution attack
-**Simple** - just 40 lines of clean TypeScript code
-**Strongly typed** - result remains strongly typed
+## Features
+-   **Beats alternatives** - better alternative to `{...defaults, ...options}` destructing and lodash `_.defaults` or `_.merge`
+-   **Secure** - immune to prototype pollution attack
+-   **Simple** - just 40 lines of clean TypeScript code
+-   **Strongly typed** - result remains strongly typed
+
