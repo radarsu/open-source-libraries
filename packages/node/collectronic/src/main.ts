@@ -7,7 +7,7 @@ import * as tsImport from 'ts-import';
 
 import { concatArrays } from './utils/concat-arrays';
 
-export interface CollectronicConfig {
+interface CollectronicConfig {
     filePatterns: string[];
 }
 
@@ -22,17 +22,19 @@ const collect = async () => {
 
         const comments = commentParser.parse(fileContent);
 
-        const jsons = comments.map((comment) => {
-            const metadataTags = comment.tags.filter((tag) => {
-                return tag.tag === `metadata`;
-            });
+        const jsons = comments
+            .map((comment) => {
+                const metadataTags = comment.tags.filter((tag) => {
+                    return tag.tag === `metadata`;
+                });
 
-            const metadataJsons = metadataTags.map((metadataTag) => {
-                return JSON.parse(metadataTag.description);
-            });
+                const metadataJsons = metadataTags.map((metadataTag) => {
+                    return JSON.parse(metadataTag.description);
+                });
 
-            return metadataJsons;
-        }).flat();
+                return metadataJsons;
+            })
+            .flat();
 
         return jsons;
     });
@@ -49,4 +51,4 @@ void collect().catch((err) => {
     console.error(`An error occurred`, err);
 });
 
-export { collect };
+export { collect, CollectronicConfig };
