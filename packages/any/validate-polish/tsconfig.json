@@ -18,13 +18,5 @@
         "target": "es2017",
         "skipLibCheck": true
     },
-    "exclude": [
-        "./dist",
-        "./node_modules",
-        "./scripts.ts",
-        "./scripts",
-        "./__tests__",
-        "./__tests-utils__",
-        "**/*.spec.ts"
-    ]
+    "exclude": ["./dist", "./node_modules", "rr-scripts.ts", "./__tests__", "./__tests-utils__", "**/*.spec.ts"]
 }
