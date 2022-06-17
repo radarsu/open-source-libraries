@@ -21,12 +21,12 @@ export const load = async (tsRelativePath: string, options?: LoadOptions) => {
     const cacheDir = providers.getCacheDir(config);
     const tsPath = path.resolve(cwd, tsRelativePath);
 
-    let jsAfterCachePath = crossPlatform.getJsAfterCachePath(tsPath);
+    const jsAfterCachePath = crossPlatform.getJsAfterCachePath(tsPath);
     const jsPath = path.join(cacheDir, jsAfterCachePath).replace(/\.[^/.]+$/u, `.js`);
 
     const [tsFileExists, jsFileExists] = await Promise.all([
         utils.checkIfFileExists(tsPath),
-        utils.checkIfFileExists(jsPath).catch((err) => {
+        utils.checkIfFileExists(jsPath).catch(() => {
             // * Ignore non-existent cache.
         }),
     ]);
@@ -56,7 +56,7 @@ export const loadSync = (tsRelativePath: string, options?: LoadOptions) => {
     const cacheDir = providers.getCacheDir(config);
     const tsPath = path.resolve(cwd, tsRelativePath);
 
-    let jsAfterCachePath = crossPlatform.getJsAfterCachePath(tsPath);
+    const jsAfterCachePath = crossPlatform.getJsAfterCachePath(tsPath);
     const jsPath = path.join(cacheDir, jsAfterCachePath).replace(/\.[^/.]+$/u, `.js`);
 
     const tsFileExists = utils.checkIfFileExistsSync(tsPath);
@@ -70,6 +70,7 @@ export const loadSync = (tsRelativePath: string, options?: LoadOptions) => {
 
     // Load from cache.
     if (jsFileExists && !utils.isFileNewer(tsFileExists, jsFileExists)) {
+        // eslint-disable-next-line import/no-dynamic-require, @typescript-eslint/no-var-requires
         const loaded = require(jsPath);
         return loaded;
     }
@@ -80,6 +81,7 @@ export const loadSync = (tsRelativePath: string, options?: LoadOptions) => {
         ...config,
     });
 
+    // eslint-disable-next-line import/no-dynamic-require, @typescript-eslint/no-var-requires
     const loaded = require(jsPath);
     return loaded;
 };
