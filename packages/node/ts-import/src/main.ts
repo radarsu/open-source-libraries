@@ -27,7 +27,6 @@ export const load = async (tsRelativePath: string, options?: LoadOptions) => {
 
     let jsAfterCachePath = crossPlatform.getJsAfterCachePath(tsPath);
     const jsPath = path.join(cacheDir, jsAfterCachePath).replace(/\.[^/.]+$/u, `.js`);
-    console.log(`jsPath`, jsPath);
 
     const [tsFileExists, jsFileExists] = await Promise.all([
         utils.checkIfFileExists(tsPath),
