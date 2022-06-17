@@ -5,22 +5,27 @@ import { LoadCompileOptions, LoadOptions } from '../../load.interfaces';
 
 import { defaults } from 'options-defaults';
 
-const getDefaultOutDir = () => {
-    const defaultOutDir = path.resolve(__dirname, `..`, `..`, `..`, `cache`);
+const getDefaultCompilerOptions = () => {
+    const defaultsForPlatform: tsc.CompilerOptions & { outDir: string } = {
+        outDir: path.resolve(__dirname, `..`, `..`, `..`, `cache`),
+    };
 
     if (process.platform === `win32`) {
         const driveLetter = process.cwd().charAt(0);
-        return path.join(defaultOutDir, driveLetter);
+        defaultsForPlatform.outDir = path.join(defaultsForPlatform.outDir, driveLetter);
+        defaultsForPlatform.rootDir = `${driveLetter}:/`;
+    } else {
+        defaultsForPlatform.rootDir = `/`;
     }
 
-    return defaultOutDir;
+    return defaultsForPlatform;
 };
 
 export const getConfig = (options: Partial<LoadOptions>) => {
     const defaultCompileOptions: LoadCompileOptions['compileOptions'] & { compilerOptions: { outDir: string } } = {
         // invalidateOnChanges: boolean;
         compilerOptions: {
-            outDir: getDefaultOutDir(),
+            ...getDefaultCompilerOptions(),
             downlevelIteration: true,
             emitDecoratorMetadata: true,
             experimentalDecorators: true,
