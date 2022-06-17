@@ -14,7 +14,7 @@ export const getConfig = (options: Partial<LoadOptions>) => {
     };
 
     if (process.platform === `win32`) {
-        const driveLetter = defaultTranspileOptions.cache.dir.charAt(0);
+        const driveLetter = process.cwd().charAt(0);
         defaultTranspileOptions.cache.dir = path.join(defaultTranspileOptions.cache.dir, driveLetter);
     }
 
