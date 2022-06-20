@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import * as _ from 'lodash';
 import * as commentParser from 'comment-parser';
 import * as fastGlob from 'fast-glob';
@@ -6,16 +8,28 @@ import * as path from 'path';
 import * as tsImport from 'ts-import';
 
 import { concatArrays } from './utils/concat-arrays';
+import { defaults } from 'options-defaults';
 
 interface CollectronicConfig {
-    filePatterns: string[];
+    inputs: string[];
+    tag?: string;
+    hooks?: {
+        beforePrint?: (collectedData: any) => any;
+    };
 }
 
 const collect = async () => {
     const configPath = path.join(process.cwd(), `.config/collectronic.ts`);
-    const config: CollectronicConfig = (await tsImport.load(configPath)).default;
+    const localConfig = (await tsImport.load(configPath)).default;
 
-    const filePaths = await fastGlob(config.filePatterns);
+    const config: CollectronicConfig = defaults(
+        {
+            tag: `metadata`,
+        },
+        localConfig,
+    );
+
+    const filePaths = await fastGlob(config.inputs);
 
     const findingComments = filePaths.map(async (filePath) => {
         const fileContent = await fs.promises.readFile(filePath, `utf-8`);
@@ -25,7 +39,7 @@ const collect = async () => {
         const jsons = comments
             .map((comment) => {
                 const metadataTags = comment.tags.filter((tag) => {
-                    return tag.tag === `metadata`;
+                    return tag.tag === config.tag;
                 });
 
                 const metadataJsons = metadataTags.map((metadataTag) => {
@@ -42,13 +56,17 @@ const collect = async () => {
     const foundJsonsInComments = await Promise.all(findingComments);
     const foundJsons = foundJsonsInComments.flat();
 
-    const output = _.mergeWith({}, ...foundJsons, concatArrays);
-    const jsonOutput = JSON.stringify(output, undefined, 4);
-    console.log(jsonOutput);
+    let output = _.mergeWith({}, ...foundJsons, concatArrays);
+    output = config.hooks?.beforePrint?.(output);
+
+    const collectedData = JSON.stringify(output, undefined, 4);
+
+    console.log(collectedData);
 };
 
 void collect().catch((err) => {
     console.error(`An error occurred`, err);
 });
 
-export { collect, CollectronicConfig };
+export type { CollectronicConfig };
+export { collect };
