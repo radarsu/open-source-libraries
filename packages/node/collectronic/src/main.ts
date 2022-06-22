@@ -14,13 +14,18 @@ interface CollectronicConfig {
     inputs: string[];
     tag?: string;
     hooks?: {
-        beforePrint?: (collectedData: any) => any;
+        beforePrint?: (collectedData: any) => Promise<any>;
     };
+}
+
+interface CollectronicConfigExport {
+    getConfig: () => Promise<CollectronicConfig>;
 }
 
 const collect = async () => {
     const configPath = path.join(process.cwd(), `.config/collectronic.ts`);
-    const localConfig = (await tsImport.load(configPath)).default;
+    const localConfigExport: CollectronicConfigExport = (await tsImport.load(configPath)).default;
+    const localConfig = await localConfigExport.getConfig();
 
     const config: CollectronicConfig = defaults(
         {
@@ -57,7 +62,7 @@ const collect = async () => {
     const foundJsons = foundJsonsInComments.flat();
 
     let output = _.mergeWith({}, ...foundJsons, concatArrays);
-    output = config.hooks?.beforePrint?.(output);
+    output = await config.hooks?.beforePrint?.(output);
 
     const collectedData = JSON.stringify(output, undefined, 4);
 
@@ -68,5 +73,5 @@ void collect().catch((err) => {
     console.error(`An error occurred`, err);
 });
 
-export type { CollectronicConfig };
+export type { CollectronicConfig, CollectronicConfigExport };
 export { collect };
