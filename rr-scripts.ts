@@ -12,7 +12,7 @@ const scripts: Scripts = async (cli) => {
             name: `@radrat-scripts/git`,
         },
         {
-            name: `@radrat-scripts/workspace`,
+            name: `@radrat-internal/node-cli-plugin-workspace`,
         },
     ]);
 };
