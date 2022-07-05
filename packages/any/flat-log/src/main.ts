@@ -4,9 +4,9 @@ declare global {
     }
 }
 
-export const flatLog = (...objects: any[]) => {
+const flatLog = (...objects: any[]) => {
     objects.forEach((object) => {
-        if (!object || typeof object !== 'object') {
+        if (!object || typeof object !== `object`) {
             console.log(object);
             return;
         }
@@ -18,3 +18,5 @@ export const flatLog = (...objects: any[]) => {
 };
 
 console.flatLog = flatLog;
+
+export { flatLog };
