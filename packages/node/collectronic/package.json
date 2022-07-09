@@ -1,6 +1,6 @@
 {
     "name": "collectronic",
-    "version": "0.0.4",
+    "version": "0.0.7",
     "main": "dist/main.js",
     "types": "dist/main.d.ts",
     "bin": {
@@ -11,14 +11,14 @@
         "fast-glob": "3.2.11",
         "lodash": "4.17.21",
         "options-defaults": "2.0.40",
-        "ts-import": "4.0.0-beta.2",
+        "ts-import": "4.0.0-beta.5",
         "tslib": "2.4.0"
     },
     "devDependencies": {
         "@radrat-scripts/package": "2.0.46",
-        "@radrat/cli": "3.0.0-beta.4",
+        "@radrat/cli": "3.0.0-beta.5",
         "@types/lodash": "4.14.182",
-        "@types/node": "16.11.41",
+        "@types/node": "16.11.42",
         "typescript": "4.7.4"
     },
     "files": [

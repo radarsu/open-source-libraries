@@ -8,6 +8,7 @@ export declare enum LoadMode {
 }
 export interface LoadTranspileOptions {
     mode: LoadMode.Transpile;
+    allowConfigurationWithComments?: boolean;
     transpileOptions: {
         cache: {
             dir: string;
@@ -17,6 +18,7 @@ export interface LoadTranspileOptions {
 }
 export interface LoadCompileOptions {
     mode: LoadMode.Compile;
+    allowConfigurationWithComments?: boolean;
     compileOptions: {
         compilerOptions: tsc.CompilerOptions;
     };

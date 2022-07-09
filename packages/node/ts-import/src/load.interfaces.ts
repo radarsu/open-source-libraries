@@ -15,6 +15,7 @@ export enum LoadMode {
 
 export interface LoadTranspileOptions {
     mode: LoadMode.Transpile;
+    allowConfigurationWithComments?: boolean;
     transpileOptions: {
         cache: {
             dir: string;
@@ -26,6 +27,7 @@ export interface LoadTranspileOptions {
 
 export interface LoadCompileOptions {
     mode: LoadMode.Compile;
+    allowConfigurationWithComments?: boolean;
     compileOptions: {
         // cache: {
         //     invalidateOnChanges: boolean;

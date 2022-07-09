@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.loadSync = exports.load = exports.defaultLoadOptions = void 0;
 const tslib_1 = require("tslib");
+const commentParser = require("./modules/comment-parser");
 const crossPlatform = require("./modules/cross-platform");
 const path = require("path");
 const utils = require("./utils");
@@ -10,19 +11,24 @@ const options_defaults_1 = require("options-defaults");
 const providers_1 = require("./providers/providers");
 exports.defaultLoadOptions = {
     mode: load_interfaces_1.LoadMode.Transpile,
+    allowConfigurationWithComments: false,
 };
 const load = async (tsRelativePath, options) => {
+    if (options === null || options === void 0 ? void 0 : options.allowConfigurationWithComments) {
+        const commentConfig = await commentParser.getTsImportCommentConfig(tsRelativePath);
+        options = (0, options_defaults_1.defaults)(options, commentConfig);
+    }
     const loadConfig = (0, options_defaults_1.defaults)(exports.defaultLoadOptions, options);
     const providers = providers_1.providersMap[loadConfig.mode];
     const config = providers.getConfig(loadConfig);
     const cwd = process.cwd();
     const cacheDir = providers.getCacheDir(config);
     const tsPath = path.resolve(cwd, tsRelativePath);
-    let jsAfterCachePath = crossPlatform.getJsAfterCachePath(tsPath);
+    const jsAfterCachePath = crossPlatform.getJsAfterCachePath(tsPath);
     const jsPath = path.join(cacheDir, jsAfterCachePath).replace(/\.[^/.]+$/u, `.js`);
     const [tsFileExists, jsFileExists] = await Promise.all([
         utils.checkIfFileExists(tsPath),
-        utils.checkIfFileExists(jsPath).catch((err) => {
+        utils.checkIfFileExists(jsPath).catch(() => {
         }),
     ]);
     if (jsFileExists && !utils.isFileNewer(tsFileExists, jsFileExists)) {
@@ -36,13 +42,17 @@ const load = async (tsRelativePath, options) => {
 };
 exports.load = load;
 const loadSync = (tsRelativePath, options) => {
+    if (options === null || options === void 0 ? void 0 : options.allowConfigurationWithComments) {
+        const commentConfig = commentParser.getTsImportCommentConfigSync(tsRelativePath);
+        options = (0, options_defaults_1.defaults)(options, commentConfig);
+    }
     const loadConfig = (0, options_defaults_1.defaults)(exports.defaultLoadOptions, options);
     const providers = providers_1.providersMap[loadConfig.mode];
     const config = providers.getConfig(loadConfig);
     const cwd = process.cwd();
     const cacheDir = providers.getCacheDir(config);
     const tsPath = path.resolve(cwd, tsRelativePath);
-    let jsAfterCachePath = crossPlatform.getJsAfterCachePath(tsPath);
+    const jsAfterCachePath = crossPlatform.getJsAfterCachePath(tsPath);
     const jsPath = path.join(cacheDir, jsAfterCachePath).replace(/\.[^/.]+$/u, `.js`);
     const tsFileExists = utils.checkIfFileExistsSync(tsPath);
     let jsFileExists;

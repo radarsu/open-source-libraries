@@ -1,6 +1,6 @@
-import * as _ from 'lodash';
+import * as jest from 'jest';
 
-console.log(_.camelCase(`it works`));
+console.log(jest.getVersion());
 
 const result = true;
 

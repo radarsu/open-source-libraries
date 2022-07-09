@@ -1,3 +1,4 @@
+import * as commentParser from './modules/comment-parser';
 import * as crossPlatform from './modules/cross-platform';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -10,9 +11,15 @@ import { providersMap } from './providers/providers';
 
 export const defaultLoadOptions = {
     mode: LoadMode.Transpile,
+    allowConfigurationWithComments: false,
 };
 
 export const load = async (tsRelativePath: string, options?: LoadOptions) => {
+    if (options?.allowConfigurationWithComments) {
+        const commentConfig = await commentParser.getTsImportCommentConfig(tsRelativePath);
+        options = defaults(options, commentConfig);
+    }
+
     const loadConfig = defaults(defaultLoadOptions, options);
     const providers = providersMap[loadConfig.mode];
     const config = providers.getConfig(loadConfig);
@@ -48,6 +55,11 @@ export const load = async (tsRelativePath: string, options?: LoadOptions) => {
 };
 
 export const loadSync = (tsRelativePath: string, options?: LoadOptions) => {
+    if (options?.allowConfigurationWithComments) {
+        const commentConfig = commentParser.getTsImportCommentConfigSync(tsRelativePath);
+        options = defaults(options, commentConfig);
+    }
+
     const loadConfig = defaults(defaultLoadOptions, options);
     const providers = providersMap[loadConfig.mode];
     const config = providers.getConfig(loadConfig);

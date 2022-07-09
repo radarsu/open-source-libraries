@@ -18,8 +18,8 @@ const scripts: Scripts = async (cli) => {
         name: `publish`,
         command: [
             `npx rr build`,
-            `npm publish --access=public`,
-            `git init`,
+            // `npm publish --access=public`,
+            `git init --initial-branch=main`,
             `git remote add origin https://github.com/radarsu/${cli.context.packageJson.name}`,
             `git add .`,
             `git commit -m 'feat: ${cli.context.packageJson.version}'`,

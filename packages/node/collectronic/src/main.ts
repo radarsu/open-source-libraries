@@ -24,7 +24,9 @@ interface CollectronicConfigExport {
 
 const collect = async () => {
     const configPath = path.join(process.cwd(), `.config/collectronic.ts`);
-    const localConfigExport: CollectronicConfigExport = (await tsImport.load(configPath)).default;
+    const localConfigExport: CollectronicConfigExport = (await tsImport.load(configPath, {
+        allowConfigurationWithComments: true,
+    })).default;
     const localConfig = await localConfigExport.getConfig();
 
     const config: CollectronicConfig = defaults(
