@@ -1,0 +1,16 @@
+# Dependencies.
+/node_modules
+/npm-debug.log
+
+# Distributables.
+/dist
+
+# MacOS.
+.DS_Store
+
+# Local. Temporarily push to repo for testing purposes.
+# /local
+
+# TODO: Only for development purposes. Remove after.
+/hosts
+/missions

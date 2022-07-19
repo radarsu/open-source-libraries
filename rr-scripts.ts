@@ -9,9 +9,6 @@ const scripts: Scripts = async (cli) => {
 
     await cli.loadPlugins([
         {
-            name: `@radrat-scripts/git`,
-        },
-        {
             name: `@radrat-internal/node-cli-plugin-workspace`,
         },
     ]);
