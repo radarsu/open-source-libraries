@@ -1,4 +1,5 @@
 import * as inquirer from 'inquirer';
+import * as nodeSSH from 'node-ssh';
 import * as pkg from 'pkg';
 import * as providers from '../../providers/launch';
 
