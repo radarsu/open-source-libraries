@@ -1,0 +1,12 @@
+import type { Mission } from '../shared/interfaces';
+
+export const launchMission = async () => {
+    const mission: Mission = await import(`../missions/<%- missionName %>`);
+
+    for (let [index, step] of mission.steps.entries()) {
+        console.log(`Running step ${index}...`);
+        await step.up();
+    }
+};
+
+void launchMission();

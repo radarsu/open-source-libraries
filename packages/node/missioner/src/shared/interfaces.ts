@@ -1,8 +1,12 @@
 import * as nodeSSH from 'node-ssh';
 
+export interface SSHConnectionConfig extends nodeSSH.Config {
+    privateKeyPath?: string;
+}
+
 export interface SSHConnection {
     type: 'ssh';
-    ssh: nodeSSH.Config;
+    ssh: SSHConnectionConfig;
 }
 
 export interface Host {
@@ -13,8 +17,8 @@ export interface Host {
 
 export interface Step {
     name: string;
-    up: (host: Host) => void;
-    rollback?: (host: Host) => void;
+    up: () => Promise<void>;
+    rollback?: () => Promise<void>;
 }
 
 export interface Mission {

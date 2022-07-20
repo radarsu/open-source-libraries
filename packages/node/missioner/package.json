@@ -17,13 +17,16 @@
         "@oclif/core": "1.11.0",
         "@oclif/plugin-help": "5.1.12",
         "@oclif/plugin-plugins": "2.1.0",
+        "ejs": "3.1.8",
         "inquirer": "8.2.4",
+        "nanoid": "3.3.4",
         "node-ssh": "12.0.4",
         "pkg": "5.8.0",
         "ssh2-streams": "0.4.10",
         "ts-import": "4.0.0-beta.6"
     },
     "devDependencies": {
+        "@types/ejs": "3.1.1",
         "@types/inquirer": "8.2.1",
         "@types/node": "16.11.42",
         "@types/ssh2": "1.11.4",

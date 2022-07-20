@@ -4,12 +4,15 @@
 
 # Distributables.
 /dist
+/dist-*
 
-# MacOS.
+# Operating systems.
 .DS_Store
+Thumbs.db
 
 # Local. Temporarily push to repo for testing purposes.
 # /local
+/.tmp
 
 # TODO: Only for development purposes. Remove after.
 /hosts
