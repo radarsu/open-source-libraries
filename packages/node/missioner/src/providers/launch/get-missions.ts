@@ -1,8 +1,6 @@
 import * as path from 'path';
 import * as tsImport from 'ts-import';
 
-import { Mission } from '../../shared/interfaces';
-
 export const getMissions = async (cwd: string) => {
     const missionsDir = path.join(cwd, `missions`, `index.ts`);
 
@@ -10,7 +8,7 @@ export const getMissions = async (cwd: string) => {
         mode: tsImport.LoadMode.Compile,
     });
 
-    const missions = await missionsModule.getMissions();
+    const missions = await missionsModule.getMissions(cwd);
 
-    return missions as Mission[];
+    return missions as string[];
 };

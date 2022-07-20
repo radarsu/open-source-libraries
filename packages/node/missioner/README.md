@@ -28,4 +28,4 @@ Smallest unit of work to perform on target machine. If mission fails at some poi
 3. Binary is being executed on target host and stream of output is being redirected to parent.
 4. Also, output stream is being written down to `~/.missioner/missions/${uniqueMissionIdentifier}/launch.log`.
 5. After each step's correct execution, index of current step of mission is recorded in `~/.missioner/missions/${uniqueMissionIdentifier}/data.json`.
-6. If the step fails, it will automatically trigger it's rollback function, mission then can be relaunched from the last successful step.
+6. If the step fails, it will automatically trigger it's rollback function, mission then can be relaunched from the last successful step (TO RETHINK).

@@ -12,16 +12,7 @@ export interface SSHConnection {
 export interface Host {
     name: string;
     connection: SSHConnection;
+    // Boolean or path to node executable.
+    useBuiltInNode?: boolean | string;
     tags?: string[];
-}
-
-export interface Step {
-    name: string;
-    up: () => Promise<void>;
-    rollback?: () => Promise<void>;
-}
-
-export interface Mission {
-    name?: string;
-    steps: Step[];
 }
