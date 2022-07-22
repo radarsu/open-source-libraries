@@ -1,0 +1,306 @@
+{
+    "version": "3",
+    "services": {
+        "prometheus": {
+            "container_name": "prometheus",
+            "image": "prom/prometheus:v2.37.0",
+            "volumes": [
+                "/home/radratdev/radrat/docker-volumes/prometheus/etc/prometheus:/etc/prometheus",
+                "/home/radratdev/radrat/docker-volumes/prometheus/prometheus:/prometheus"
+            ],
+            "depends_on": ["cadvisor"],
+            "networks": ["traefik-network"],
+            "restart": "unless-stopped"
+        },
+        "node-exporter": {
+            "container_name": "node-exporter",
+            "image": "quay.io/prometheus/node-exporter:latest",
+            "volumes": ["/proc:/host/proc:ro", "/sys:/host/sys:ro", "/:/rootfs:ro", "/:/host:ro,rslave"],
+            "command": [
+                "--path.rootfs=/host",
+                "--path.procfs=/host/proc",
+                "--path.sysfs=/host/sys",
+                "--collector.filesystem.ignored-mount-points",
+                "^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)"
+            ],
+            "ports": ["9100:9100"],
+            "networks": ["traefik-network"],
+            "restart": "unless-stopped",
+            "deploy": {
+                "mode": "global"
+            }
+        },
+        "alertmanager": {
+            "container_name": "alertmanager",
+            "image": "prom/alertmanager",
+            "volumes": ["./alertmanager/:/etc/alertmanager/"],
+            "networks": ["traefik-network"],
+            "restart": "unless-stopped",
+            "command": ["--config.file=/etc/alertmanager/config.yml", "--storage.path=/alertmanager"]
+        },
+        "cadvisor": {
+            "image": "gcr.io/cadvisor/cadvisor",
+            "volumes": ["/:/rootfs:ro", "/var/run:/var/run:rw", "/sys:/sys:ro", "/var/lib/docker/:/var/lib/docker:ro"],
+            "networks": ["traefik-network"],
+            "restart": "unless-stopped",
+            "deploy": {
+                "mode": "global"
+            }
+        },
+        "gitlab": {
+            "container_name": "gitlab",
+            "image": "gitlab/gitlab-ee:14.4.2-ee.0",
+            "hostname": "gitlab.radratteam.pl",
+            "restart": "unless-stopped",
+            "volumes": [
+                "/home/radratdev/radrat/docker-volumes/gitlab/etc/gitlab:/etc/gitlab",
+                "/home/radratdev/radrat/docker-volumes/gitlab/var/log/gitlab:/var/log/gitlab",
+                "/home/radratdev/radrat/docker-volumes/gitlab/var/opt/gitlab:/var/opt/gitlab"
+            ],
+            "networks": ["traefik-network"],
+            "environment": {
+                "GITLAB_OMNIBUS_CONFIG": "external_url 'https://gitlab.radratteam.pl'\ngitlab_rails['time_zone'] = 'Europe/Warsaw'\ngitlab_rails['gitlab_default_theme'] = 2\nregistry_external_url 'https://docker-registry.radratteam.pl'\ngitlab_rails['registry_enabled'] = true\ngitlab_rails['api_url'] = 'https://docker-registry.radratteam.pl'\nregistry_nginx['enable'] = false\nregistry['registry_http_addr'] = '0.0.0.0:5000'\nnginx['listen_port'] = 18080\nnginx['listen_https'] = false\ngrafana['admin_password'] = 'RadRatDev1#'\ngitlab_rails['incoming_email_enabled'] = true\ngitlab_rails['incoming_email_address'] = 'developmentservicedesk+%{key}@gmail.com'\ngitlab_rails['incoming_email_email'] = 'developmentservicedesk@gmail.com'\ngitlab_rails['incoming_email_password'] = 'RadRatDev1#'\ngitlab_rails['incoming_email_host'] = 'imap.gmail.com'\ngitlab_rails['incoming_email_port'] = 993\ngitlab_rails['incoming_email_ssl'] = true\ngitlab_rails['incoming_email_start_tls'] = false\ngitlab_rails['incoming_email_mailbox_name'] = 'inbox'\ngitlab_rails['incoming_email_idle_timeout'] = 60\ngitlab_rails['incoming_email_expunge_deleted'] = false\ngitlab_rails['smtp_enable'] = true\ngitlab_rails['smtp_address'] = 'smtp.gmail.com'\ngitlab_rails['smtp_port'] = 587\ngitlab_rails['smtp_user_name'] = 'developmentservicedesk@gmail.com'\ngitlab_rails['smtp_password'] = 'RadRatDev1#'\ngitlab_rails['smtp_domain'] = 'smtp.gmail.com'\ngitlab_rails['smtp_authentication'] = 'login'\ngitlab_rails['smtp_enable_starttls_auto'] = true\ngitlab_rails['smtp_tls'] = false\ngitlab_rails['smtp_pool'] = false"
+            },
+            "labels": [
+                "traefik.enable=true",
+                "traefik.http.middlewares.gitlab-redirect-to-https.redirectscheme.permanent=true",
+                "traefik.http.middlewares.gitlab-redirect-to-https.redirectscheme.scheme=https",
+                "traefik.http.routers.gitlab-registry.entrypoints=websecure",
+                "traefik.http.routers.gitlab-registry.rule=Host(`docker-registry.radratteam.pl`)",
+                "traefik.http.routers.gitlab-registry.service=gitlab-registry",
+                "traefik.http.routers.gitlab-registry.tls.certresolver=acmeresolver",
+                "traefik.http.routers.gitlab-registry.tls.domains[0].main=docker-registry.radratteam.pl",
+                "traefik.http.routers.gitlab-registry.tls=true",
+                "traefik.http.routers.gitlab.rule=Host(`gitlab.radratteam.pl`)",
+                "traefik.http.routers.gitlab.service=gitlab",
+                "traefik.http.routers.gitlab.tls.certresolver=acmeresolver",
+                "traefik.http.routers.gitlab.tls.domains[0].main=gitlab.radratteam.pl",
+                "traefik.http.routers.gitlab.tls=true",
+                "traefik.http.services.gitlab-registry.loadbalancer.server.port=5000",
+                "traefik.http.services.gitlab.loadbalancer.server.port=18080",
+                "traefik.http.routers.gitlab-ssh.entrypoints=secureshell",
+                "traefik.http.routers.gitlab-ssh.rule=HostSNI(*)",
+                "traefik.http.routers.gitlab-ssh.service=gitlab-ssh",
+                "traefik.http.services.gitlab-ssh.loadbalancer.server.port=22"
+            ]
+        },
+        "keycloak": {
+            "container_name": "keycloak",
+            "image": "jboss/keycloak:16.1.1",
+            "environment": {
+                "DB_VENDOR": "postgres",
+                "DB_ADDR": "keycloak-postgres",
+                "DB_PORT": "5432",
+                "DB_USER": "keycloak",
+                "DB_PASSWORD": "BMf4yZP7kuv8p9jW",
+                "KEYCLOAK_USER": "radratteam",
+                "KEYCLOAK_PASSWORD": "RadRatDev1#",
+                "PROXY_ADDRESS_FORWARDING": "true"
+            },
+            "networks": ["traefik-network"],
+            "restart": "unless-stopped",
+            "labels": [
+                "traefik.enable=true",
+                "traefik.http.middlewares.keycloak-redirect-to-https.redirectscheme.permanent=true",
+                "traefik.http.middlewares.keycloak-redirect-to-https.redirectscheme.scheme=https",
+                "traefik.http.routers.keycloak.entrypoints=websecure",
+                "traefik.http.routers.keycloak.rule=Host(`keycloak.radratteam.pl`)",
+                "traefik.http.routers.keycloak.tls.certresolver=acmeresolver",
+                "traefik.http.routers.keycloak.tls.domains[0].main=keycloak.radratteam.pl",
+                "traefik.http.routers.keycloak.tls=true",
+                "traefik.http.services.keycloak.loadbalancer.server.port=8080"
+            ],
+            "volumes": ["/home/radratdev/radrat/docker-volumes/keycloak:/tmp"]
+        },
+        "keycloak-postgres": {
+            "container_name": "keycloak-postgres",
+            "image": "postgres:14",
+            "networks": ["traefik-network"],
+            "restart": "unless-stopped",
+            "environment": {
+                "POSTGRES_DB": "keycloak",
+                "POSTGRES_USER": "keycloak",
+                "POSTGRES_PASSWORD": "BMf4yZP7kuv8p9jW"
+            },
+            "volumes": ["/home/radratdev/radrat/docker-volumes/keycloak-postgres:/var/lib/postgresql/data"]
+        },
+        "nextcloud": {
+            "container_name": "nextcloud",
+            "image": "nextcloud:24.0.2",
+            "environment": {
+                "NEXTCLOUD_TRUSTED_DOMAINS": "cloud.radratteam.pl",
+                "POSTGRES_DB": "nextcloud",
+                "POSTGRES_USER": "nextcloud",
+                "POSTGRES_PASSWORD": "BMf4yZP7kuv8p9jW",
+                "POSTGRES_HOST": "nextcloud-postgres",
+                "NEXTCLOUD_ADMIN_USER": "radratteam",
+                "NEXTCLOUD_ADMIN_PASSWORD": "RadRatDev1#",
+                "REDIS_HOST": "nextcloud-redis"
+            },
+            "volumes": ["/home/radratdev/radrat/docker-volumes/nextcloud:/var/www/html"],
+            "networks": ["traefik-network"],
+            "labels": [
+                "traefik.enable=true",
+                "traefik.http.middlewares.nextcloud-redirect-to-https.redirectscheme.permanent=true",
+                "traefik.http.middlewares.nextcloud-redirect-to-https.redirectscheme.scheme=https",
+                "traefik.http.routers.nextcloud.entrypoints=websecure",
+                "traefik.http.routers.nextcloud.rule=Host(`cloud.radratteam.pl`)",
+                "traefik.http.routers.nextcloud.tls.certresolver=acmeresolver",
+                "traefik.http.routers.nextcloud.tls.domains[0].main=cloud.radratteam.pl",
+                "traefik.http.routers.nextcloud.tls=true",
+                "traefik.http.services.nextcloud.loadbalancer.server.port=80"
+            ],
+            "restart": "unless-stopped"
+        },
+        "nextcloud-postgres": {
+            "container_name": "nextcloud-postgres",
+            "image": "postgres:14",
+            "networks": ["traefik-network"],
+            "restart": "unless-stopped",
+            "environment": {
+                "POSTGRES_DB": "nextcloud",
+                "POSTGRES_USER": "nextcloud",
+                "POSTGRES_PASSWORD": "BMf4yZP7kuv8p9jW"
+            },
+            "volumes": ["/home/radratdev/radrat/docker-volumes/nextcloud-postgres:/var/lib/postgresql/data"]
+        },
+        "nextcloud-redis": {
+            "container_name": "nextcloud-redis",
+            "image": "redis:6.2",
+            "networks": ["traefik-network"],
+            "restart": "unless-stopped",
+            "volumes": ["/home/radratdev/radrat/docker-volumes/nextcloud-redis:/data"]
+        },
+        "onlyoffice": {
+            "container_name": "onlyoffice",
+            "image": "onlyoffice/documentserver:6.4",
+            "networks": ["traefik-network"],
+            "restart": "unless-stopped",
+            "labels": [
+                "traefik.enable=true",
+                "traefik.http.middlewares.onlyoffice-redirect-to-https.redirectscheme.permanent=true",
+                "traefik.http.middlewares.onlyoffice-redirect-to-https.redirectscheme.scheme=https",
+                "traefik.http.routers.onlyoffice.entrypoints=websecure",
+                "traefik.http.routers.onlyoffice.middlewares=onlyoffice-headers",
+                "traefik.http.routers.onlyoffice.rule=Host(`onlyoffice.radratteam.pl`)",
+                "traefik.http.routers.onlyoffice.tls.certresolver=acmeresolver",
+                "traefik.http.routers.onlyoffice.tls.domains[0].main=onlyoffice.radratteam.pl",
+                "traefik.http.routers.onlyoffice.tls=true",
+                "traefik.http.services.onlyoffice.loadbalancer.server.port=80",
+                "traefik.http.middlewares.onlyoffice-headers.headers.customrequestheaders.X-Forwarded-Proto=https",
+                "traefik.http.middlewares.onlyoffice-headers.headers.accesscontrolalloworiginlist=*"
+            ],
+            "volumes": [
+                "/home/radratdev/radrat/docker-volumes/onlyoffice/var/log/onlyoffice:/var/log/onlyoffice",
+                "/home/radratdev/radrat/docker-volumes/onlyoffice/var/www/onlyoffice/Data:/var/www/onlyoffice/Data"
+            ]
+        },
+        "traefik": {
+            "container_name": "traefik",
+            "image": "traefik:v2.5.4",
+            "command": [
+                "--api.insecure=true",
+                "--providers.docker=true",
+                "--providers.docker.exposedByDefault=false",
+                "--providers.file.directory=/configuration",
+                "--providers.file.watch=true",
+                "--entrypoints.web.address=:80",
+                "--entrypoints.websecure.address=:443",
+                "--entrypoints.secureshell.address=:22",
+                "--certificatesresolvers.acmeresolver.acme.httpchallenge=true",
+                "--certificatesresolvers.acmeresolver.acme.httpchallenge.entrypoint=web",
+                "--certificatesresolvers.acmeresolver.acme.email=radarsu@gmail.com",
+                "--certificatesresolvers.acmeresolver.acme.storage=/letsencrypt/acme.json"
+            ],
+            "labels": [
+                "traefik.enable=true",
+                "traefik.http.middlewares.traefik-auth.basicauth.users=radratteam:$$2y$$10$$F4g0vW0q1e8OGT2/88zpD.o/Zd3PuDglag03Gm0er9Gy4.hdIKa3.",
+                "traefik.http.routers.traefik.middlewares=traefik-auth",
+                "traefik.http.routers.traefik.entrypoints=websecure",
+                "traefik.http.routers.traefik.rule=Host(`traefik.radratteam.pl`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))",
+                "traefik.http.routers.traefik.service=api@internal",
+                "traefik.http.routers.traefik.tls.certresolver=acmeresolver",
+                "traefik.http.routers.traefik.tls.domains[0].main=traefik.radratteam.pl",
+                "traefik.http.middlewares.traefik-redirect-to-https.redirectscheme.scheme=https",
+                "traefik.http.middlewares.traefik-redirect-to-https.redirectscheme.permanent=true"
+            ],
+            "networks": ["traefik-network"],
+            "ports": ["80:80", "443:443", "8080:8080", "8022:22"],
+            "restart": "unless-stopped",
+            "volumes": [
+                "/var/run/docker.sock:/var/run/docker.sock",
+                "/home/radratdev/radrat/docker-volumes/traefik/configuration:/configuration",
+                "/home/radratdev/radrat/docker-volumes/traefik/letsencrypt:/letsencrypt"
+            ]
+        },
+        "vault": {
+            "container_name": "vault",
+            "image": "vault:1.11.0",
+            "networks": ["traefik-network"],
+            "cap_add": ["IPC_LOCK"],
+            "command": ["server"],
+            "labels": [
+                "traefik.enable=true",
+                "traefik.http.middlewares.vault-redirect-to-https.redirectscheme.permanent=true",
+                "traefik.http.middlewares.vault-redirect-to-https.redirectscheme.scheme=https",
+                "traefik.http.routers.vault.rule=Host(`vault.radratteam.pl`)",
+                "traefik.http.routers.vault.tls.certresolver=acmeresolver",
+                "traefik.http.routers.vault.tls.domains[0].main=vault.radratteam.pl",
+                "traefik.http.routers.vault.tls=true",
+                "traefik.http.services.vault.loadbalancer.server.port=8206"
+            ],
+            "environment": {
+                "VAULT_LOCAL_CONFIG": "{\n    \"backend\": {\n        \"file\": {\n            \"path\": \"/vault/file\"\n        }\n    },\n    \"listener\": {\n        \"tcp\": {\n            \"tls_disable\": 1\n        }\n    },\n    \"default_lease_ttl\": \"168h\",\n    \"max_lease_ttl\": \"720h\",\n    \"ui\": true\n}"
+            },
+            "restart": "unless-stopped",
+            "volumes": [
+                "/home/radratdev/radrat/docker-volumes/vault/config:/vault/config",
+                "/home/radratdev/radrat/docker-volumes/vault/file:/vault/file",
+                "/home/radratdev/radrat/docker-volumes/vault/logs:/vault/logs"
+            ]
+        },
+        "wiki": {
+            "container_name": "wiki",
+            "image": "requarks/wiki:2.5",
+            "networks": ["traefik-network"],
+            "restart": "unless-stopped",
+            "labels": [
+                "traefik.enable=true",
+                "traefik.http.routers.wiki.entrypoints=websecure",
+                "traefik.http.routers.wiki.rule=Host(`wiki.radratteam.pl`)",
+                "traefik.http.routers.wiki.tls=true",
+                "traefik.http.routers.wiki.tls.certresolver=acmeresolver",
+                "traefik.http.routers.wiki.tls.domains[0].main=wiki.radratteam.pl",
+                "traefik.http.middlewares.wiki-redirect-to-https.redirectscheme.scheme=https",
+                "traefik.http.middlewares.wiki-redirect-to-https.redirectscheme.permanent=true",
+                "traefik.http.services.wiki.loadbalancer.server.port=3000"
+            ],
+            "environment": {
+                "DB_TYPE": "postgres",
+                "DB_HOST": "wiki-postgres",
+                "DB_PORT": "5432",
+                "DB_USER": "wiki",
+                "DB_PASS": "aBMf4yZP7kuv8p9jWiki",
+                "DB_NAME": "wiki"
+            },
+            "volumes": ["/home/radratdev/radrat/docker-volumes/wiki:/var"]
+        },
+        "wiki-postgres": {
+            "container_name": "wiki-postgres",
+            "image": "postgres:14",
+            "networks": ["traefik-network"],
+            "restart": "unless-stopped",
+            "environment": {
+                "POSTGRES_DB": "wiki",
+                "POSTGRES_USER": "wiki",
+                "POSTGRES_PASSWORD": "aBMf4yZP7kuv8p9jWiki"
+            },
+            "volumes": ["/home/radratdev/radrat/docker-volumes/wiki-postgres:/var/lib/postgresql/data"]
+        }
+    },
+    "networks": {
+        "traefik-network": {
+            "external": "false"
+        }
+    }
+}
