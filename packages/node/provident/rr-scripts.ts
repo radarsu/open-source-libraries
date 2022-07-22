@@ -1,11 +1,10 @@
 import type { Scripts } from '@radrat/cli';
 
 const scripts: Scripts = async (cli) => {
-    await cli.loadPlugins([
-        {
-            name: `@radrat-internal/node-cli-plugin-package`,
-        },
-    ]);
+    await cli.run({
+        name: `test`,
+        command: `NODE_OPTIONS=--experimental-vm-modules npx jest`,
+    });
 };
 
 export default scripts;

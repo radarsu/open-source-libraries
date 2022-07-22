@@ -1,3 +1,3 @@
 module.exports = {
-    extends: [`./node_modules/@radrat-config/eslint`],
+    extends: [`./node_modules/@radrat-internal/node-eslint`],
 };
