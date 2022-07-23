@@ -1,5 +1,5 @@
 {
-    "name": "provident-test",
+    "name": "provideps-test",
     "version": "0.0.0",
     "main": "./dist/public-api.js",
     "exports": "./dist/public-api.js",
@@ -9,7 +9,7 @@
         "start": "npx ts-node --esm=true ./src/main.ts"
     },
     "dependencies": {
-        "provident": "file:../provident",
+        "provideps": "file:../provideps",
         "tslib": "2.4.0"
     },
     "devDependencies": {

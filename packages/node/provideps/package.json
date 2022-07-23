@@ -9,6 +9,7 @@
         "start": "npx ts-node --esm=true ./src/public-api.ts"
     },
     "dependencies": {
+        "options-defaults": "2.0.40",
         "tslib": "2.4.0"
     },
     "devDependencies": {
