@@ -1,22 +1,21 @@
-/* eslint-disable class-methods-use-this */
-import { Provide, START, getEndlessProxy } from 'provident';
+// This is AppModule.
 
-import { ArgsService } from './args.service.js';
-import { ItemsService } from './items/items.service.js';
-import { LoggerService } from './logger/logger.service.js';
+import * as path from 'path';
+import * as url from 'url';
 
-export class AppModule {
-    @Provide(async () => {
-        const endlessProxy = getEndlessProxy();
-        const providers = new Map();
-        providers.set(ItemsService, endlessProxy);
-        providers.set(LoggerService, endlessProxy);
-        providers.set(Object, endlessProxy);
-        return providers;
-    })
-    async [START](argsService: any, itemsService: any, loggerService: any) {
-        argsService.anythig = 5;
-        itemsService.asdf();
-        console.log(`WORKS`);
-    }
-}
+import { loadModule } from '../lib/lib.js';
+
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+
+const providers = new Map<string, () => Promise<any>>();
+
+export const askForProviders = async () => {
+    return [`token`, `args`];
+};
+
+export const start = async (token: string, args: any[]) => {
+    const itemsModulePath = path.resolve(__dirname, `items`, `items.module.js`);
+    const itemsModule = await loadModule(itemsModulePath, { providers });
+
+    console.log(`App received:`, token, args);
+};

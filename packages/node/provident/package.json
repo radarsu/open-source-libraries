@@ -1,15 +1,14 @@
 {
-    "name": "provident",
+    "name": "provideps",
     "version": "0.0.0",
     "main": "./dist/public-api.js",
     "types": "./dist/public-api.d.ts",
     "exports": "./dist/public-api.js",
     "type": "module",
     "scripts": {
-        "start": "npx ts-node --esm=true ./src/main.ts"
+        "start": "npx ts-node --esm=true ./src/public-api.ts"
     },
     "dependencies": {
-        "reflect-metadata": "0.1.13",
         "tslib": "2.4.0"
     },
     "devDependencies": {

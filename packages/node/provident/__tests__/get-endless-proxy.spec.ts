@@ -1,10 +1,10 @@
 import { describe, expect, jest, test } from '@jest/globals';
 
-import { getEndlessProxy } from '../src/public-api.js';
+import { createEndlessProxy } from '../src/public-api.js';
 
 describe(`when instantiated endlessProxy`, () => {
     test(`is endless`, async () => {
-        const endlessProxy = getEndlessProxy();
+        const endlessProxy = createEndlessProxy();
 
         expect(endlessProxy.test.very.long.call()).toHaveBeenCalled();
     }, 60000);
