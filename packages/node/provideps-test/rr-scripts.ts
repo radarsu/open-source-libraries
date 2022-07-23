@@ -3,7 +3,7 @@ import type { Scripts } from '@radrat/cli';
 const scripts: Scripts = async (cli) => {
     await cli.run({
         name: `start`,
-        command: `cd ../provideps && npx tsc && cd ../provideps-test && npm start`,
+        command: `npm start`,
     });
 
     await cli.run({

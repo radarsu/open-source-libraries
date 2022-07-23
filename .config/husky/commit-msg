@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-node ./node_modules/@radrat-node/husky/dist/commit-msg
+# node ./node_modules/@radrat-node/husky/dist/commit-msg

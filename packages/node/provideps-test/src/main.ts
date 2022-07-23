@@ -1,13 +1,11 @@
-import { createProviders, loadModule } from 'provideps';
+import * as app from './app/app.js';
 
 export const copy = async (from: string, to: string) => {
-    const providers = createProviders();
-    providers.set(`args`, () => [from, to]);
-    providers.set(`token`, () => `secret`);
+    const providers = {
+        logger: console,
+    };
 
-    const app = await loadModule(`start`, import(`./app/app.js`), {
-        providers,
-    });
+    await app.start(providers, from, to);
 };
 
 await copy(`./from`, `./to`);
