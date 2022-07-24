@@ -1,7 +1,7 @@
 import * as childProcess from 'child_process';
 import * as fs from 'fs';
 
-import { getTemplatesFromLocal } from './get-templates-from-local.js';
+import { getTemplatesFromLocal } from './get-templates-from-local';
 
 export const getTemplatesFromRemote = async (url: string) => {
     await fs.promises.rm(`./.templord`, {

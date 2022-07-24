@@ -4,13 +4,13 @@ import * as providers from '../providers/generate/index';
 import { Command, Flags } from '@oclif/core';
 
 export default class Generate extends Command {
-    static description = `Launch missions on specified hosts.`;
+    static description = `Generate files from selected template.`;
 
     static args = [
-{
-        name: `name`,
-    },
-];
+        {
+            name: `name`,
+        },
+    ];
 
     static flags = {
         from: Flags.string({
@@ -27,6 +27,12 @@ export default class Generate extends Command {
         const { flags, args } = await this.parse(Generate);
 
         const templates = await providers.getTemplates(flags.from);
+
+        if (templates.length === 0) {
+            this.log(`No _template_\${name} directories found.`);
+            process.exit(1);
+        }
+
         const selectedTemplate = await providers.selectTemplate(templates);
 
         args.name = args.name ?? selectedTemplate.name;
@@ -36,10 +42,10 @@ export default class Generate extends Command {
 
         responses.name = responses.name ?? args.name;
 
-        const targetPath = args.name;
+        const targetPath = args.name ?? responses.name;
         const copyingEffect = await providers.copyTemplate(selectedTemplate, targetPath, {
             onExistingFile: async () => {
-                this.log(`File already exists.`);
+                this.log(`File "${targetPath}" already exists.`);
                 return {
                     continue: false,
                 };
@@ -53,5 +59,7 @@ export default class Generate extends Command {
         await providers.renderFiles(targetPath, templateModule.patternsToRender, responses);
 
         await providers.cleanup();
+
+        this.log(`Created from template a directory named "${args.name}".`);
     }
 }
