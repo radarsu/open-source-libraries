@@ -1,9 +1,7 @@
 import * as fs from 'fs';
 import * as fsExtra from 'fs-extra';
 
-import { FoundTemplate } from '../../../shared/interfaces.js';
-
-interface CopyTemplateHandlers {
+interface CopyHandlers {
     onExistingFile: () => Promise<ContinueOrder | undefined>;
 }
 
@@ -11,7 +9,7 @@ interface ContinueOrder {
     continue: boolean;
 }
 
-const copyTemplate = async (template: FoundTemplate, to: string, handlers: CopyTemplateHandlers) => {
+const copy = async (directory: string, to: string, handlers: CopyHandlers) => {
     const fileExists = await fs.promises.access(to).then(() => {
         return true;
     }).catch(() => {
@@ -26,10 +24,10 @@ const copyTemplate = async (template: FoundTemplate, to: string, handlers: CopyT
         }
     }
 
-    await fsExtra.copy(template.path, to, {
+    await fsExtra.copy(directory, to, {
         recursive: true,
     });
 };
 
-export type { ContinueOrder, CopyTemplateHandlers };
-export { copyTemplate };
+export type { ContinueOrder, CopyHandlers };
+export { copy };

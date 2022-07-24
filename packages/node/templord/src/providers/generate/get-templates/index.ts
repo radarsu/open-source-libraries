@@ -1,11 +1,12 @@
-import { FoundTemplate } from '../../../shared/interfaces.js';
+import { TEMPLATE_FILE_NAME } from '../../../shared/constants';
+import { Template } from '../../../shared/interfaces.js';
 import { getTemplatesFromLocal } from './get-templates-from-local';
 import { getTemplatesFromRemote } from './get-templates-from-remote';
 
 export const getTemplates = async (from?: string) => {
-    let templates: FoundTemplate[] = [];
+    let templates: (Template & { path: string })[] = [];
 
-    const templatePattern = `**/_template.ts`;
+    const templatePattern = `**/${TEMPLATE_FILE_NAME}`;
 
     if (from) {
         templates = await getTemplatesFromRemote(from, templatePattern);

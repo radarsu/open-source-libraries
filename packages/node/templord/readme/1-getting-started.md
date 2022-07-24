@@ -1,7 +1,7 @@
 ### Requirements
 - Git: v2.37.1
 
-### Global instalation
+### Global instalation (recommended)
 ```sh
 npm i -g templord
 ```

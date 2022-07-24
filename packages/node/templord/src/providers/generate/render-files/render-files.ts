@@ -3,6 +3,8 @@ import * as fastGlob from 'fast-glob';
 import * as fs from 'fs';
 import * as path from 'path';
 
+import { TEMPLATE_FILE_NAME } from '../../../shared/constants';
+
 export const renderFiles = async (targetPath: string, patternsToRender: string[], data: any) => {
     const targetPaths = patternsToRender.map((patternToRender) => {
         return `${targetPath}/${patternToRender}`;
@@ -16,7 +18,7 @@ export const renderFiles = async (targetPath: string, patternsToRender: string[]
         await fs.promises.writeFile(fileToRender, rendered);
     });
 
-    const templateScriptPath = path.join(targetPath, `_template.ts`);
+    const templateScriptPath = path.join(targetPath, TEMPLATE_FILE_NAME);
     renderingFiles.push(fs.promises.rm(templateScriptPath));
 
     await Promise.all(renderingFiles);

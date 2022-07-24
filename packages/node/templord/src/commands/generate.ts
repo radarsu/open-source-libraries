@@ -1,9 +1,10 @@
 import * as inquirer from 'inquirer';
+import * as path from 'path';
 import * as providers from '../providers/generate/index';
 
 import { Command, Flags } from '@oclif/core';
 
-import { Template } from '../shared/interfaces.js';
+import { TEMPLATE_FILE_NAME } from '../shared/constants';
 
 export default class Generate extends Command {
     static description = `Generate files from selected template.`;
@@ -31,7 +32,7 @@ export default class Generate extends Command {
         const templates = await providers.getTemplates(flags.from);
 
         if (templates.length === 0) {
-            this.log(`No "_template.ts" files found.`);
+            this.log(`No "${TEMPLATE_FILE_NAME}" files found.`);
             return;
         }
 
@@ -48,14 +49,12 @@ export default class Generate extends Command {
             args.directoryName = nameOfDirectoryResponse.directoryName;
         }
 
-        const templateModule = await providers.loadTemplateModule(selectedTemplate);
-        const template: Template = templateModule.default;
-
-        const responses = await template.askQuestions?.(inquirer) ?? {};
+        const responses = await selectedTemplate.askQuestions?.(inquirer) ?? {};
 
         responses.directoryName = args.directoryName;
 
-        const copyingEffect = await providers.copyTemplate(selectedTemplate, responses.directoryName, {
+        const templateDirectoryPath = path.dirname(selectedTemplate.path);
+        const copyingEffect = await providers.copy(templateDirectoryPath, responses.directoryName, {
             onExistingFile: async () => {
                 this.log(`File "${responses.directoryName}" already exists.`);
                 return {
@@ -68,11 +67,11 @@ export default class Generate extends Command {
             return;
         }
 
-        if (template.patternsToRender?.length) {
-            await providers.renderFiles(responses.directoryName, template.patternsToRender, responses);
+        if (selectedTemplate.patternsToRender?.length) {
+            await providers.renderFiles(responses.directoryName, selectedTemplate.patternsToRender, responses);
         }
 
-        await template.afterRender?.(responses.directoryName);
+        await selectedTemplate.afterRender?.(responses.directoryName);
 
         await providers.cleanup();
 

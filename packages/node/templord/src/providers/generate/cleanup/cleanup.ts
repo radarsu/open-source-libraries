@@ -1,7 +1,9 @@
 import * as fs from 'fs';
 
+import { TMP_DIR } from '../../../shared/constants';
+
 export const cleanup = async () => {
-    await fs.promises.rm(`./.templord`, {
+    await fs.promises.rm(TMP_DIR, {
         recursive: true,
     });
 };
