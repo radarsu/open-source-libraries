@@ -1,6 +1,6 @@
 import * as inquirer from 'inquirer';
 
-import { Template } from '../../../shared/find-templates.js';
+import { Template } from '../../../shared/interfaces.js';
 
 export const selectTemplate = async (templates: Template[]) => {
     const choices = templates.map((template) => {

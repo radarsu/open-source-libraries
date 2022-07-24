@@ -1,4 +1,4 @@
-import { Template } from '../../../shared/find-templates.js';
+import { Template } from '../../../shared/interfaces.js';
 import { getTemplatesFromLocal } from './get-templates-from-local';
 import { getTemplatesFromRemote } from './get-templates-from-remote';
 
@@ -8,7 +8,7 @@ export const getTemplates = async (from?: string) => {
     if (from) {
         templates = await getTemplatesFromRemote(from);
     } else {
-        templates = await getTemplatesFromLocal();
+        templates = await getTemplatesFromLocal(`./**/_template_*`);
     }
 
     return templates;

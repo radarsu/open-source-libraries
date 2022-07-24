@@ -1,7 +1,7 @@
 import * as childProcess from 'child_process';
 import * as fs from 'fs';
 
-import { findTemplates } from '../../../shared/find-templates';
+import { getTemplatesFromLocal } from './get-templates-from-local.js';
 
 export const getTemplatesFromRemote = async (url: string) => {
     await fs.promises.rm(`./.templord`, {
@@ -17,7 +17,7 @@ export const getTemplatesFromRemote = async (url: string) => {
         stdio: `inherit`,
     });
 
-    const templates = await findTemplates(`./.templord/**/_template_*`);
+    const templates = await getTemplatesFromLocal(`./.templord/**/_template_*`);
 
     return templates;
 };

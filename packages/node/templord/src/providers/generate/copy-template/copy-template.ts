@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as fsExtra from 'fs-extra';
 
-import { Template } from '../../../shared/find-templates.js';
+import { Template } from '../../../shared/interfaces.js';
 
 interface CopyTemplateHandlers {
     onExistingFile: () => Promise<ContinueOrder | undefined>;
