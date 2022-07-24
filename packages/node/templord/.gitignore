@@ -4,6 +4,8 @@
 
 # Distributables.
 /dist
+/dist-*
 
-# MacOS.
+# Operating systems.
 .DS_Store
+Thumbs.db

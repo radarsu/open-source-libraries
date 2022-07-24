@@ -1,11 +1,13 @@
 import * as fastGlob from 'fast-glob';
 
-import { Template } from '../interfaces/template.interface';
+export interface Template {
+    name: string;
+    path: string;
+}
 
-export const findTemplates = async () => {
-    const templatePaths = await fastGlob([`./**/_template_*`], {
+export const findTemplates = async (searchPath: string) => {
+    const templatePaths = await fastGlob.default([searchPath], {
         onlyDirectories: true,
-        ignore: [`./**/node_modules`],
     });
 
     const templates: Template[] = templatePaths.map((templatePath) => {
