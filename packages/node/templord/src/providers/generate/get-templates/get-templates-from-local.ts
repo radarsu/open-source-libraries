@@ -1,13 +1,11 @@
 import * as fastGlob from 'fast-glob';
 
-import { Template } from '../../../shared/interfaces.js';
+import { FoundTemplate } from '../../../shared/interfaces.js';
 
 export const getTemplatesFromLocal = async (searchPath: string) => {
-    const templatePaths = await fastGlob.default([searchPath], {
-        onlyDirectories: true,
-    });
+    const templatePaths = await fastGlob.default([searchPath]);
 
-    const templates: Template[] = templatePaths.map((templatePath) => {
+    const templates: FoundTemplate[] = templatePaths.map((templatePath) => {
         return {
             name: templatePath.split(`_`)[2] ?? `undefined`,
             path: templatePath,

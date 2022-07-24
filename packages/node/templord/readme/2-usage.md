@@ -8,24 +8,25 @@ templord
 templord --from=https://github.com/radarsu/templord
 ```
 
-Templord will pull the repository, search for directories matching pattern `_template_${name}` and allow you to choose one of them as template.
+Templord will pull the repository, search for directories with _template.ts file and allow you to choose one of them as template.
 
 ### Creating your own template
-1. Create directory matching pattern `_template_${name}` in the project.
-2. Create `_questions.ts` file inside that directory if user's input is necessary for rendering.
-3. Drop any files you want into directory prefixed with `_template`. Suffix files with `templord.ejs` if you wish to render them using data from user's input.
-4. Run: `templord`.
+1. Create `_template.ts` file in a directory you wish to use as a template.
+2. In the file you can define which files from the directory need to be rendered and what input is required from user.
+3. That's it!
 
-### Example \_questions.ts
+### Example \_template.ts
 
 ```ts
 import type { Inquirer } from 'templord';
 
+export const patternsToRender = [`package.json`];
+
 const askQuestions = async (inquirer: Inquirer) => {
     const responses = await inquirer.prompt([
         {
-            message: `Name:`,
-            name: `name`,
+            message: `Custom variable:`,
+            name: `customVariable`,
             type: `input`,
         },
     ]);
@@ -34,4 +35,11 @@ const askQuestions = async (inquirer: Inquirer) => {
 };
 
 export default askQuestions;
+```
+
+Then, you can use customVariable in files matching patternsToRender like:
+```json
+{
+    "name": "<%- customVariable %>"
+}
 ```

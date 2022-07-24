@@ -1,8 +1,8 @@
 import * as inquirer from 'inquirer';
 
-import { Template } from '../../../shared/interfaces.js';
+import { FoundTemplate } from '../../../shared/interfaces.js';
 
-export const selectTemplate = async (templates: Template[]) => {
+export const selectTemplate = async (templates: FoundTemplate[]): Promise<FoundTemplate> => {
     const choices = templates.map((template) => {
         return {
             name: template.name,
@@ -20,5 +20,5 @@ export const selectTemplate = async (templates: Template[]) => {
         },
     ]);
 
-    return answers[name] as Template;
+    return answers[name];
 };

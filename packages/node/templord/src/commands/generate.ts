@@ -3,12 +3,14 @@ import * as providers from '../providers/generate/index';
 
 import { Command, Flags } from '@oclif/core';
 
+import { Template } from '../shared/interfaces.js';
+
 export default class Generate extends Command {
     static description = `Generate files from selected template.`;
 
     static args = [
         {
-            name: `name`,
+            name: `directoryName`,
         },
     ];
 
@@ -29,23 +31,33 @@ export default class Generate extends Command {
         const templates = await providers.getTemplates(flags.from);
 
         if (templates.length === 0) {
-            this.log(`No _template_\${name} directories found.`);
-            process.exit(1);
+            this.log(`No "_template.ts" files found.`);
+            return;
         }
 
         const selectedTemplate = await providers.selectTemplate(templates);
 
-        args.name = args.name ?? selectedTemplate.name;
+        if (!args.directoryName) {
+            const nameOfDirectoryResponse = await inquirer.prompt([
+                {
+                    message: `Name directory:`,
+                    name: `directoryName`,
+                    type: `input`,
+                },
+            ]);
+            args.directoryName = nameOfDirectoryResponse.directoryName;
+        }
 
         const templateModule = await providers.loadTemplateModule(selectedTemplate);
-        const responses = await templateModule.askQuestions(inquirer);
+        const template: Template = templateModule.default;
 
-        responses.name = responses.name ?? args.name;
+        const responses = await template.askQuestions?.(inquirer) ?? {};
 
-        const targetPath = args.name ?? responses.name;
-        const copyingEffect = await providers.copyTemplate(selectedTemplate, targetPath, {
+        responses.directoryName = args.directoryName;
+
+        const copyingEffect = await providers.copyTemplate(selectedTemplate, responses.directoryName, {
             onExistingFile: async () => {
-                this.log(`File "${targetPath}" already exists.`);
+                this.log(`File "${responses.directoryName}" already exists.`);
                 return {
                     continue: false,
                 };
@@ -56,10 +68,14 @@ export default class Generate extends Command {
             return;
         }
 
-        await providers.renderFiles(targetPath, templateModule.patternsToRender, responses);
+        if (template.patternsToRender?.length) {
+            await providers.renderFiles(responses.directoryName, template.patternsToRender, responses);
+        }
+
+        await template.afterRender?.(responses.directoryName);
 
         await providers.cleanup();
 
-        this.log(`Created from template a directory named "${args.name}".`);
+        this.log(`Created a directory named "${args.directoryName}" from "${selectedTemplate.name}" template.`);
     }
 }
