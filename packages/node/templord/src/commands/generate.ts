@@ -6,9 +6,11 @@ import { Command, Flags } from '@oclif/core';
 export default class Generate extends Command {
     static description = `Launch missions on specified hosts.`;
 
-    static args = [{
+    static args = [
+{
         name: `name`,
-    }];
+    },
+];
 
     static flags = {
         from: Flags.string({
