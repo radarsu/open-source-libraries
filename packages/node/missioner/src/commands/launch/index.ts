@@ -85,7 +85,7 @@ export default class Launch extends Command {
         }
 
         const sshCommand = `chmod +x ${remoteMissionPath}/bin && ${nodeCommand}${remoteMissionPath}/bin`;
-        console.log(`Running`, sshCommand);
+
         await sshConnection.execCommand(sshCommand, {
             async onStdout(chunk) {
                 const log = chunk.toString();
@@ -97,8 +97,8 @@ export default class Launch extends Command {
             },
         });
 
-        this.log(`Mission finished.`);
-
         sshConnection.dispose();
+
+        this.log(`Mission finished.`);
     }
 }
