@@ -13,9 +13,10 @@ export const renderFiles = async (targetPath: string, patternsToRender: string[]
     const filesToRender = await fastGlob.default(targetPaths);
 
     const renderingFiles = filesToRender.map(async (fileToRender) => {
-        const rendered = await ejs.renderFile(fileToRender, data, {});
+        const renderedPath = ejs.render(fileToRender, data);
+        const renderedContent = await ejs.renderFile(fileToRender, data, {});
 
-        await fs.promises.writeFile(fileToRender, rendered);
+        await fs.promises.writeFile(renderedPath, renderedContent);
     });
 
     const templateScriptPath = path.join(targetPath, TEMPLATE_FILE_NAME);
