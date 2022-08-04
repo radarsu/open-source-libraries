@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "declaration": true,
+        "esModuleInterop": true,
+        "importHelpers": true,
+        "module": "commonjs",
+        "outDir": "./dist",
+        "rootDir": "./src",
+        "strict": true,
+        "target": "ES2022"
+    },
+    "include": ["./src/**/*"],
+    "exclude": ["./src/assets"]
+}
