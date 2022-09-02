@@ -12,12 +12,12 @@
         "@radrat-internal/node-cli-plugin-workspace": "0.0.0",
         "@radrat-internal/types-config": "0.0.0",
         "@radrat/cli": "3.0.0-beta.6",
-        "@types/node": "16.11.42",
+        "@types/node": "16.11.56",
         "enquirer": "2.3.6",
         "husky": "8.0.1",
-        "lerna": "5.1.8",
-        "ts-node": "10.8.2",
+        "lerna": "5.5.0",
+        "ts-node": "10.9.1",
         "tslib": "2.4.0",
-        "typescript": "4.7.4"
+        "typescript": "4.8.2"
     }
 }
