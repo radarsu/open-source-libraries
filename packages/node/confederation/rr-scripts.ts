@@ -3,7 +3,7 @@ import type { Scripts } from '@radrat/cli';
 const scripts: Scripts = async (cli) => {
     await cli.loadPlugins([
         {
-            name: `@radrat-scripts/package`,
+            name: `@radrat-internal/node-cli-plugin-package`,
         },
     ]);
 };
