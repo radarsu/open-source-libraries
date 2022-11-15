@@ -6,7 +6,9 @@ import { TMP_DIR } from '../../../shared/constants';
 import { Template } from '../../../shared/interfaces';
 
 export const getTemplatesFromLocal = async (searchPath: string): Promise<(Template & { path: string })[]> => {
-    const templatePaths = await fastGlob.default([searchPath]);
+    const templatePaths = await fastGlob.default([searchPath], {
+        suppressErrors: true,
+    });
 
     const gettingTemplates = templatePaths.map(async (templatePath) => {
         const templateModule = await tsImport.load(templatePath, {
