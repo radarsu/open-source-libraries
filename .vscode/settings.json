@@ -25,7 +25,7 @@
     "files.trimTrailingWhitespace": true,
 
     // Git.
-    "git.autofetch": true,
+    "git.ignoreLimitWarning": true,
     "git.inputValidationSubjectLength": 128,
 
     // JavaScript.
@@ -40,11 +40,17 @@
     "[dockercompose]": {
         "editor.tabSize": 4
     },
+    "[dockerfile]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
     "[dotenv]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
     },
     "[ignore]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
+    "[prisma]": {
+        "editor.defaultFormatter": "Prisma.prisma"
     },
     "[properties]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"

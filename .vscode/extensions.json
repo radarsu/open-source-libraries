@@ -3,7 +3,6 @@
         // Visuals.
         "aaron-bond.better-comments",
         "pkief.material-icon-theme",
-        "wesbos.theme-cobalt2",
 
         // Formatters and linters.
         "dbaeumer.vscode-eslint",
@@ -13,10 +12,6 @@
         // Quality of Life.
         "amatiasq.sort-imports",
         "britesnow.vscode-toggle-quotes",
-        "digitalbrainstem.javascript-ejs-support",
-        "henriiik.vscode-sort",
-        "przemo1115.index-generator",
-        "stackbreak.comment-divider",
         "streetsidesoftware.code-spell-checker",
         "usernamehw.errorlens",
         "zengxingxin.sort-js-object-keys",
@@ -29,9 +24,6 @@
         "prisma.prisma",
 
         // Git.
-        "mhutchie.git-graph",
-
-        // Remote development.
-        "ms-vscode-remote.vscode-remote-extensionpack"
+        "mhutchie.git-graph"
     ]
 }
