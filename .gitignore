@@ -2,5 +2,9 @@
 /node_modules
 /npm-debug.log
 
-# Environmental.
+# Operating systems.
+.DS_Store
+Thumbs.db
+
+# Root.
 /.config/*/local.config.ts

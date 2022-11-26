@@ -1,1 +1,1 @@
-module.exports = require(`@radrat-config/eslint/dist/prettier`);
+module.exports = require(`@radrat-internal/node-eslint/dist/prettier`);

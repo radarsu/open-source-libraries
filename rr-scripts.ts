@@ -3,7 +3,7 @@ import type { Scripts } from '@radrat/cli';
 const scripts: Scripts = async (cli) => {
     await cli.run({
         name: `install`,
-        command: `pnpm install --recursive --filter="\\!rpc-websocket-client"`,
+        command: `pnpm --recursive install --filter="\\!rpc-websocket-client"`,
         ignorePackageJsonName: true,
     });
 
