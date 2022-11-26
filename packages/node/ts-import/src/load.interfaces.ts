@@ -1,11 +1,7 @@
 import * as tsc from 'typescript';
 
 type RecursivePartial<T> = {
-    [P in keyof T]?: T[P] extends (infer U)[]
-        ? RecursivePartial<U>[]
-        : T[P] extends object
-        ? RecursivePartial<T[P]>
-        : T[P];
+    [P in keyof T]?: T[P] extends (infer U)[] ? RecursivePartial<U>[] : T[P] extends object ? RecursivePartial<T[P]> : T[P];
 };
 
 export enum LoadMode {
@@ -16,6 +12,7 @@ export enum LoadMode {
 export interface LoadTranspileOptions {
     mode: LoadMode.Transpile;
     allowConfigurationWithComments?: boolean;
+    useCache?: boolean;
     transpileOptions: {
         cache: {
             dir: string;
@@ -28,6 +25,7 @@ export interface LoadTranspileOptions {
 export interface LoadCompileOptions {
     mode: LoadMode.Compile;
     allowConfigurationWithComments?: boolean;
+    useCache?: boolean;
     compileOptions: {
         // cache: {
         //     invalidateOnChanges: boolean;

@@ -12,6 +12,7 @@ import { providersMap } from './providers/providers';
 export const defaultLoadOptions = {
     mode: LoadMode.Transpile,
     allowConfigurationWithComments: false,
+    useCache: true,
 };
 
 export const load = async (tsRelativePath: string, options?: LoadOptions) => {
@@ -26,22 +27,24 @@ export const load = async (tsRelativePath: string, options?: LoadOptions) => {
 
     const cwd = process.cwd();
     const cacheDir = providers.getCacheDir(config);
-    const tsPath = path.resolve(cwd, tsRelativePath);
 
+    const tsPath = path.resolve(cwd, tsRelativePath);
     const jsAfterCachePath = crossPlatform.getJsAfterCachePath(tsPath);
     const jsPath = path.join(cacheDir, jsAfterCachePath).replace(/\.[^/.]+$/u, `.js`);
 
-    const [tsFileExists, jsFileExists] = await Promise.all([
-        utils.checkIfFileExists(tsPath),
-        utils.checkIfFileExists(jsPath).catch(() => {
-            // * Ignore non-existent cache.
-        }),
-    ]);
+    if (loadConfig.useCache) {
+        const [tsFileExists, jsFileExists] = await Promise.all([
+            utils.checkIfFileExists(tsPath),
+            utils.checkIfFileExists(jsPath).catch(() => {
+                // * Ignore non-existent cache.
+            }),
+        ]);
 
-    // Load from cache.
-    if (jsFileExists && !utils.isFileNewer(tsFileExists, jsFileExists)) {
-        const loaded = await import(jsPath);
-        return loaded;
+        // Load from cache.
+        if (jsFileExists && !utils.isFileNewer(tsFileExists, jsFileExists)) {
+            const loaded = await import(jsPath);
+            return loaded;
+        }
     }
 
     await providers.load({
@@ -71,20 +74,22 @@ export const loadSync = (tsRelativePath: string, options?: LoadOptions) => {
     const jsAfterCachePath = crossPlatform.getJsAfterCachePath(tsPath);
     const jsPath = path.join(cacheDir, jsAfterCachePath).replace(/\.[^/.]+$/u, `.js`);
 
-    const tsFileExists = utils.checkIfFileExistsSync(tsPath);
-    let jsFileExists: fs.Stats | undefined;
+    if (loadConfig.useCache) {
+        const tsFileExists = utils.checkIfFileExistsSync(tsPath);
+        let jsFileExists: fs.Stats | undefined;
 
-    try {
-        jsFileExists = utils.checkIfFileExistsSync(jsPath);
-    } catch (err) {
-        // * Ignore non-existent cache.
-    }
+        try {
+            jsFileExists = utils.checkIfFileExistsSync(jsPath);
+        } catch (err) {
+            // * Ignore non-existent cache.
+        }
 
-    // Load from cache.
-    if (jsFileExists && !utils.isFileNewer(tsFileExists, jsFileExists)) {
-        // eslint-disable-next-line import/no-dynamic-require, @typescript-eslint/no-var-requires
-        const loaded = require(jsPath);
-        return loaded;
+        // Load from cache.
+        if (jsFileExists && !utils.isFileNewer(tsFileExists, jsFileExists)) {
+            // eslint-disable-next-line import/no-dynamic-require, @typescript-eslint/no-var-requires
+            const loaded = require(jsPath);
+            return loaded;
+        }
     }
 
     providers.loadSync({
