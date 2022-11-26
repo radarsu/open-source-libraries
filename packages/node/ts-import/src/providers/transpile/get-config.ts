@@ -1,10 +1,9 @@
 import * as path from 'path';
 
-import { LoadOptions, LoadTranspileOptions } from '../../load.interfaces';
-
+import { LoadTranspileOptions } from '../../load.interfaces';
 import { defaults } from 'options-defaults';
 
-export const getConfig = (options: Partial<LoadOptions>) => {
+export const getConfig = (options: LoadTranspileOptions) => {
     const defaultTranspileOptions: LoadTranspileOptions['transpileOptions'] = {
         cache: {
             // invalidateOnChanges: boolean;
@@ -18,6 +17,6 @@ export const getConfig = (options: Partial<LoadOptions>) => {
         defaultTranspileOptions.cache.dir = path.join(defaultTranspileOptions.cache.dir, driveLetter);
     }
 
-    const transpileOptions = defaults(defaultTranspileOptions, options);
+    const transpileOptions = defaults(defaultTranspileOptions, options.transpileOptions);
     return transpileOptions;
 };

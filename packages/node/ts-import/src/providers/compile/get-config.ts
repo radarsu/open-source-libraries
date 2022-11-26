@@ -1,8 +1,7 @@
 import * as path from 'path';
 import * as tsc from 'typescript';
 
-import { LoadCompileOptions, LoadOptions } from '../../load.interfaces';
-
+import { LoadCompileOptions } from '../../load.interfaces';
 import { defaults } from 'options-defaults';
 
 const getDefaultCompilerOptions = () => {
@@ -21,7 +20,7 @@ const getDefaultCompilerOptions = () => {
     return defaultsForPlatform;
 };
 
-export const getConfig = (options: Partial<LoadOptions>) => {
+export const getConfig = (options: LoadCompileOptions) => {
     const defaultCompileOptions: LoadCompileOptions['compileOptions'] & { compilerOptions: { outDir: string } } = {
         // invalidateOnChanges: boolean;
         compilerOptions: {
