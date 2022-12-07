@@ -8,7 +8,7 @@
     "devDependencies": {
         "@radrat-internal/node-cli-plugin-package": "0.0.0",
         "@radrat-internal/node-cli-plugin-workspace": "0.0.0",
-        "@radrat-internal/node-eslint": "0.0.0",
+        "@radrat-internal/node-eslint": "0.0.2",
         "@radrat-internal/node-husky": "0.0.0",
         "@radrat-internal/types-config": "0.0.0",
         "@radrat/cli": "3.0.0-beta.6",
