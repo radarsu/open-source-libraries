@@ -9,12 +9,12 @@ const scripts: Scripts = async (cli) => {
     // Run tests.
     await cli.run({
         name: `test`,
-        command: `pnpm exec jest`,
+        command: [`rm -rf ./.cache`, `pnpm exec jest`].join(` && `),
     });
 
     await cli.run({
         name: `test.watch`,
-        command: `pnpm exec jest --watch`,
+        command: [`rm -rf ./.cache`, `pnpm exec jest --watch`].join(` && `),
     });
 
     await cli.run({

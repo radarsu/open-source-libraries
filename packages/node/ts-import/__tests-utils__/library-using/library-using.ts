@@ -1,6 +1,6 @@
-import * as jest from 'jest';
+import { defaults } from 'options-defaults';
 
-console.log(jest.getVersion());
+console.log(defaults);
 
 const result = true;
 

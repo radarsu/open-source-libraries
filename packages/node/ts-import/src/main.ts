@@ -13,6 +13,7 @@ export const defaultLoadOptions = {
     mode: LoadMode.Transpile,
     allowConfigurationWithComments: false,
     useCache: true,
+    compiledJsExtension: `.js`,
 };
 
 export const load = async (tsRelativePath: string, options?: LoadOptions) => {
@@ -22,15 +23,15 @@ export const load = async (tsRelativePath: string, options?: LoadOptions) => {
     }
 
     const loadConfig = defaults(defaultLoadOptions, options);
-    const providers = providersMap[loadConfig.mode];
-    const config = providers.getConfig(loadConfig);
+    const provider = providersMap[loadConfig.mode];
+    const config = provider.getConfig(loadConfig);
 
     const cwd = process.cwd();
-    const cacheDir = providers.getCacheDir(config);
+    const cacheDir = provider.getCacheDir(config);
 
     const tsPath = path.resolve(cwd, tsRelativePath);
     const jsAfterCachePath = crossPlatform.getJsAfterCachePath(tsPath);
-    const jsPath = path.join(cacheDir, jsAfterCachePath).replace(/\.[^/.]+$/u, `.js`);
+    const jsPath = path.join(cacheDir, jsAfterCachePath).replace(/\.[^/.]+$/u, loadConfig.compiledJsExtension);
 
     if (loadConfig.useCache) {
         const [tsFileExists, jsFileExists] = await Promise.all([
@@ -47,7 +48,7 @@ export const load = async (tsRelativePath: string, options?: LoadOptions) => {
         }
     }
 
-    await providers.load({
+    await provider.load({
         tsPath,
         jsPath,
         ...config,
@@ -64,15 +65,15 @@ export const loadSync = (tsRelativePath: string, options?: LoadOptions) => {
     }
 
     const loadConfig = defaults(defaultLoadOptions, options);
-    const providers = providersMap[loadConfig.mode];
-    const config = providers.getConfig(loadConfig);
+    const provider = providersMap[loadConfig.mode];
+    const config = provider.getConfig(loadConfig);
 
     const cwd = process.cwd();
-    const cacheDir = providers.getCacheDir(config);
+    const cacheDir = provider.getCacheDir(config);
     const tsPath = path.resolve(cwd, tsRelativePath);
 
     const jsAfterCachePath = crossPlatform.getJsAfterCachePath(tsPath);
-    const jsPath = path.join(cacheDir, jsAfterCachePath).replace(/\.[^/.]+$/u, `.js`);
+    const jsPath = path.join(cacheDir, jsAfterCachePath).replace(/\.[^/.]+$/u, loadConfig.compiledJsExtension);
 
     if (loadConfig.useCache) {
         const tsFileExists = utils.checkIfFileExistsSync(tsPath);
@@ -92,7 +93,7 @@ export const loadSync = (tsRelativePath: string, options?: LoadOptions) => {
         }
     }
 
-    providers.loadSync({
+    provider.loadSync({
         tsPath,
         jsPath,
         ...config,

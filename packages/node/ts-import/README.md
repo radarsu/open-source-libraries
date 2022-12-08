@@ -32,6 +32,7 @@ void main();
 ```
 
 ### allowConfigurationWithComments
+
 You can define if file should be imported in the default `transpile` mode or `compile` mode by placing a comment on top of the specific file.
 
 Compile mode is slower, but allows the specified file to be part of a complex program - it can import other files etc.
@@ -52,7 +53,7 @@ export { result };
 ## Features
 
 -   **Asynchronous and synchronous version** - uses **import** for async and **require** for sync.
--   **Caches JavaScript** files into directory inside **node_modules/ts-import/cache** (pretty much like **typescript-require**). Removing node_modules removes cache as well.
+-   **Caches JavaScript** files into directory inside **.cache/ts-import**.
 -   **Fast** - I've benchmarked ways to compare detecting file changes with **fs** module and checking mtimeMs turned out to be fastest (https://jsperf.com/fs-stat-mtime-vs-mtimems). Also, compilation in version 3 is approximately 10x faster than in version 2.
 -   **Highly flexible and configurable** - all compilerOptions are available under transpileOptions parameter.
 -   **No interference** - doesn't interfere with native import, require etc. changing their behavior or impacting their performance.

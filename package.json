@@ -7,16 +7,17 @@
     },
     "devDependencies": {
         "@radrat-internal/node-cli-plugin-package": "0.0.0",
-        "@radrat-internal/node-cli-plugin-workspace": "0.0.0",
+        "@radrat-internal/node-cli-plugin-workspace": "0.0.3",
         "@radrat-internal/node-eslint": "0.0.2",
         "@radrat-internal/node-husky": "0.0.0",
         "@radrat-internal/types-config": "0.0.0",
         "@radrat/cli": "3.0.0-beta.6",
-        "@types/node": "18.11.9",
+        "@types/node": "18.11.11",
         "enquirer": "2.3.6",
-        "husky": "8.0.1",
+        "husky": "8.0.2",
+        "pm2": "5.2.2",
         "ts-node": "10.9.1",
-        "tslib": "2.4.0",
+        "tslib": "2.4.1",
         "typescript": "4.9.3"
     }
 }

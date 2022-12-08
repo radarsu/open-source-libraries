@@ -5,10 +5,8 @@ import * as transpileProviders from './transpile';
 import { LoadCompileOptions, LoadMode, LoadOptions, LoadTranspileOptions } from '../load.interfaces';
 
 export interface Providers {
-    getCacheDir: (options: LoadTranspileOptions[`transpileOptions`] | LoadCompileOptions[`compileOptions`]) => string;
-    getConfig: (
-        options: Partial<LoadOptions>,
-    ) => LoadTranspileOptions['transpileOptions'] | LoadCompileOptions['compileOptions'];
+    getCacheDir: (options: LoadCompileOptions[`compileOptions`] | LoadTranspileOptions[`transpileOptions`]) => string;
+    getConfig: (options: Partial<LoadOptions>) => LoadCompileOptions['compileOptions'] | LoadTranspileOptions['transpileOptions'];
     load: (options: compiler.CompileOptions | compiler.TranspileOptions) => Promise<void>;
     loadSync: (options: compiler.CompileOptions | compiler.TranspileOptions) => void;
 }

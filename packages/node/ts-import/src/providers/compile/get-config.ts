@@ -5,12 +5,13 @@ import { LoadCompileOptions } from '../../load.interfaces';
 import { defaults } from 'options-defaults';
 
 const getDefaultCompilerOptions = () => {
+    const cwd = process.cwd();
     const defaultsForPlatform: tsc.CompilerOptions & { outDir: string } = {
-        outDir: path.resolve(__dirname, `..`, `..`, `..`, `cache`),
+        outDir: path.join(cwd, `.cache`, `ts-import`),
     };
 
     if (process.platform === `win32`) {
-        const driveLetter = process.cwd().charAt(0);
+        const driveLetter = cwd.charAt(0);
         defaultsForPlatform.outDir = path.join(defaultsForPlatform.outDir, driveLetter);
         defaultsForPlatform.rootDir = `${driveLetter}:/`;
     } else {

@@ -2,6 +2,7 @@ import * as tsc from 'typescript';
 
 export interface CompileOptions {
     tsPath: string;
+    jsPath: string;
     compilerOptions: tsc.CompilerOptions;
 }
 

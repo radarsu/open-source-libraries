@@ -12,6 +12,7 @@ export enum LoadMode {
 export interface LoadTranspileOptions {
     mode: LoadMode.Transpile;
     allowConfigurationWithComments?: boolean;
+    compiledJsExtension?: string;
     useCache?: boolean;
     transpileOptions: {
         cache: {
@@ -25,6 +26,7 @@ export interface LoadTranspileOptions {
 export interface LoadCompileOptions {
     mode: LoadMode.Compile;
     allowConfigurationWithComments?: boolean;
+    compiledJsExtension?: string;
     useCache?: boolean;
     compileOptions: {
         // cache: {
@@ -34,4 +36,4 @@ export interface LoadCompileOptions {
     };
 }
 
-export type LoadOptions = RecursivePartial<LoadTranspileOptions | LoadCompileOptions>;
+export type LoadOptions = RecursivePartial<LoadCompileOptions | LoadTranspileOptions>;
