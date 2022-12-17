@@ -260,6 +260,8 @@ export const suggestions = {
         `asc`,
         {
             allowLineSeparatedGroups: true,
+            // Small number of keys is often better organized by humans.
+            minKeys: 5,
         },
     ],
     'sort-vars': [`error`],
