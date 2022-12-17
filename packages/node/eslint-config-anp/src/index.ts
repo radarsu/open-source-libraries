@@ -6,6 +6,8 @@ import { possibleProblems } from './possible-problems';
 import { suggestions } from './suggestions';
 import { typescript } from './typescript';
 
+const frontendAppPathsRegex = `./apps/*-{desktop,mobile,web}`;
+
 const eslintConfig = {
     // General config.
     env: {
@@ -75,7 +77,7 @@ const eslintConfig = {
         },
         // Front-end actions.
         {
-            files: [`./apps/*-{desktop,mobile,web}/**/*.actions.ts`],
+            files: [`${frontendAppPathsRegex}/**/*.actions.ts`],
             rules: {
                 // We allow many classes per file for angular ngxs actions.
                 'max-classes-per-file': `off`,
@@ -83,7 +85,7 @@ const eslintConfig = {
         },
         // Front-end state.
         {
-            files: [`./apps/*-{desktop,mobile,web}/**/*.state.ts`],
+            files: [`${frontendAppPathsRegex}/**/*.state.ts`],
             rules: {
                 // We allow many classes per file for ngxs actions.
                 'class-methods-use-this': `off`,
@@ -93,6 +95,7 @@ const eslintConfig = {
         {
             files: [`*.js`],
             rules: {
+                '@typescript-eslint/no-require-imports': [`off`],
                 '@typescript-eslint/no-var-requires': [`off`],
             },
         },
@@ -105,9 +108,10 @@ const eslintConfig = {
         },
         // TailwindCSS.
         {
-            files: [`./apps/*-{desktop,mobile,web}/**/*.config.js`],
+            files: [`${frontendAppPathsRegex}/**/*.config.js`],
             rules: {
                 'max-lines': [`off`],
+                'sort-keys': [`off`],
             },
         },
         // Types.
