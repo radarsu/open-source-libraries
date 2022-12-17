@@ -112,7 +112,7 @@ export const typescript = {
     [`${prefix}/no-non-null-assertion`]: [`error`],
 
     [`${prefix}/no-redeclare`]: [`error`],
-    [`${prefix}/no-no-redundant-type-constituents`]: [`error`],
+    [`${prefix}/no-redundant-type-constituents`]: [`error`],
     [`${prefix}/no-require-imports`]: [`error`],
     [`${prefix}/no-restricted-imports`]: [`error`],
     [`${prefix}/no-shadow`]: [`error`],

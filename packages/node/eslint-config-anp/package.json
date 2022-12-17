@@ -1,6 +1,6 @@
 {
     "name": "eslint-config-anp",
-    "version": "0.0.1",
+    "version": "0.0.1-beta.0",
     "files": [
         "dist"
     ],
