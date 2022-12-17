@@ -257,6 +257,7 @@ export const suggestions = {
     // This rule is too troublesome.
     'sort-keys': [
         `error`,
+        `asc`,
         {
             allowLineSeparatedGroups: true,
         },
