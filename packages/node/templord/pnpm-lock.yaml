@@ -30,10 +30,10 @@ dependencies:
   '@types/inquirer': 8.2.1
   ejs: 3.1.8
   fast-glob: 3.2.11
-  flat-log: 0.0.0
+  flat-log: link:../../any/flat-log
   fs-extra: 10.1.0
   inquirer: 8.2.4
-  options-defaults: 2.0.40
+  options-defaults: link:../../any/options-defaults
   ts-import: 4.0.0-beta.6_typescript@4.7.4
   tslib: 2.4.0
   typescript: 4.7.4
@@ -1495,12 +1495,6 @@ packages:
       locate-path: 6.0.0
       path-exists: 4.0.0
     dev: true
-
-  /flat-log/0.0.0:
-    resolution: {integrity: sha512-RSNAH1l6i+CVAwf3H5e2PHtabZoXCj4wtHzTmMxkxCliUGz55HOF0ymBzv4dwdi7zwB7+n5WK3qmiJXpt6QDlQ==}
-    dependencies:
-      tslib: 2.4.0
-    dev: false
 
   /fs-extra/10.1.0:
     resolution: {integrity: sha512-oRXApq54ETRj4eMiFzGnHWGy+zo5raudjuxN0b8H7s/RU2oW0Wvsx9O0ACRN/kRq9E8Vu/ReskGB5o3ji+FzHQ==}

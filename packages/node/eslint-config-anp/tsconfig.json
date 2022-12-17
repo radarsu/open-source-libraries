@@ -22,7 +22,8 @@
         "rootDir": "./src",
         "sourceMap": true,
         "strict": true,
-        "target": "ES2022"
+        "target": "ES2022",
+        "tsBuildInfoFile": "./.cache/tsconfig.tsbuildinfo"
     },
     "include": ["./src/**/*"],
     "exclude": ["./src/assets"]

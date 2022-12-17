@@ -14,7 +14,7 @@ specifiers:
   typescript: 4.8.2
 
 dependencies:
-  options-defaults: 2.0.40
+  options-defaults: link:../../any/options-defaults
   tslib: 2.4.0
 
 devDependencies:
@@ -2056,6 +2056,7 @@ packages:
 
   /options-defaults/2.0.40:
     resolution: {integrity: sha512-a0oW0AMaP/Uqk1gU7s3unE83wzs/MACy3wsCnNREn4wqp4KCcxRdulRjf0d2FeIxENbGJ4EBGtHTQ6J30XB6Cw==}
+    dev: true
 
   /p-limit/2.3.0:
     resolution: {integrity: sha512-//88mFWSJx8lxCzwdAABTJL2MyWB12+eIY7MDL2SqLmAkeKU9qxRvWuSyTjm3FUmpBEMuFfckAIqEaVGUDxb6w==}
@@ -2554,7 +2555,6 @@ time:
   /dotenv/16.0.2: '2022-08-30T19:04:03.212Z'
   /jest/28.1.3: '2022-07-13T14:12:47.527Z'
   /minimist/1.2.6: '2022-03-22T02:50:30.352Z'
-  /options-defaults/2.0.40: '2022-06-17T11:42:18.958Z'
   /ts-jest/28.0.8: '2022-08-15T06:22:48.854Z'
   /tslib/2.4.0: '2022-04-22T00:25:01.196Z'
   /typescript/4.8.2: '2022-08-25T23:05:19.632Z'

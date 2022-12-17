@@ -2,6 +2,9 @@
 /node_modules
 /npm-debug.log
 
+# Docker.
+/docker-volumes*
+
 # Operating systems.
 .DS_Store
 Thumbs.db
