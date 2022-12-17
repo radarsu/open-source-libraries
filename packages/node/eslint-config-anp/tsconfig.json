@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "declaration": true,
+        "emitDecoratorMetadata": true,
+        "esModuleInterop": true,
+        "exactOptionalPropertyTypes": true,
+        "experimentalDecorators": true,
+        "forceConsistentCasingInFileNames": true,
+        "importHelpers": true,
+        "importsNotUsedAsValues": "error",
+        "incremental": true,
+        "module": "CommonJS",
+        "moduleResolution": "node",
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitOverride": true,
+        "noImplicitReturns": true,
+        "noPropertyAccessFromIndexSignature": true,
+        "noUncheckedIndexedAccess": true,
+        "outDir": "./dist",
+        "removeComments": true,
+        "rootDir": "./src",
+        "sourceMap": true,
+        "strict": true,
+        "target": "ES2022"
+    },
+    "include": ["./src/**/*"],
+    "exclude": ["./src/assets"]
+}
