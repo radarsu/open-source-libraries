@@ -1,7 +1,9 @@
 const prefix = `import`;
 
 export const pluginImport = {
-    [`${prefix}/consistent-type-specifier-style`]: require(`./import-tmp-rules-fix/consistent-type-specifier-style`),
+    // Bug: https://github.com/import-js/eslint-plugin-import/issues/2618
+    // [`${prefix}/consistent-type-specifier-style`]: [`error`],
+
     [`${prefix}/default`]: [`error`],
 
     // We don't use webpack chunks.
@@ -34,7 +36,10 @@ export const pluginImport = {
     [`${prefix}/no-deprecated`]: [`error`],
     [`${prefix}/no-duplicates`]: [`error`],
     [`${prefix}/no-dynamic-require`]: [`error`],
-    [`${prefix}/no-empty-named-blocks`]: require(`./import-tmp-rules-fix/no-empty-named-blocks`),
+
+    // Bug: https://github.com/import-js/eslint-plugin-import/issues/2618
+    // [`${prefix}/no-empty-named-blocks`]: [`error`],
+
     [`${prefix}/no-extraneous-dependencies`]: [`error`],
     [`${prefix}/no-import-module-exports`]: [`error`],
 
