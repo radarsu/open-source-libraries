@@ -61,7 +61,7 @@ const eslintConfig = {
         },
         // API controllers, guards, exception filters, resolvers, scalars.
         {
-            files: [`./apps/*-api/**/*.{controller,filter,guard,module,resolver,service,scalar}.ts`],
+            files: [`./apps/*-api/**/*.{controller,filter,guard,module,resolver,strategy,service,scalar}.ts`],
             rules: {
                 // We allow many classes per file for ngxs actions.
                 'class-methods-use-this': [`off`],
