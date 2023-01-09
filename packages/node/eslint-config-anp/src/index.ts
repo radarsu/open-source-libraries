@@ -23,6 +23,7 @@ const eslintConfig = {
         // Generated.
         `dist`,
         `generated`,
+        `*.generated.*`,
         `out`,
         `www`,
 
