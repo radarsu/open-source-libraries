@@ -4,7 +4,7 @@ const scripts: Scripts = async (cli) => {
     // Conventional commands.
     await cli.run({
         name: `build`,
-        command: `pnpm exec tsc`,
+        command: [`rm -rf .cache dist`, `pnpm exec tsc`].join(` && `),
     });
 };
 

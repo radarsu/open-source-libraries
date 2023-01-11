@@ -21,7 +21,12 @@ export const typescript = {
     // This works bad with Angular services that are types, but are required to exist for Dependency Injection.
     [`${prefix}/consistent-type-imports`]: [`off`],
     [`${prefix}/default-param-last`]: [`error`],
-    [`${prefix}/dot-notation`]: [`error`],
+    [`${prefix}/dot-notation`]: [
+        `error`,
+        {
+            allowIndexSignaturePropertyAccess: true,
+        },
+    ],
 
     // We don't enforce specifying return types.
     [`${prefix}/explicit-function-return-type`]: [`off`],
