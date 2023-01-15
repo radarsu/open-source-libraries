@@ -1,7 +1,6 @@
 {
     "name": "rpc-channel",
     "version": "0.0.0",
-    "private": true,
     "main": "dist/public-api.js",
     "types": "dist/public-api.d.ts",
     "dependencies": {
