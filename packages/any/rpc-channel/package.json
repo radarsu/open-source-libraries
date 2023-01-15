@@ -1,0 +1,19 @@
+{
+    "name": "rpc-channel",
+    "version": "0.0.0",
+    "private": true,
+    "main": "dist/public-api.js",
+    "types": "dist/public-api.d.ts",
+    "dependencies": {
+        "tslib": "2.4.1"
+    },
+    "devDependencies": {
+        "@radrat-internal/node-cli-plugin-package": "0.0.0",
+        "@radrat/cli": "3.0.0-beta.9",
+        "@types/node": "18.11.18",
+        "typescript": "4.9.4"
+    },
+    "files": [
+        "dist"
+    ]
+}
