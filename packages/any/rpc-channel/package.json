@@ -1,6 +1,6 @@
 {
     "name": "rpc-chan",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "main": "dist/public-api.js",
     "types": "dist/public-api.d.ts",
     "dependencies": {

@@ -45,7 +45,7 @@ const createRpcChannel = (options: RpcChannelOptions) => {
                 setTimeout(() => {
                     // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
                     delete awaitingResponses[id];
-                    reject(new Error(`Timeout communicating with Fullcube Admin iframe.`));
+                    reject(new Error(`Request id "${id}" has timed out.`));
                 }, timeout);
 
                 options.sendRequest({
