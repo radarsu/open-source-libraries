@@ -30,23 +30,22 @@ interface RpcChannelOptions {
 
 const createRpcChannel = (options: RpcChannelOptions) => {
     const awaitingResponses: Record<string, (response: any) => void> = {};
-    const timeout = options.timeout ?? 60000;
 
     return {
-        async sendRequest(request: Omit<RpcRequest, 'id'>) {
+        awaitingResponses,
+        async sendRequest(request: Omit<RpcRequest, 'id'> & { id?: string }) {
             return new Promise((resolve, reject) => {
-                // console.log(`[client-console] Sending to Fullcube Admin:`, request);
-
-                const id = Date.now().toString();
+                const id = request.id ?? Date.now().toString();
                 awaitingResponses[id] = (response) => {
                     resolve(response);
                 };
 
-                setTimeout(() => {
-                    // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
-                    delete awaitingResponses[id];
-                    reject(new Error(`Request id "${id}" has timed out.`));
-                }, timeout);
+                if (options.timeout) {
+                    setTimeout(() => {
+                        delete awaitingResponses[id];
+                        reject(new Error(`Request id "${id}" has timed out.`));
+                    }, options.timeout);
+                }
 
                 options.sendRequest({
                     id,
