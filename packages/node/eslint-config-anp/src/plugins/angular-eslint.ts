@@ -1,6 +1,13 @@
 export const pluginAngularEslint = {
     '@angular-eslint/component-class-suffix': `error`,
-    '@angular-eslint/component-max-inline-declarations': `error`,
+    '@angular-eslint/component-max-inline-declarations': [
+        `error`,
+        {
+            animations: 25,
+            styles: 25,
+            template: 25,
+        },
+    ],
     '@angular-eslint/component-selector': `error`,
     '@angular-eslint/contextual-decorator': `error`,
     '@angular-eslint/contextual-lifecycle': `error`,
