@@ -1,3 +1,4 @@
+export * from './angular-eslint';
 export * from './angular-eslint-template';
 export * from './import';
 export * from './jest';

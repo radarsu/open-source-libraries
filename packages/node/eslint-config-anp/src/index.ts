@@ -41,11 +41,12 @@ const eslintConfig = {
                 project: `./tsconfig.json`,
                 sourceType: `module`,
             },
-            plugins: [`@typescript-eslint`, `import`, `jest`, `max-params-no-constructor`],
+            plugins: [`@angular-eslint`, `@typescript-eslint`, `import`, `jest`, `max-params-no-constructor`],
             rules: {
                 ...suggestions,
                 ...layoutAndFormatting,
                 ...possibleProblems,
+                ...plugins.pluginAngularEslint,
                 ...plugins.pluginImport,
                 ...plugins.pluginJest,
                 ...plugins.pluginMaxParamsNoConstructor,
