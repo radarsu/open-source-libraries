@@ -41,12 +41,11 @@ const eslintConfig = {
                 project: `./tsconfig.json`,
                 sourceType: `module`,
             },
-            plugins: [`@angular-eslint`, `@typescript-eslint`, `import`, `jest`, `max-params-no-constructor`],
+            plugins: [`@typescript-eslint`, `import`, `jest`, `max-params-no-constructor`],
             rules: {
                 ...suggestions,
                 ...layoutAndFormatting,
                 ...possibleProblems,
-                ...plugins.pluginAngularEslint,
                 ...plugins.pluginImport,
                 ...plugins.pluginJest,
                 ...plugins.pluginMaxParamsNoConstructor,
@@ -60,6 +59,19 @@ const eslintConfig = {
             rules: {
                 ...plugins.getPluginTailwindCSS(process.env[`ESLINT_TAILWIND_CONFIG_PATH`]),
                 ...plugins.pluginAngularEslintTemplate,
+            },
+        },
+        {
+            files: [`${frontendAppPathsRegex}/**/*.ts`],
+            parser: `@typescript-eslint/parser`,
+            parserOptions: {
+                ecmaVersion: 2022,
+                project: `./tsconfig.json`,
+                sourceType: `module`,
+            },
+            plugins: [`@angular-eslint`],
+            rules: {
+                ...plugins.pluginAngularEslint,
             },
         },
 
