@@ -1,4 +1,4 @@
-import { getPluginTailwindCSS, pluginImport, pluginJest, pluginMaxParamsNoConstructor } from './plugins';
+import * as plugins from './plugins';
 
 import { layoutAndFormatting } from './layout-and-formatting';
 import { possibleProblems } from './possible-problems';
@@ -46,18 +46,19 @@ const eslintConfig = {
                 ...suggestions,
                 ...layoutAndFormatting,
                 ...possibleProblems,
-                ...pluginImport,
-                ...pluginJest,
-                ...pluginMaxParamsNoConstructor,
+                ...plugins.pluginImport,
+                ...plugins.pluginJest,
+                ...plugins.pluginMaxParamsNoConstructor,
                 ...typescript,
             },
         },
         {
             files: [`*.html`],
             parser: `@angular-eslint/template-parser`,
-            plugins: [`tailwindcss`],
+            plugins: [`tailwindcss`, `@angular-eslint/template`],
             rules: {
-                ...getPluginTailwindCSS(process.env[`ESLINT_TAILWIND_CONFIG_PATH`]),
+                ...plugins.getPluginTailwindCSS(process.env[`ESLINT_TAILWIND_CONFIG_PATH`]),
+                ...plugins.pluginAngularEslintTemplate,
             },
         },
 
