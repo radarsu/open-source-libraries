@@ -230,6 +230,7 @@ importers:
 
   packages/node/eslint-config-anp:
     specifiers:
+      '@angular-eslint/template-parser': 15.2.0
       '@types/node': 18.11.18
       '@typescript-eslint/eslint-plugin': 5.49.0
       '@typescript-eslint/parser': 5.49.0
@@ -244,6 +245,7 @@ importers:
       tslib: 2.4.1
       typescript: 4.9.4
     dependencies:
+      '@angular-eslint/template-parser': 15.2.0_7uibuqfxkfaozanbtbziikiqje
       '@typescript-eslint/eslint-plugin': 5.49.0_iu322prlnwsygkcra5kbpy22si
       '@typescript-eslint/parser': 5.49.0_7uibuqfxkfaozanbtbziikiqje
       eslint: 8.32.0
@@ -10637,6 +10639,7 @@ packages:
     dev: false
 
 time:
+  /@angular-eslint/template-parser/15.2.0: '2023-01-14T16:24:08.438Z'
   /@jest/globals/29.3.1: '2022-11-08T22:56:30.606Z'
   /@oclif/core/1.12.1: '2022-07-21T17:13:56.728Z'
   /@oclif/plugin-help/5.1.12: '2022-03-07T14:49:19.656Z'

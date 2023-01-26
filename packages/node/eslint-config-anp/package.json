@@ -1,6 +1,6 @@
 {
     "name": "eslint-config-anp",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "files": [
         "dist"
     ],
@@ -8,6 +8,7 @@
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "dependencies": {
+        "@angular-eslint/template-parser": "15.2.0",
         "@typescript-eslint/eslint-plugin": "5.49.0",
         "@typescript-eslint/parser": "5.49.0",
         "eslint": "8.32.0",
