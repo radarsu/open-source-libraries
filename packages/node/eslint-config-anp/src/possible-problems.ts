@@ -48,7 +48,10 @@ export const possibleProblems = {
     'no-sparse-arrays': [`error`],
     'no-template-curly-in-string': [`error`],
     'no-this-before-super': [`error`],
-    'no-undef': [`error`],
+
+    // This is handled by TypeScript - turned off because it doesn't see global types like Proxy.
+    'no-undef': [`off`],
+
     'no-unexpected-multiline': [`error`],
     'no-unmodified-loop-condition': [`error`],
     'no-unreachable': [`error`],

@@ -119,6 +119,9 @@ const eslintConfig = {
         {
             files: [`*.js`],
             rules: {
+                // Turned on exclusively for JavaScript.
+                'no-undef': [`error`],
+
                 '@typescript-eslint/no-require-imports': [`off`],
                 '@typescript-eslint/no-var-requires': [`off`],
             },
