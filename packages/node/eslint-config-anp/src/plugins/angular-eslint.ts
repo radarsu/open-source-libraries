@@ -1,5 +1,10 @@
 export const pluginAngularEslint = {
-    '@angular-eslint/component-class-suffix': `error`,
+    '@angular-eslint/component-class-suffix': [
+        `error`,
+        {
+            suffixes: [`Component`, `Page`],
+        },
+    ],
     '@angular-eslint/component-max-inline-declarations': [
         `error`,
         {
