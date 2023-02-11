@@ -1,16 +1,15 @@
 {
     "name": "flat-log",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "main": "dist/main.js",
     "types": "dist/main.d.ts",
     "dependencies": {
-        "tslib": "2.4.0"
+        "tslib": "2.5.0"
     },
     "devDependencies": {
-        "@radrat-internal/node-cli-plugin-package": "0.0.0",
-        "@radrat/cli": "3.0.0-beta.6",
-        "@types/node": "16.11.42",
-        "typescript": "4.7.4"
+        "@radrat/cli": "3.0.0-beta.9",
+        "@types/node": "18.13.0",
+        "typescript": "4.9.5"
     },
     "files": [
         "dist"

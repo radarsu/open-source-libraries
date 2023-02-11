@@ -1,5 +1,5 @@
 # Cache.
-/.rollup.cache
+/.cache
 
 # Dependencies.
 /node_modules
@@ -7,6 +7,8 @@
 
 # Distributables.
 /dist
+/dist-*
 
-# MacOS.
+# Operating systems.
 .DS_Store
+Thumbs.db

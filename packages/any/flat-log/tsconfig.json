@@ -3,21 +3,28 @@
         "allowSyntheticDefaultImports": true,
         "declaration": true,
         "emitDecoratorMetadata": true,
+        "esModuleInterop": true,
         "exactOptionalPropertyTypes": true,
         "experimentalDecorators": true,
         "forceConsistentCasingInFileNames": true,
         "importHelpers": true,
+        "importsNotUsedAsValues": "error",
         "incremental": true,
-        "module": "commonjs",
+        "module": "ES2022",
+        "moduleResolution": "node",
         "noFallthroughCasesInSwitch": true,
         "noImplicitOverride": true,
         "noImplicitReturns": true,
+        "noPropertyAccessFromIndexSignature": true,
         "noUncheckedIndexedAccess": true,
         "outDir": "./dist",
         "removeComments": true,
+        "rootDir": "./src",
         "sourceMap": true,
         "strict": true,
-        "target": "es2020"
+        "target": "ES2020",
+        "tsBuildInfoFile": "./.cache/tsconfig.tsbuildinfo"
     },
-    "exclude": ["./dist", "./node_modules", "rr-scripts.ts", "./__tests__", "./__tests-utils__", "**/*.spec.ts"]
+    "include": ["./src/**/*"],
+    "exclude": ["./src/assets"]
 }
