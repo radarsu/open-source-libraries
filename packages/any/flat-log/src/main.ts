@@ -15,6 +15,8 @@ declare global {
     }
 }
 
+const styles = `background:hsl(160deg 65% 50%);color:black;font-weight:700;line-height:1.5;margin-bottom:0.25rem;`;
+
 const flatLog = (...objects: any[]) => {
     objects.forEach((object) => {
         if (!object || typeof object !== `object`) {
@@ -23,7 +25,7 @@ const flatLog = (...objects: any[]) => {
         }
 
         Object.entries(object).forEach(([key, value]) => {
-            console.log(key, value);
+            console.log(`%c ${key} `, styles, value);
         });
     });
 };

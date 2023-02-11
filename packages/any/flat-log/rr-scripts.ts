@@ -3,7 +3,7 @@ import type { Scripts } from '@radrat/cli';
 const scripts: Scripts = async (cli) => {
     await cli.run({
         name: `build`,
-        command: `rm -rf dist && pnpm exec tsc`,
+        command: [`rm -rf .cache dist`, `pnpm exec tsc`].join(` && `),
     });
 };
 
