@@ -15,7 +15,7 @@ declare global {
     }
 }
 
-const styles = `background:hsl(160deg 65% 50%);color:black;font-weight:700;line-height:1.5;margin-bottom:0.25rem;`;
+const styles = `background:hsl(160deg 55% 50%);color:black;font-weight:700;line-height:1.5;margin-bottom:0.25rem;`;
 
 const flatLog = (...objects: any[]) => {
     objects.forEach((object) => {
