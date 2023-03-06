@@ -62,7 +62,7 @@ const eslintConfig = {
             },
         },
         {
-            files: [`${frontendAppPathsRegex}/**/*.ts`],
+            files: [`${frontendAppPathsRegex}/**/*.ts`, `./packages/ngx-*/**/*.ts`],
             parser: `@typescript-eslint/parser`,
             parserOptions: {
                 ecmaVersion: 2022,
