@@ -117,7 +117,7 @@ const eslintConfig = {
         },
         // JavaScript.
         {
-            files: [`*.js`],
+            files: [`*.{js,cjs,mjs}`],
             rules: {
                 // Turned on exclusively for JavaScript.
                 'no-undef': [`error`],
@@ -128,14 +128,14 @@ const eslintConfig = {
         },
         // pm2.
         {
-            files: [`./ecosystem.config.js`],
+            files: [`./ecosystem.config.{js,cjs,mjs}`],
             rules: {
                 camelcase: [`off`],
             },
         },
         // TailwindCSS.
         {
-            files: [`${frontendAppPathsRegex}/**/*.config.js`],
+            files: [`${frontendAppPathsRegex}/**/*.config.{js,cjs,mjs}`],
             rules: {
                 'max-lines': [`off`],
                 'sort-keys': [`off`],
