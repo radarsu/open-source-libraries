@@ -34,7 +34,7 @@ const eslintConfig = {
     overrides: [
         // Core extensions.
         {
-            files: [`*.ts`, `*.js`],
+            files: [`*.ts`, `*.js`, `*.cjs`, `*.mjs`],
             parser: `@typescript-eslint/parser`,
             parserOptions: {
                 ecmaVersion: 2022,
