@@ -8,7 +8,6 @@
         "experimentalDecorators": true,
         "forceConsistentCasingInFileNames": true,
         "importHelpers": true,
-        "importsNotUsedAsValues": "error",
         "incremental": true,
         "module": "CommonJS",
         "moduleResolution": "node",
