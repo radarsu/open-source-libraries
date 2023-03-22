@@ -5,7 +5,7 @@ import { possibleProblems } from './possible-problems';
 import { suggestions } from './suggestions';
 import { typescript } from './typescript';
 
-const frontendAppPathsRegex = `./apps/*-{desktop,mobile,web}`;
+const frontendAppPathsRegex = `./apps/*-{desktop,mobile,static,web}`;
 const eslintConfig = {
     // General config.
     env: {
