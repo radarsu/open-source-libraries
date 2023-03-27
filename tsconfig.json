@@ -25,6 +25,6 @@
         "skipLibCheck": true
     },
     // Include and exclude files for eslint to pick them.
-    "include": [".*.js", "*.js", "*.ts", "**/*.ts", "**/*.js"],
+    "include": ["*.js", ".*.js", "*.ts", "**/*.ts", "**/*.js", "*.mjs", "*.cjs", "**/*.mjs", "**/*.cjs"],
     "exclude": ["node_modules", "tmp", "assets", "dist", "www"]
 }
