@@ -3,34 +3,35 @@
     "version": "1.0.4",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
+    "type": "module",
     "bin": {
-        "templord": "./bin/run"
+        "templord": "./bin/run.js"
     },
     "description": "Tool to generate code from ejs templates from a convention-based structure.",
     "dependencies": {
-        "@oclif/core": "1.12.1",
-        "@oclif/plugin-help": "5.1.12",
-        "@oclif/plugin-plugins": "2.1.0",
-        "@types/inquirer": "8.2.1",
-        "ejs": "3.1.8",
-        "fast-glob": "3.2.11",
-        "flat-log": "0.0.0",
-        "fs-extra": "10.1.0",
-        "inquirer": "8.2.4",
-        "options-defaults": "2.0.40",
-        "ts-import": "4.0.0-beta.6",
-        "typescript": "4.7.4",
-        "tslib": "2.4.0"
+        "@oclif/core": "2.7.1",
+        "@oclif/plugin-help": "5.2.8",
+        "@oclif/plugin-plugins": "2.4.3",
+        "@types/inquirer": "9.0.3",
+        "ejs": "3.1.9",
+        "fast-glob": "3.2.12",
+        "flat-log": "workspace:0.0.3",
+        "fs-extra": "11.1.1",
+        "inquirer": "9.1.5",
+        "options-defaults": "workspace:2.0.40",
+        "ts-import": "workspace:4.0.0-beta.10",
+        "tslib": "2.5.0",
+        "typescript": "5.0.2"
     },
     "devDependencies": {
         "@radrat-internal/node-cli-plugin-package": "0.0.0",
-        "@radrat/cli": "3.0.0-beta.6",
-        "@types/ejs": "3.1.1",
-        "@types/fs-extra": "9.0.13",
-        "@types/jest": "28.1.6",
-        "@types/node": "16.11.42",
-        "jest": "28.1.3",
-        "ts-jest": "28.0.7"
+        "@radrat/cli": "3.0.0-beta.9",
+        "@types/ejs": "3.1.2",
+        "@types/fs-extra": "11.0.1",
+        "@types/jest": "29.5.0",
+        "@types/node": "18.15.10",
+        "jest": "29.5.0",
+        "ts-jest": "29.0.5"
     },
     "license": "MIT",
     "files": [

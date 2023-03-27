@@ -1,1 +1,1 @@
-export * from './get-ts-import-comment-config';
+export * from './get-ts-import-comment-config.js';

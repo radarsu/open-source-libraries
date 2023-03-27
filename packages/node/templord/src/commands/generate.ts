@@ -1,19 +1,17 @@
 import * as inquirer from 'inquirer';
-import * as path from 'path';
-import * as providers from '../providers/generate/index';
+import * as path from 'node:path';
+import * as providers from '../providers/generate/index.js';
 
-import { Command, Flags } from '@oclif/core';
+import { Args, Command, Flags } from '@oclif/core';
 
-import { TEMPLATE_FILE_NAME } from '../shared/constants';
+import { TEMPLATE_FILE_NAME } from '../shared/constants.js';
 
 export default class Generate extends Command {
     static description = `Generate files from selected template.`;
 
-    static args = [
-        {
-            name: `directoryName`,
-        },
-    ];
+    static args = {
+        directoryName: Args.string(),
+    };
 
     static flags = {
         from: Flags.string({
@@ -39,7 +37,7 @@ export default class Generate extends Command {
         const selectedTemplate = await providers.selectTemplate(templates);
 
         if (!args.directoryName) {
-            const nameOfDirectoryResponse = await inquirer.prompt([
+            const nameOfDirectoryResponse = await inquirer.default.prompt([
                 {
                     message: `Name directory:`,
                     name: `directoryName`,
@@ -49,7 +47,7 @@ export default class Generate extends Command {
             args.directoryName = nameOfDirectoryResponse.directoryName;
         }
 
-        const responses = await selectedTemplate.askQuestions?.(inquirer) ?? {};
+        const responses = (await selectedTemplate.askQuestions?.(inquirer)) ?? {};
 
         responses.directoryName = args.directoryName;
 

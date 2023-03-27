@@ -1,8 +1,8 @@
 import * as path from 'node:path';
-import * as tsc from 'typescript';
 
-import { LoadCompileOptions } from '../../load.interfaces';
+import { LoadCompileOptions } from '../../load.interfaces.js';
 import { defaults } from 'options-defaults';
+import tsc from 'typescript';
 
 const getDefaultCompilerOptions = () => {
     const cwd = process.cwd();
@@ -29,10 +29,11 @@ export const getConfig = (options: LoadCompileOptions) => {
             downlevelIteration: true,
             emitDecoratorMetadata: true,
             experimentalDecorators: true,
-            module: tsc.ModuleKind.CommonJS,
+            module: tsc.ModuleKind.ES2020,
+            moduleResolution: tsc.ModuleResolutionKind.Node16,
             resolveJsonModule: true,
             skipLibCheck: true,
-            target: tsc.ScriptTarget.ES2015,
+            target: tsc.ScriptTarget.ES2020,
         },
     };
 

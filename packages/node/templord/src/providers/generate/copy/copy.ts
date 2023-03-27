@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+import * as fs from 'node:fs';
 import * as fsExtra from 'fs-extra';
 
 interface CopyHandlers {
@@ -10,11 +10,14 @@ interface ContinueOrder {
 }
 
 const copy = async (directory: string, to: string, handlers: CopyHandlers) => {
-    const fileExists = await fs.promises.access(to).then(() => {
-        return true;
-    }).catch(() => {
-        return false;
-    });
+    const fileExists = await fs.promises
+        .access(to)
+        .then(() => {
+            return true;
+        })
+        .catch(() => {
+            return false;
+        });
 
     if (fileExists) {
         const order = await handlers.onExistingFile();
@@ -24,9 +27,7 @@ const copy = async (directory: string, to: string, handlers: CopyHandlers) => {
         }
     }
 
-    await fsExtra.copy(directory, to, {
-        recursive: true,
-    });
+    await fsExtra.copy(directory, to);
 };
 
 export type { ContinueOrder, CopyHandlers };

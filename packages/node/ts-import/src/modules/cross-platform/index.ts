@@ -1,1 +1,1 @@
-export * from './get-js-after-cache-path';
+export * from './get-js-after-cache-path.js';

@@ -4,14 +4,10 @@ specifiers:
   '@radrat-internal/node-cli-plugin-package': 0.0.0
   '@radrat/cli': 3.0.0-beta.9
   '@types/node': 18.11.18
-  flat-log: 0.0.0
-  options-defaults: 2.0.40
   tslib: 2.4.1
   typescript: 4.9.4
 
 dependencies:
-  flat-log: 0.0.0
-  options-defaults: 2.0.40
   tslib: 2.4.1
 
 devDependencies:
@@ -220,12 +216,6 @@ packages:
       path-exists: 4.0.0
     dev: true
 
-  /flat-log/0.0.0:
-    resolution: {integrity: sha512-RSNAH1l6i+CVAwf3H5e2PHtabZoXCj4wtHzTmMxkxCliUGz55HOF0ymBzv4dwdi7zwB7+n5WK3qmiJXpt6QDlQ==}
-    dependencies:
-      tslib: 2.4.1
-    dev: false
-
   /glob-parent/5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
     engines: {node: '>= 6'}
@@ -309,6 +299,7 @@ packages:
 
   /options-defaults/2.0.40:
     resolution: {integrity: sha512-a0oW0AMaP/Uqk1gU7s3unE83wzs/MACy3wsCnNREn4wqp4KCcxRdulRjf0d2FeIxENbGJ4EBGtHTQ6J30XB6Cw==}
+    dev: true
 
   /p-limit/3.1.0:
     resolution: {integrity: sha512-TYOanM3wGwNGsZN2cVTYPArw454xnXj5qmWF1bEoAc4+cU/ol7GVh7odevjp1FNHduHc3KZMcFduxU5Xc6uJRQ==}

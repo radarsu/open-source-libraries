@@ -1,2 +1,2 @@
-export * from './check-if-file-exists';
-export * from './is-file-newer';
+export * from './check-if-file-exists.js';
+export * from './is-file-newer.js';

@@ -1,3 +1,3 @@
 module.exports = {
-    extends: [`./node_modules/@radrat-internal/node-eslint`],
+    extends: [`./node_modules/eslint-config-anp`],
 };

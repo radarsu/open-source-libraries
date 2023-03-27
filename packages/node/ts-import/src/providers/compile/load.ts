@@ -1,4 +1,4 @@
-import * as compiler from '../../modules/compiler';
+import * as compiler from '../../modules/compiler/index.js';
 import * as fs from 'node:fs';
 
 export const load = async (options: compiler.CompileOptions) => {

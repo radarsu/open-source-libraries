@@ -1,8 +1,8 @@
-import * as childProcess from 'child_process';
-import * as fs from 'fs';
+import * as childProcess from 'node:child_process';
+import * as fs from 'node:fs';
 
-import { TMP_DIR } from '../../../shared/constants';
-import { getTemplatesFromLocal } from './get-templates-from-local';
+import { TMP_DIR } from '../../../shared/constants.js';
+import { getTemplatesFromLocal } from './get-templates-from-local.js';
 
 export const getTemplatesFromRemote = async (url: string, templatePattern: string) => {
     await fs.promises.rm(TMP_DIR, {

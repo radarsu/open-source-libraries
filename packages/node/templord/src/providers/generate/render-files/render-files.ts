@@ -1,9 +1,9 @@
 import * as ejs from 'ejs';
 import * as fastGlob from 'fast-glob';
-import * as fs from 'fs';
-import * as path from 'path';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
 
-import { TEMPLATE_FILE_NAME } from '../../../shared/constants';
+import { TEMPLATE_FILE_NAME } from '../../../shared/constants.js';
 
 export const renderFiles = async (targetPath: string, patternsToRender: string[], data: any) => {
     const targetPaths = patternsToRender.map((patternToRender) => {

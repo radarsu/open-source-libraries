@@ -4,11 +4,15 @@
         "declaration": true,
         "esModuleInterop": true,
         "importHelpers": true,
-        "module": "commonjs",
+        "module": "ES2020",
+        "moduleResolution": "node",
         "outDir": "./dist",
         "rootDir": "./src",
         "strict": true,
         "target": "ES2022"
+    },
+    "ts-node": {
+        "esm": true
     },
     "include": ["./src/**/*"],
     "exclude": ["./src/assets"]

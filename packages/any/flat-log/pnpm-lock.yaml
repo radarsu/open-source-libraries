@@ -1,20 +1,18 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@radrat-internal/node-cli-plugin-package': 0.0.0
-  '@radrat/cli': 3.0.0-beta.6
-  '@types/node': 16.11.42
-  tslib: 2.4.0
-  typescript: 4.7.4
+  '@radrat/cli': 3.0.0-beta.9
+  '@types/node': 18.13.0
+  tslib: 2.5.0
+  typescript: 4.9.5
 
 dependencies:
-  tslib: 2.4.0
+  tslib: 2.5.0
 
 devDependencies:
-  '@radrat-internal/node-cli-plugin-package': 0.0.0
-  '@radrat/cli': 3.0.0-beta.6
-  '@types/node': 16.11.42
-  typescript: 4.7.4
+  '@radrat/cli': 3.0.0-beta.9
+  '@types/node': 18.13.0
+  typescript: 4.9.5
 
 packages:
 
@@ -39,41 +37,34 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@radrat-internal/node-cli-plugin-package/0.0.0:
-    resolution: {integrity: sha1-09u3eNa4IXpleX5kM4ZD+xPpO1E=, tarball: '@radrat-internal/node-cli-plugin-package/-/@radrat-internal/node-cli-plugin-package-0.0.0.tgz'}
-    dependencies:
-      child-process-extra: 0.0.0
-      tslib: 2.4.0
-    dev: true
-
-  /@radrat/cli-toolkit/0.0.31:
-    resolution: {integrity: sha512-X1+1rynBZwiSzlj2v27kYj2z6LgT4wVMl8+6km/S1x8kWQz9sgPRmUg6zXgg7duu0l5/dFOqYMnpJT4DoRVL/g==}
+  /@radrat/cli-toolkit/0.0.34:
+    resolution: {integrity: sha512-qvpqhh7htsNlUeEOCPQDH1pmf4OM2qfAqY+8KWwI+2/8ZqJl0Rr+X8jY33Yj4S+JI/b+84uRQqFuhAQjX53lmQ==}
     dependencies:
       chalk: 4.1.2
-      minimist: 1.2.6
+      minimist: 1.2.7
       options-defaults: 2.0.40
-      tslib: 2.4.0
+      tslib: 2.4.1
     dev: true
 
-  /@radrat/cli/3.0.0-beta.6:
-    resolution: {integrity: sha512-VFgwg9Vgv4oSxG73NNKgAPLRPdavFjaGkj7URrPGYP3QU4emCjvfFdzkuCERLGTUdZG28jAYus/gozMjF+KK+g==}
+  /@radrat/cli/3.0.0-beta.9:
+    resolution: {integrity: sha512-Drhi1xycO9hWaTek7Vn+DYp2r5CANy74eXCwf1/32BI4W98rIJBEEKhbfTxVOxpRdNOUiskmNcvmNF3m5PU/aw==}
     hasBin: true
     dependencies:
-      '@radrat/cli-toolkit': 0.0.31
+      '@radrat/cli-toolkit': 0.0.34
       '@radrat/node-logger': 0.0.0
       chalk: 4.1.2
       ejs: 3.1.8
       enquirer: 2.3.6
-      fast-glob: 3.2.11
+      fast-glob: 3.2.12
       find-up: 5.0.0
       lodash: 4.17.21
       micromatch: 4.0.5
       options-defaults: 2.0.40
       p-limit: 3.1.0
-      ts-import: 4.0.0-beta.6_typescript@4.7.4
-      tslib: 2.4.0
+      ts-import: 4.0.0-beta.9_typescript@4.9.3
+      tslib: 2.4.1
       types-package-json: 2.0.39
-      typescript: 4.7.4
+      typescript: 4.9.3
     dev: true
 
   /@radrat/node-logger/0.0.0:
@@ -84,8 +75,8 @@ packages:
       tslib: 2.4.0
     dev: true
 
-  /@types/node/16.11.42:
-    resolution: {integrity: sha512-iwLrPOopPy6V3E+1yHTpJea3bdsNso0b0utLOJJwaa/PLzqBt3GZl3stMcakc/gr89SfcNk2ki3z7Gvue9hYGQ==}
+  /@types/node/18.13.0:
+    resolution: {integrity: sha512-gC3TazRzGoOnoKAhUx+Q0t8S9Tzs74z7m0ipwGpSqQrleP14hKxP4/JUeEQcD3W1/aIpnWl8pHowI7WokuZpXg==}
     dev: true
 
   /ansi-colors/4.1.3:
@@ -136,13 +127,6 @@ packages:
       supports-color: 7.2.0
     dev: true
 
-  /child-process-extra/0.0.0:
-    resolution: {integrity: sha512-MBzat6+d6+KBkLg3d3oeE449awWYh+SUzBINbqHl7kf2a+6m2k5YPY5LTqnRTsghgVfslGiRISlR72EY27jcSw==}
-    dependencies:
-      options-defaults: 2.0.40
-      tslib: 2.4.0
-    dev: true
-
   /color-convert/2.0.1:
     resolution: {integrity: sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==}
     engines: {node: '>=7.0.0'}
@@ -178,8 +162,8 @@ packages:
       ansi-colors: 4.1.3
     dev: true
 
-  /fast-glob/3.2.11:
-    resolution: {integrity: sha512-xrO3+1bxSo3ZVHAnqzyuewYT6aMFHRAd4Kcs92MAonjwQZLsK9d0SF1IyQ3k5PoirxTW0Oe/RqFgMQ6TcNE5Ew==}
+  /fast-glob/3.2.12:
+    resolution: {integrity: sha512-DVj4CQIYYow0BlaelwK1pHl5n5cRSJfM60UA0zK891sVInoPri2Ekj7+e1CT3/3qxXenpI+nBBmQAcJPJgaj4w==}
     engines: {node: '>=8.6.0'}
     dependencies:
       '@nodelib/fs.stat': 2.0.5
@@ -293,8 +277,8 @@ packages:
       brace-expansion: 2.0.1
     dev: true
 
-  /minimist/1.2.6:
-    resolution: {integrity: sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==}
+  /minimist/1.2.7:
+    resolution: {integrity: sha512-bzfL1YUZsP41gmu/qjrEk0Q6i2ix/cVeAhbCbqH9u3zYutS1cLg00qhrD0M2MVdCcx4Sc0UpP2eBWo9rotpq6g==}
     dev: true
 
   /options-defaults/2.0.40:
@@ -354,27 +338,42 @@ packages:
       is-number: 7.0.0
     dev: true
 
-  /ts-import/4.0.0-beta.6_typescript@4.7.4:
-    resolution: {integrity: sha512-uMqHJpj3L22pUuDbHxvZXeuBfnNQtz1Lvc8xLX50zUWdQc+sxg6BS8Quw7DFG7NRytJG1lP0ruVm8o5L4WLxEg==}
+  /ts-import/4.0.0-beta.9_typescript@4.9.3:
+    resolution: {integrity: sha512-cek9R08mkphoC/UDvh2/gbRGfMfTkMjpPlgHGDC0D+EZ+O21h60WwGX37ykJPmYbaH1IvzGZuMa+2OdWOFjy6g==}
     engines: {node: '>=14.14.0'}
     peerDependencies:
       typescript: '4'
     dependencies:
       comment-parser: 1.3.1
       options-defaults: 2.0.40
-      tslib: 2.4.0
-      typescript: 4.7.4
+      tslib: 2.4.1
+      typescript: 4.9.3
     dev: true
 
   /tslib/2.4.0:
     resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
+    dev: true
+
+  /tslib/2.4.1:
+    resolution: {integrity: sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==}
+    dev: true
+
+  /tslib/2.5.0:
+    resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}
+    dev: false
 
   /types-package-json/2.0.39:
     resolution: {integrity: sha512-c8ua5W1Uu6x7LAwtwSGCl46cHmj+r2eAA+lXR1CluIZotu9V03ZHcGB9wKRZE2oIAX5IzMP/rxDV9g9ikCg9Nw==}
     dev: true
 
-  /typescript/4.7.4:
-    resolution: {integrity: sha512-C0WQT0gezHuw6AdY1M2jxUO83Rjf0HP7Sk1DtXj6j1EwkQNZrHAg2XPWlq62oqEhYvONq5pkC2Y9oPljWToLmQ==}
+  /typescript/4.9.3:
+    resolution: {integrity: sha512-CIfGzTelbKNEnLpLdGFgdyKhG23CKdKgQPOBc+OUNrkJ2vr+KSzsSV5kq5iWhEQbok+quxgGzrAtGWCyU7tHnA==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
+    dev: true
+
+  /typescript/4.9.5:
+    resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: true
@@ -385,7 +384,7 @@ packages:
     dev: true
 
 time:
-  /@radrat/cli/3.0.0-beta.6: '2022-07-19T19:40:59.065Z'
-  /@types/node/16.11.42: '2022-06-29T21:02:29.830Z'
-  /tslib/2.4.0: '2022-04-22T00:25:01.196Z'
-  /typescript/4.7.4: '2022-06-17T18:21:36.833Z'
+  /@radrat/cli/3.0.0-beta.9: '2022-12-19T09:07:16.040Z'
+  /@types/node/18.13.0: '2023-02-07T08:32:41.060Z'
+  /tslib/2.5.0: '2023-01-26T20:40:14.611Z'
+  /typescript/4.9.5: '2023-01-30T21:05:37.231Z'

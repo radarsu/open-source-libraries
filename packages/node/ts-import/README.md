@@ -7,15 +7,16 @@
 
 ## Table of contents
 
-- [Table of contents](#table-of-contents)
-- [Getting Started](#getting-started)
-- [Usage](#usage)
-  - [allowConfigurationWithComments](#allowconfigurationwithcomments)
-- [Features](#features)
+-   [Table of contents](#table-of-contents)
+-   [Getting Started](#getting-started)
+-   [Usage](#usage)
+    -   [allowConfigurationWithComments](#allowconfigurationwithcomments)
+-   [Features](#features)
 
 ## Getting Started
 
-`npm i ts-import`
+`npm i ts-import@4` - CJS
+`npm i ts-import@5` - ESM
 
 ## Usage
 

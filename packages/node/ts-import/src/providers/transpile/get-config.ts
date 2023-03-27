@@ -1,7 +1,8 @@
 import * as path from 'node:path';
 
-import { LoadTranspileOptions } from '../../load.interfaces';
+import { LoadTranspileOptions } from '../../load.interfaces.js';
 import { defaults } from 'options-defaults';
+import tsc from 'typescript';
 
 export const getConfig = (options: LoadTranspileOptions) => {
     const cwd = process.cwd();
@@ -10,7 +11,13 @@ export const getConfig = (options: LoadTranspileOptions) => {
             // invalidateOnChanges: boolean;
             dir: path.join(cwd, `.cache`, `ts-import`),
         },
-        transpileOptions: {},
+        transpileOptions: {
+            compilerOptions: {
+                module: tsc.ModuleKind.ES2020,
+                moduleResolution: tsc.ModuleResolutionKind.Node16,
+                target: tsc.ScriptTarget.ES2020,
+            },
+        },
     };
 
     if (process.platform === `win32`) {

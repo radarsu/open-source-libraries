@@ -1,9 +1,9 @@
 import * as fastGlob from 'fast-glob';
-import * as path from 'path';
+import * as path from 'node:path';
 import * as tsImport from 'ts-import';
 
-import { TMP_DIR } from '../../../shared/constants';
-import { Template } from '../../../shared/interfaces';
+import { TMP_DIR } from '../../../shared/constants.js';
+import { Template } from '../../../shared/interfaces.js';
 
 export const getTemplatesFromLocal = async (searchPath: string): Promise<(Template & { path: string })[]> => {
     const templatePaths = await fastGlob.default([searchPath], {

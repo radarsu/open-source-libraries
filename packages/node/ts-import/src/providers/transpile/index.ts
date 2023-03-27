@@ -1,4 +1,3 @@
-export * from './get-cache-dir';
-export * from './get-config';
-export * from './load';
-export * from './load-sync';
+export * from './get-cache-dir.js';
+export * from './get-config.js';
+export * from './load.js';

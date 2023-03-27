@@ -11,7 +11,7 @@ export const selectTemplate = async (templates: Template[]): Promise<Template & 
     });
 
     const name = `template`;
-    const answers = await inquirer.prompt([
+    const answers = await inquirer.default.prompt([
         {
             message: `Select template:`,
             name,
