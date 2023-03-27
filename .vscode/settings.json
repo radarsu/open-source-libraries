@@ -65,9 +65,6 @@
     "[shellscript]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
     },
-    "[svelte]": {
-        "editor.defaultFormatter": "svelte.svelte-vscode"
-    },
     "[yaml]": {
         "editor.tabSize": 4
     }
