@@ -79,7 +79,7 @@ const eslintConfig = {
         },
         // * Angular HTML.
         {
-            files: angularAppsPatterns.map((pattern) => {
+            files: angularPatterns.map((pattern) => {
                 return `${pattern}/**/*.html`;
             }),
             parser: `@angular-eslint/template-parser`,
@@ -91,7 +91,7 @@ const eslintConfig = {
         },
         // * Angular TypeScript.
         {
-            files: angularAppsPatterns.map((pattern) => {
+            files: angularPatterns.map((pattern) => {
                 return `${pattern}/**/*.ts`;
             }),
             parser: `@typescript-eslint/parser`,
