@@ -1,6 +1,6 @@
 <p align="center">
     <h1>eslint-config-anp</h1>
-    <div>Very strict Angular & Nest & Prettier compatible eslint configuration. Comes with import, jest, max-params-no-constructor and prettier plugins.</div>
+    <div>Very strict Angular & Nest & Prettier compatible eslint configuration. Comes with import, max-params-no-constructor and prettier plugins.</div>
 </p>
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/radarsu)

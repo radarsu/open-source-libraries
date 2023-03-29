@@ -53,7 +53,7 @@ const eslintConfig = {
                 project: `./tsconfig.json`,
                 sourceType: `module`,
             },
-            plugins: [`@typescript-eslint`, `import`, `jest`, `max-params-no-constructor`],
+            plugins: [`@typescript-eslint`, `import`, `max-params-no-constructor`],
             rules: {
                 ...suggestions,
                 ...layoutAndFormatting,
