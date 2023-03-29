@@ -1,4 +1,3 @@
-import * as fs from 'node:fs';
 import * as plugins from './plugins';
 
 import { layoutAndFormatting } from './layout-and-formatting';
@@ -25,7 +24,6 @@ const eslintConfig = {
     env: {
         browser: true,
         node: true,
-        'jest/globals': true,
     },
     ignorePatterns: [
         // Temporary.
