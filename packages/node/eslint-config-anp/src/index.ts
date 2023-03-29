@@ -132,14 +132,19 @@ const eslintConfig = {
                 'max-classes-per-file': `off`,
             },
         },
-        // * pm2.
+        // * pm2 and astro configs.
         {
-            files: [`./ecosystem.config.{js,cjs,mjs}`],
+            files: [
+                `./ecosystem.config.{js,cjs,mjs}`,
+                ...astroPatterns.map((pattern) => {
+                    return `${pattern}/**/astro.config.{js,cjs,mjs}`;
+                }),
+            ],
             rules: {
                 camelcase: [`off`],
             },
         },
-        // * TailwindCSS.
+        // * TailwindCSS config.
         {
             files: angularAndAstroPatterns.map((pattern) => {
                 return `${pattern}/**/tailwind.config.{js,cjs,mjs}`;
