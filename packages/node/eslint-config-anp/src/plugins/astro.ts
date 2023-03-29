@@ -1,0 +1,15 @@
+export const pluginAstro = {
+    'astro/no-conflict-set-directives': [`error`],
+    'astro/no-deprecated-astro-canonicalurl': [`error`],
+    'astro/no-deprecated-astro-fetchcontent': [`error`],
+    'astro/no-deprecated-astro-resolve': [`error`],
+    'astro/no-set-html-directive': [`error`],
+    'astro/no-set-text-directive': [`error`],
+    'astro/no-unused-css-selector': [`error`],
+    'astro/no-unused-define-vars-in-style': [`error`],
+    'astro/prefer-class-list-directive': [`error`],
+    'astro/prefer-object-class-list': [`error`],
+    'astro/prefer-split-class-list': [`error`],
+    'astro/semi': [`error`],
+    'astro/valid-compile': [`error`],
+};

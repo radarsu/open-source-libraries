@@ -59,7 +59,6 @@ const eslintConfig = {
                 ...layoutAndFormatting,
                 ...possibleProblems,
                 ...plugins.pluginImport,
-                ...plugins.pluginJest,
                 ...plugins.pluginMaxParamsNoConstructor,
                 ...typescript,
             },
@@ -73,6 +72,27 @@ const eslintConfig = {
 
                 '@typescript-eslint/no-require-imports': [`off`],
                 '@typescript-eslint/no-var-requires': [`off`],
+            },
+        },
+        // * Astro.
+        {
+            files: astroPatterns.map((pattern) => {
+                return `${pattern}/**/*.astro`;
+            }),
+            plugins: [`astro`],
+            env: {
+                node: true,
+                'astro/astro': true,
+                es2020: true,
+            },
+            parser: `astro-eslint-parser`,
+            parserOptions: {
+                extraFileExtensions: [`.astro`],
+                parser: `@typescript-eslint/parser`,
+                sourceType: `module`
+            },
+            rules: {
+                ...plugins.pluginAstro,
             },
         },
         // * Angular HTML.
