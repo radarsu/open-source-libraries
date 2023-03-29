@@ -1,3 +1,4 @@
+import * as fs from 'node:fs';
 import * as plugins from './plugins';
 
 import { layoutAndFormatting } from './layout-and-formatting';
@@ -5,7 +6,20 @@ import { possibleProblems } from './possible-problems';
 import { suggestions } from './suggestions';
 import { typescript } from './typescript';
 
-const frontendAppPathsRegex = `./apps/*-{desktop,mobile,static,web}`;
+const angularPatterns = [
+    `./apps/*-{admin,app,dashboard,desktop,mobile,portal,web}`,
+    `./apps/{admin,app,dashboard,desktop,mobile,portal,web}`,
+    `./packages/ngx-*`,
+];
+
+const astroPatterns = [`./apps/*-{static,www}`, `./apps/{static,www}`];
+const nestPatterns = [`./apps/*-{api,gateway}`, `./apps/{api,gateway}`];
+
+const angularAndAstroPatterns = [
+    ...angularPatterns,
+    ...astroPatterns,
+];
+
 const eslintConfig = {
     // General config.
     env: {
@@ -32,9 +46,9 @@ const eslintConfig = {
         `ios`,
     ],
     overrides: [
-        // Core extensions.
+        // * Base rules for TypeScript and JavaScript files.
         {
-            files: [`*.ts`, `*.js`, `*.cjs`, `*.mjs`],
+            files: [`*.{ts,js,cjs,mjs}`],
             parser: `@typescript-eslint/parser`,
             parserOptions: {
                 ecmaVersion: 2022,
@@ -52,8 +66,22 @@ const eslintConfig = {
                 ...typescript,
             },
         },
+        // * Just JavaScript.
         {
-            files: [`*.html`],
+            files: [`*.{js,cjs,mjs}`],
+            rules: {
+                // Turned on exclusively for JavaScript.
+                'no-undef': [`error`],
+
+                '@typescript-eslint/no-require-imports': [`off`],
+                '@typescript-eslint/no-var-requires': [`off`],
+            },
+        },
+        // * Angular HTML.
+        {
+            files: angularAppsPatterns.map((pattern) => {
+                return `${pattern}/**/*.html`;
+            }),
             parser: `@angular-eslint/template-parser`,
             plugins: [`tailwindcss`, `@angular-eslint/template`],
             rules: {
@@ -61,8 +89,11 @@ const eslintConfig = {
                 ...plugins.pluginAngularEslintTemplate,
             },
         },
+        // * Angular TypeScript.
         {
-            files: [`${frontendAppPathsRegex}/**/*.ts`, `./packages/ngx-*/**/*.ts`],
+            files: angularAppsPatterns.map((pattern) => {
+                return `${pattern}/**/*.ts`;
+            }),
             parser: `@typescript-eslint/parser`,
             parserOptions: {
                 ecmaVersion: 2022,
@@ -75,77 +106,49 @@ const eslintConfig = {
             },
         },
 
-        // API configs.
+        // * Nest configurations.
         {
-            files: [`./apps/*-api/**/*.config.ts`],
+            files: nestPatterns.map((pattern) => {
+                return `${pattern}/**/*.config.ts`;
+            }),
             rules: {
                 // We allow many parameters for configs due to useFactory function Dependency Injection.
                 'max-params-no-constructor/max-params-no-constructor': `off`,
             },
         },
-        // API controllers, guards, exception filters, resolvers, scalars.
+        // * Nest controllers, guards, exception filters, resolvers, scalars.
         {
-            files: [`./apps/*-api/**/*.{controller,filter,guard,interceptor,module,resolver,strategy,service,scalar}.ts`],
+            files: nestPatterns.map((pattern) => {
+                return `${pattern}/**/*.{controller,filter,guard,interceptor,module,resolver,scalar,service,strategy}.ts`;
+            }),
             rules: {
                 // We allow many classes per file for ngxs actions.
                 'class-methods-use-this': [`off`],
             },
         },
-        // API inputs, outputs.
+        // * Nest inputs, outputs.
         {
-            files: [`./apps/*-api/**/*.{input,output}.ts`],
+            files: [`./apps/*-api/**/*.{args,input,model,output}.ts`],
             rules: {
                 // We allow many classes per file for ngxs actions.
                 'max-classes-per-file': `off`,
             },
         },
-        // Front-end actions.
-        {
-            files: [`${frontendAppPathsRegex}/**/*.actions.ts`],
-            rules: {
-                // We allow many classes per file for angular ngxs actions.
-                'max-classes-per-file': `off`,
-            },
-        },
-        // Front-end state.
-        {
-            files: [`${frontendAppPathsRegex}/**/*.state.ts`],
-            rules: {
-                // We allow many classes per file for ngxs actions.
-                'class-methods-use-this': `off`,
-            },
-        },
-        // JavaScript.
-        {
-            files: [`*.{js,cjs,mjs}`],
-            rules: {
-                // Turned on exclusively for JavaScript.
-                'no-undef': [`error`],
-
-                '@typescript-eslint/no-require-imports': [`off`],
-                '@typescript-eslint/no-var-requires': [`off`],
-            },
-        },
-        // pm2.
+        // * pm2.
         {
             files: [`./ecosystem.config.{js,cjs,mjs}`],
             rules: {
                 camelcase: [`off`],
             },
         },
-        // TailwindCSS.
+        // * TailwindCSS.
         {
-            files: [`${frontendAppPathsRegex}/**/*.config.{js,cjs,mjs}`],
+            files: angularAndAstroPatterns.map((pattern) => {
+                return `${pattern}/**/tailwind.config.{js,cjs,mjs}`;
+            }),
             rules: {
                 'max-lines': [`off`],
                 'sort-keys': [`off`],
-            },
-        },
-        // Types.
-        {
-            files: [`./apps/*/**/*.types.ts`],
-            rules: {
-                '@typescript-eslint/no-type-alias': [`off`],
             },
         },
     ],
