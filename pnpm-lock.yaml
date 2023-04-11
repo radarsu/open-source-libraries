@@ -8,17 +8,17 @@ devDependencies:
     specifier: 0.0.3
     version: 0.0.3(typescript@5.0.2)
   '@types/node':
-    specifier: 18.15.10
-    version: 18.15.10
+    specifier: 18.15.11
+    version: 18.15.11
   eslint-config-anp:
-    specifier: 1.0.13
+    specifier: 1.0.18
     version: link:packages/node/eslint-config-anp
   pm2:
     specifier: 5.3.0
     version: 5.3.0
   ts-node:
     specifier: 10.9.1
-    version: 10.9.1(@types/node@18.15.10)(typescript@5.0.2)
+    version: 10.9.1(@types/node@18.15.11)(typescript@5.0.2)
   tslib:
     specifier: 2.5.0
     version: 2.5.0
@@ -242,8 +242,8 @@ packages:
     resolution: {integrity: sha512-yOlFc+7UtL/89t2ZhjPvvB/DeAr3r+Dq58IgzsFkOAvVC6NMJXmCGjbptdXdR9qsX7pKcTL+s87FtYREi2dEEQ==}
     dev: true
 
-  /@types/node@18.15.10:
-    resolution: {integrity: sha512-9avDaQJczATcXgfmMAW3MIWArOO7A+m90vuCFLr8AotWf8igO/mRoYukrk2cqZVtv38tHs33retzHEilM7FpeQ==}
+  /@types/node@18.15.11:
+    resolution: {integrity: sha512-E5Kwq2n4SbMzQOn6wnmBjuK9ouqlURrcZDVfbo9ftDDTFt3nk7ZKK4GMOzoYgnpQJKcxwQw+lGaBvvlMo0qN/Q==}
     dev: true
 
   /acorn-walk@8.2.0:
@@ -1479,7 +1479,7 @@ packages:
       typescript: 4.9.3
     dev: true
 
-  /ts-node@10.9.1(@types/node@18.15.10)(typescript@5.0.2):
+  /ts-node@10.9.1(@types/node@18.15.11)(typescript@5.0.2):
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
     peerDependencies:
@@ -1498,7 +1498,7 @@ packages:
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.3
-      '@types/node': 18.15.10
+      '@types/node': 18.15.11
       acorn: 8.8.2
       acorn-walk: 8.2.0
       arg: 4.1.3
@@ -1673,7 +1673,7 @@ packages:
 time:
   /@radrat/cli-plugin-workspace@0.0.3: '2023-01-10T09:45:30.873Z'
   /@radrat/cli@3.0.0-beta.9: '2022-12-19T09:07:16.040Z'
-  /@types/node@18.15.10: '2023-03-25T22:33:12.313Z'
+  /@types/node@18.15.11: '2023-03-28T21:33:17.629Z'
   /pm2@5.3.0: '2023-03-15T20:56:25.359Z'
   /ts-node@10.9.1: '2022-07-14T02:33:44.792Z'
   /tslib@2.5.0: '2023-01-26T20:40:14.611Z'

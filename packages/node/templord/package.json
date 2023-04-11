@@ -21,7 +21,7 @@
         "options-defaults": "workspace:2.0.40",
         "ts-import": "workspace:4.0.0-beta.10",
         "tslib": "2.5.0",
-        "typescript": "5.0.2"
+        "typescript": "5.0.4"
     },
     "devDependencies": {
         "@radrat-internal/node-cli-plugin-package": "0.0.0",
@@ -29,7 +29,7 @@
         "@types/ejs": "3.1.2",
         "@types/fs-extra": "11.0.1",
         "@types/jest": "29.5.0",
-        "@types/node": "18.15.10",
+        "@types/node": "18.15.11",
         "jest": "29.5.0",
         "ts-jest": "29.0.5"
     },

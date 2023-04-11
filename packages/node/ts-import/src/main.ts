@@ -8,20 +8,20 @@ import { LoadMode, LoadOptions } from './load.interfaces.js';
 import { defaults } from 'options-defaults';
 import { providersMap } from './providers/providers.js';
 
-export const defaultLoadOptions = {
-    mode: LoadMode.Transpile,
-    allowConfigurationWithComments: false,
-    useCache: true,
-    compiledJsExtension: `.mjs`,
-};
-
 export const load = async (tsRelativePath: string, options?: LoadOptions) => {
     if (options?.allowConfigurationWithComments) {
         const commentConfig = await commentParser.getTsImportCommentConfig(tsRelativePath);
         options = defaults(options, commentConfig);
     }
 
-    const loadConfig = defaults(defaultLoadOptions, options);
+    const loadConfig = defaults({
+        // Default options.
+        mode: LoadMode.Transpile,
+        allowConfigurationWithComments: false,
+        useCache: true,
+        compiledJsExtension: `.mjs`,
+    }, options);
+
     const provider = providersMap[loadConfig.mode];
     const config = provider.getConfig(loadConfig);
 

@@ -8,7 +8,7 @@
     },
     "devDependencies": {
         "@radrat/cli": "3.0.0-beta.9",
-        "@types/node": "18.13.0",
+        "@types/node": "18.15.11",
         "typescript": "4.9.5"
     },
     "files": [
