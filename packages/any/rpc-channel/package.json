@@ -1,10 +1,10 @@
 {
     "name": "rpc-chan",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "main": "dist/public-api.js",
     "types": "dist/public-api.d.ts",
     "dependencies": {
-        "tslib": "2.4.1"
+        "tslib": "2.5.0"
     },
     "devDependencies": {
         "@radrat-internal/node-cli-plugin-package": "0.0.0",

@@ -2,8 +2,8 @@ lockfileVersion: '6.0'
 
 dependencies:
   tslib:
-    specifier: 2.4.1
-    version: 2.4.1
+    specifier: 2.5.0
+    version: 2.5.0
 
 devDependencies:
   '@radrat-internal/node-cli-plugin-package':
@@ -143,7 +143,7 @@ packages:
     resolution: {integrity: sha512-MBzat6+d6+KBkLg3d3oeE449awWYh+SUzBINbqHl7kf2a+6m2k5YPY5LTqnRTsghgVfslGiRISlR72EY27jcSw==}
     dependencies:
       options-defaults: 2.0.40
-      tslib: 2.4.1
+      tslib: 2.5.0
     dev: true
 
   /color-convert@2.0.1:
@@ -375,6 +375,10 @@ packages:
 
   /tslib@2.4.1:
     resolution: {integrity: sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==}
+    dev: true
+
+  /tslib@2.5.0:
+    resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}
 
   /types-package-json@2.0.39:
     resolution: {integrity: sha512-c8ua5W1Uu6x7LAwtwSGCl46cHmj+r2eAA+lXR1CluIZotu9V03ZHcGB9wKRZE2oIAX5IzMP/rxDV9g9ikCg9Nw==}
@@ -400,5 +404,5 @@ packages:
 time:
   /@radrat/cli@3.0.0-beta.9: '2022-12-19T09:07:16.040Z'
   /@types/node@18.11.18: '2022-12-26T17:32:43.752Z'
-  /tslib@2.4.1: '2022-10-31T18:26:41.901Z'
+  /tslib@2.5.0: '2023-01-26T20:40:14.611Z'
   /typescript@4.9.4: '2022-12-07T23:53:20.434Z'
