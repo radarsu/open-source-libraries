@@ -21,7 +21,7 @@ jobs:
               with:
                   node-version: ${{ matrix.node-version }}
             # <ngx-iframe>
-            - run: sed -i '/^use-node-version=/d' ./.npmrc ./packages/ngx-iframe/.npmrc
+            - run: sed -i '/^use-node-version=/d' ./.npmrc ./packages/angular/ngx-iframe/.npmrc
             - run: cd packages/angular/ngx-iframe
             - run: npm i -g pnpm@8.3.0
             - run: cd ./packages/angular/ngx-iframe
