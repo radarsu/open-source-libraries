@@ -22,13 +22,16 @@ jobs:
                   node-version: ${{ matrix.node-version }}
             # <ngx-iframe>
             - run: sed -i '/^use-node-version=/d' ./.npmrc ./packages/angular/ngx-iframe/.npmrc
-            - working-directory: ./packages/angular/ngx-iframe
             - run: npm i -g pnpm@8.3.0
-            - run: pnpm i
+              working-directory: ./packages/angular/ngx-iframe
+            - run: pnpm install
+              working-directory: ./packages/angular/ngx-iframe
             - run: pnpm exec ng build @rr-internal/ngx-iframe-parent
+              working-directory: ./packages/angular/ngx-iframe
             - run: pnpm exec ng build @rr-internal/ngx-iframe-child
-            - working-directory: ./dist/ngx-iframe-parent
+              working-directory: ./packages/angular/ngx-iframe
             - run: pnpm publish
-            - working-directory: ../ngx-iframe-child
+              working-directory: ./packages/angular/ngx-iframe/dist/ngx-iframe-parent
             - run: pnpm publish
+              working-directory: ./packages/angular/ngx-iframe/dist/ngx-iframe-child
             # </ngx-iframe>
