@@ -1,5 +1,5 @@
 {
-    "name": "@rr-internal/ngx-iframe-parent",
+    "name": "ngx-iframe-parent",
     "version": "0.0.0",
     "peerDependencies": {
         "@angular/common": "^15",

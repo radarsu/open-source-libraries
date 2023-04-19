@@ -3,9 +3,9 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "@rr-internal/ngx-iframe-parent": {
+        "ngx-iframe-parent": {
             "projectType": "library",
-            "root": "projects/@rr-internal/ngx-iframe-parent",
+            "root": "projects/ngx-iframe-parent",
             "sourceRoot": "projects/ngx-iframe-parent/src",
             "prefix": "lib",
             "architect": {
@@ -36,9 +36,9 @@
                 }
             }
         },
-        "@rr-internal/ngx-iframe-child": {
+        "ngx-iframe-child": {
             "projectType": "library",
-            "root": "projects/@rr-internal/ngx-iframe-child",
+            "root": "projects/ngx-iframe-child",
             "sourceRoot": "projects/ngx-iframe-child/src",
             "prefix": "lib",
             "architect": {

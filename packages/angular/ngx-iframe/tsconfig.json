@@ -3,9 +3,8 @@
     "compileOnSave": false,
     "compilerOptions": {
         "paths": {
-            "@rr-internal/ngx-iframe-child": ["dist/ngx-iframe-child"],
-            "@rr-internal/ngx-iframe-parent": ["dist/ngx-iframe-parent"],
-            "@rr-internal/rr-button": ["dist/rr-button"]
+            "ngx-iframe-child": ["dist/ngx-iframe-child"],
+            "ngx-iframe-parent": ["dist/ngx-iframe-parent"]
         },
         "baseUrl": "./",
         "declaration": false,
