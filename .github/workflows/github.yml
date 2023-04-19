@@ -20,11 +20,15 @@ jobs:
               uses: actions/setup-node@v3
               with:
                   node-version: ${{ matrix.node-version }}
+            # <ngx-iframe>
             - run: cd packages/angular/ngx-iframe
             - run: npm i -g pnpm@8.3.0
+            - run: cd ./packages/angular/ngx-iframe
+            - run: pnpm i
             - run: pnpm exec ng build @rr-internal/ngx-iframe-parent
             - run: pnpm exec ng build @rr-internal/ngx-iframe-child
-            - run: cd ./dist/ngx-iframe-parent
+            - run: ./dist/ngx-iframe-parent
             - run: pnpm publish
             - run: cd ../ngx-iframe-child
             - run: pnpm publish
+            # </ngx-iframe>
