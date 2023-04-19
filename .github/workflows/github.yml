@@ -24,7 +24,7 @@ jobs:
             - run: sed -i '/^use-node-version=/d' ./.npmrc ./packages/angular/ngx-iframe/.npmrc
             - run: npm i -g pnpm@8.3.0
               working-directory: ./packages/angular/ngx-iframe
-            - run: pnpm install
+            - run: pnpm install --filter="ngx-iframe-workspace"
               working-directory: ./packages/angular/ngx-iframe
             - run: pnpm exec ng build @rr-internal/ngx-iframe-parent
               working-directory: ./packages/angular/ngx-iframe
