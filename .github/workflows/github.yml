@@ -26,12 +26,8 @@ jobs:
               working-directory: ./packages/angular/ngx-iframe
             - run: pnpm install --filter="ngx-iframe-workspace"
               working-directory: ./packages/angular/ngx-iframe
-            - run: pnpm install
-              working-directory: ./packages/angular/ngx-iframe/projects/ngx-iframe-parent
             - run: pnpm exec ng build ngx-iframe-parent
               working-directory: ./packages/angular/ngx-iframe
-            - run: pnpm install
-              working-directory: ./packages/angular/ngx-iframe/projects/ngx-iframe-child
             - run: pnpm exec ng build ngx-iframe-child
               working-directory: ./packages/angular/ngx-iframe
             - run: pnpm publish

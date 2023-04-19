@@ -10,8 +10,8 @@ devDependencies:
     specifier: 3.0.0-beta.9
     version: 3.0.0-beta.9
   '@types/node':
-    specifier: 18.13.0
-    version: 18.13.0
+    specifier: 18.15.11
+    version: 18.15.11
   typescript:
     specifier: 4.9.5
     version: 4.9.5
@@ -77,8 +77,8 @@ packages:
       tslib: 2.4.0
     dev: true
 
-  /@types/node@18.13.0:
-    resolution: {integrity: sha512-gC3TazRzGoOnoKAhUx+Q0t8S9Tzs74z7m0ipwGpSqQrleP14hKxP4/JUeEQcD3W1/aIpnWl8pHowI7WokuZpXg==}
+  /@types/node@18.15.11:
+    resolution: {integrity: sha512-E5Kwq2n4SbMzQOn6wnmBjuK9ouqlURrcZDVfbo9ftDDTFt3nk7ZKK4GMOzoYgnpQJKcxwQw+lGaBvvlMo0qN/Q==}
     dev: true
 
   /ansi-colors@4.1.3:
@@ -387,6 +387,6 @@ packages:
 
 time:
   /@radrat/cli@3.0.0-beta.9: '2022-12-19T09:07:16.040Z'
-  /@types/node@18.13.0: '2023-02-07T08:32:41.060Z'
+  /@types/node@18.15.11: '2023-03-28T21:33:17.629Z'
   /tslib@2.5.0: '2023-01-26T20:40:14.611Z'
   /typescript@4.9.5: '2023-01-30T21:05:37.231Z'
