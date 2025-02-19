@@ -2,7 +2,7 @@
     // Editor and explorer.
     "editor.bracketPairColorization.enabled": true,
     "editor.codeActionsOnSave": {
-        "source.fixAll": true
+        "source.fixAll": "explicit"
     },
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.detectIndentation": false,
